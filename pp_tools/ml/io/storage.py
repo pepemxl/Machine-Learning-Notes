@@ -4,7 +4,8 @@
 Machine Learning projects are scalable through data pipelines, 
 however resources for development are an issue in scaled systems, 
 it don't make sense for small datasets being pulled thousands of times, 
-these petitions are waiting in a queue of jobs. 
+these petitions are waiting in a queue of jobs for a large time,
+while the current process takes a few minutes.
 That's where a local/dev environment will become handy.
 
 We need a handler of data in local/dev environments and monitors to handle
@@ -25,7 +26,7 @@ import platform
 import pandas as pd
 import datetime
 import uuid
-
+from collections import namedtuple
 
 
 
@@ -49,6 +50,19 @@ class StorageStatus(Enum):
     UPDATE = 3
     DELETE = 4
 
+class StoragePlaceHolder(Enum):
+    LOCAL = 0
+    HDFS = 1
+    S3 = 2
+    CASSANDRA = 3
+    HIVE = 4
+    CSV = 5
+    PARQUET = 6
+    JSON = 7
+    BLOB = 8
+    KAFKA = 9
+    RDBMS = 10
+
 class Storage:
     
     def __init__(self):
@@ -57,6 +71,7 @@ class Storage:
         self.uiid_str = None
         self.path = None
         self.status = StorageStatus.NONE
+        self.storage_place_holder = StoragePlaceHolder.LOCAL
         self.rentetion_policy = RetentionPolicy.NONE
         self.storage_type = StorageType.NONE
         self.generate_uuid()
@@ -85,8 +100,9 @@ class Output(Storage):
 
 
 if __name__ == '__main__':
-    pass
-
-
-
+    # storage = Storage()
+    # print(storage.uiid_str)
+    Model = namedtuple('model', ['name', 'version', 'subversion'])
+    current_model = Model('Isolation Forest', 1, 0)
+    print(current_model.name)
 
