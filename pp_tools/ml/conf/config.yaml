@@ -1,0 +1,9 @@
+defaults:
+    - db: local
+#    - dataset: imagenet
+#    - model: alexnet
+#    - optional dataset_model: ${dataset}_${model}
+version: 0
+subversion: 1
+minimum_space: 30
+minimum_space_units: GB

@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Configuration outputs
+pp_tools/conf/outputs/

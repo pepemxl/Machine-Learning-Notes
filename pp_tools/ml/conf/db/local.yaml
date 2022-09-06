@@ -1,0 +1,4 @@
+path: datawarehouse
+subpath_db: db
+subpath_reports: reports
+subpath_logger: log

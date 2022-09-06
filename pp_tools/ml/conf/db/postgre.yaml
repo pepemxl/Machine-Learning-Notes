@@ -1,0 +1,3 @@
+driver: postgre
+user: omry
+pass: secret

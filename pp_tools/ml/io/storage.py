@@ -62,6 +62,7 @@ class StoragePlaceHolder(Enum):
     BLOB = 8
     KAFKA = 9
     RDBMS = 10
+    PICKLE = 11
 
 class Storage:
     

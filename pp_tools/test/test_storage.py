@@ -3,8 +3,10 @@ import unittest
 
 import sys
 sys.path.append("../")
+import os
 
 from ml.io.storage import Storage
+from ml.conf.configurator import GLOBAL_CONFIGURATION
 
 def setUpModule():
     """
@@ -45,6 +47,15 @@ class TestStorage(unittest.TestCase):
     
     def test03(self):
         self.assertTrue(True)
+        
+    def test_space_available(self):
+        stat = os.statvfs(GLOBAL_CONFIGURATION["PATH"])
+        free_space_mb = (stat.f_bavail * stat.f_frsize) / 1048576
+        free_space_gb = free_space_mb / 1024
+        # print("Insuficient space available {0:,.2f} GB".format(free_space_gb))
+        message = "Insuficient space, available {0:,.2f} GB required {1:,.2f} GB".format(free_space_gb, GLOBAL_CONFIGURATION["minimum_space"])
+        print(message)
+        self.assertGreater(free_space_gb, GLOBAL_CONFIGURATION["minimum_space"], message)
 
 if __name__ == '__main__':
     unittest.main()
