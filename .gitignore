@@ -130,3 +130,6 @@ dmypy.json
 
 # Configuration outputs
 pp_tools/conf/outputs/
+
+/**/outputs/
+/diagrams/*.png
