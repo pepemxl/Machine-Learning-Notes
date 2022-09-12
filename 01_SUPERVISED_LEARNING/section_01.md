@@ -83,6 +83,8 @@ then
 $$\widehat{\mathcal{L}}_{|_{\Omega_{i}}} = g_{i}\circ f_{i}$$
 
 
+With this approach we have created two apparently different problems, 
+firstly find suitable $\{f_{i}\}$ that will create our **space of features** and as second problem find $\{g_{i}\}$ that maps our new features with the labels of our fully labeled dataset $D$.
 
 
 
