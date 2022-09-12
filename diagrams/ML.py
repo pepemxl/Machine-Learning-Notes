@@ -71,10 +71,16 @@ with Diagram(name="ML Taxonomy",
         ml_supervised >> Classification
         ml_supervised >> Regression
         
-        logistic_regression = Action("Logistic Regression", labelloc="c")
-        decision_tress = Action("Decision Trees", labelloc="c")
-        random_forest = Action("Random Forest", labelloc="c")
-        neural_networks = Action("Neural Networks", labelloc="c")
+        logistic_regression = Action("Logistic\nRegression", labelloc="c", width="3", height="2")
+        decision_tress = Action("Decision\nTrees", labelloc="c", width="3", height="2")
+        random_forest = Action("Random\nForest", labelloc="c", width="3", height="2")
+        neural_networks = Action("Neural\nNetworks", labelloc="c", width="3", height="2")
+        
+        Classification >> logistic_regression
+        Classification >> decision_tress
+        Classification >> random_forest
+        Classification >> neural_networks
+        
     with Cluster("Unsupervised"):
         ml_unsupervised = Action("Unsupervised", labelloc="c")
         Clustering = Action("Clustering", labelloc="c")
