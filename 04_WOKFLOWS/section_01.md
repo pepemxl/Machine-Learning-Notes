@@ -1,6 +1,4 @@
-# Machine Learning
-
-## Machine Learning Systems (MLS)
+# Machine Learning Systems (MLS)
  
 In order to create a functioning AI product, we need to put together
 a bunch of elements:

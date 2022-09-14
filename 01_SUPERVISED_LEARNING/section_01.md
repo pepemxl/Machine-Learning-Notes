@@ -1,6 +1,23 @@
 # Introduction
 
 
+Machine Learning can be divided into 2 large categories:
+
+1. Supervised Learning
+2. Unsupervised Learning
+
+however we can include other 2 small categories:
+
+3. Semi-supervised Learning
+4. Reinforcement Learning
+
+For now we will focus in supervised and unsupervised learning.
+
+![ML Taxonomy](../diagrams/ml_taxonomy.png)
+
+
+## Supervised Learning
+
 **Supervised learning** is maybe the most utilized machine learning method in the last years. Common algorithms used during supervised learning includes **neural networks**, **decision trees**, **linear regression**, and **support vector machines**.
 
 This machine learning type got its name because the machine is “supervised” while it's learning, which means that you’re feeding the algorithm information to help it learn. The outcome you provide the machine is labeled data, and the rest of the information you give is used as input features.
@@ -13,30 +30,27 @@ Supervised learning is effective for a variety of business purposes, including s
 - Determining whether loan applicants are low-risk or high-risk
 - Predicting the failure of industrial equipment's mechanical parts
 
-
-
-## GIGO Principle
-
-An important principle that should be remembered always is GIGO (Garbage In Garbage Out), unfortunately very often ML practitioners use supervised methods without pay enough attention to creation of features, using incorrectly techniques of clustering that finish generating swaping and masking effects on our features, making features unable to create good models, always is hard to get a good labeling process, but if bad decision are took while features are created it will become many times harder to obtain a good model.
+Supervised machine learning drives a several business applications and it is the reason because nowadays is considered one of the most important categories.
 
 ### Supervised Methods Approach
 
 Consider a set $\Omega$ and a subset $D\subset \Omega$, where $D$ is fully labeled.
 
 Given the set of labels $L$ with a mapping function 
+
 $$\begin{array}{cccc}
-\mathcal{L}: & D & \longrightarrow & L\\
-& \omega & \longmapsto & l_{\omega}
+\mathcal{L}: & D & \longrightarrow & L \\
+& \omega & \longmapsto & l_{\omega} \\
 \end{array}$$
 
 we want to extend this function $\mathcal{L}$ to the full set $\Omega$,
 
 $$\begin{array}{cccc}
-\widehat{\mathcal{L}}: & \Omega & \longrightarrow & L^{*}\\
-& \omega & \longmapsto & l_{\omega}
+\widehat{\mathcal{L}}: & \Omega & \longrightarrow & L^{*} \\
+& \omega & \longmapsto & l_{\omega} \\
 \end{array}$$
 
-such that $\widehat{\mathcal{L}}_{|_{D}} = \mathcal{L}$
+such that $ \widehat{\mathcal{L}}_{|_{D}} = \mathcal{L} $
 
 
 ## Applying Maths
@@ -86,7 +100,38 @@ $$\widehat{\mathcal{L}}_{|_{\Omega_{i}}} = g_{i}\circ f_{i}$$
 With this approach we have created two apparently different problems, 
 firstly find suitable $\{f_{i}\}$ that will create our **space of features** and as second problem find $\{g_{i}\}$ that maps our new features with the labels of our fully labeled dataset $D$.
 
+Both problems represents a challenge where several computational and statistical techniques are implemented, there are some techniques using very deep mathematical theory, however many impresive results make used of heuristics.
 
+
+## General ML Workflow
+
+The input data for training the model is preprocessed,then features are created. Once the machine learning model is trained, it can be used to make predictions on the unseen data. 
+
+
+### GIGO Principle
+
+An important principle that should be remembered always is GIGO (Garbage In Garbage Out), unfortunately very often ML practitioners use supervised methods without pay enough attention to creation of features, using incorrectly techniques of clustering that finish generating swaping and masking effects on our features, making features unable to create good models, always is hard to get a good labeling process, but if bad decision are took while features are created it will become many times harder to obtain a good model.
+
+## Supervised Learning Models
+
+- Linear Regression Model
+- Logistic Regression Model
+- Decision Trees
+- Random Forest
+- Boosted Grandient Algorithms
+- Support Vector Machines
+- Neural Networks
+- Graph Neural Networks
+
+## Building a Linear Regression Model
+
+**Linear regression** refers to modeling the relationship between a set of independent variables $\mathbb{X}$ and the output or dependent variables $y$. 
+
+$$ y = ax+b $$
+
+If the input variables contains $n$ independent variables, this is known as **multivariable linear regression**. 
+
+$$ y = a_{0}+a_{1}x_{1}+a_{2}x_{2}+\cdots + a_{n}x_{n}$$
 
 
 

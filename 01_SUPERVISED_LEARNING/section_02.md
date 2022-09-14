@@ -41,6 +41,6 @@ then,
 $$\nabla F(\mathbf{x}) = 2A^{T}(A\mathbf{x} -\mathbf{b} )$$
 
 
-
+## 
 
 

@@ -48,7 +48,7 @@ cluster_attr = {
 graph_attr = {
     # "label":"", 
     #labelloc:"t",
-    # "bgcolor":"transparent",
+    "bgcolor":"transparent",
     # "penwidth":"0",
     # comment:"By Jose Alonzo",
     # body:"By Jose Alonzo",
