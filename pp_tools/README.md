@@ -1,6 +1,6 @@
 # Tools for ML partial workflows in nodes
 
-I have designed this tool specifically to provide scalable, reliable, reproducible and automated tools to address the following six-step workflow:  
+I am designing this tool specifically to provide scalable, reliable, reproducible and automated tools to address the following six-step workflow:  
 
 1. Manage datasets locally
     - restricted to relative small datasets

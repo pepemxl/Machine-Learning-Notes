@@ -11,3 +11,11 @@ Creating customer groups based on purchase behavior
 Grouping inventory according to sales and/or manufacturing metrics
 
 Pinpointing associations in customer data (for example, customers who buy a specific style of handbag might be interested in a specific style of shoe)
+
+These are classic example that you will find searching for examples.
+
+
+
+
+
+

@@ -70,7 +70,7 @@ f_{i}: & \Omega_{i} & \longrightarrow & U_{i}\\
 \end{array}
 $$
 
-We are creating features from our dataset, which can be created only using values based on each $\omega \in \Omega_{i}$ or they can be aggregated values that depends on all values in $\Omega_{i}$.
+We are creating features from our dataset, which can be created only using numerical values based on each $\omega \in \Omega_{i}$ or they can be aggregated values that depends on all values in $\Omega_{i}$.
 
 To achieve this goal we dotate of more structure to our dataset adding some metrics or indicators, it means we create functions that goes from our dataset to another espace that we will call **spaces of features**, where a measurement can be defined or at least categorized.
 
