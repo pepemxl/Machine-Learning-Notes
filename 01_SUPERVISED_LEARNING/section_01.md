@@ -16,9 +16,16 @@ For now we will focus in supervised and unsupervised learning.
 ![ML Taxonomy](../diagrams/ml_taxonomy.png)
 
 
+
 ## Supervised Learning
 
-**Supervised learning** is maybe the most utilized machine learning method in the last years. Common algorithms used during supervised learning includes **neural networks**, **decision trees**, **linear regression**, and **support vector machines**.
+**Supervised learning** is maybe the most utilized machine learning method in the last years. Common algorithms used during supervised learning includes **neural networks**, **decision trees**, **linear regression**, and **support vector machines**. In **Supervised Learning** every point $(X,y)$ in a training dataset $\mathbb{X}\times Y$, where the input maps to an output. 
+
+
+![Training Set](../diagrams/training_set.png)
+
+
+The learning problem consists of inferring the function that maps between the input and the output, such that the learned function can be used to predict the output from future input.
 
 This machine learning type got its name because the machine is “supervised” while it's learning, which means that you’re feeding the algorithm information to help it learn. The outcome you provide the machine is labeled data, and the rest of the information you give is used as input features.
 
@@ -55,9 +62,17 @@ such that $ \widehat{\mathcal{L}}_{|_{D}} = \mathcal{L} $
 
 ## Applying Maths
 
-There are many simple and complex ways to achieve this goal. 
+There are many simple and complex ways to achieve this goal, that usually involves statistics and/or differential equations with linear/nonlinear optimizations which can be convex/non-convex problems, where deterministic and stochastic algorithms are used to create applications in images, speech recognition, recommendation systems, search engines and more.
+
+Our prefered algorithms have the next charateristics:
+- scale well with the number of variables
+- parallelize well
 
 In real problems the time is a key factor to achieve success. Then is needed to define thresholds between complexity and accuracy based on time available. Maybe a very complex strategy has the best results, but cost several times more to built this strategy.
+
+In supervised learning base principle is Empirical Risk Minimization (ERM), this is a principle in statistical learning theory which defines a family of learning algorithms and is used to give theoretical bounds on their performance.
+
+The core idea is that we cannot know exactly how well an algorithm will work in practice (the actual "risk") because we don't know the true distribution of data that the algorithm will work on, but we can instead measure its performance on a known set of training data (the "empirical" risk).
 
 In many cases supervised methods are mapping each element in a dataset $D \subset \Omega$ into another space where exist some order or at least a partial order, it means we have some structure that permit us to group elements, this is a very oversimplified consecuence of Dvoretzky's theorem . 
 
@@ -114,6 +129,69 @@ An important principle that should be remembered always is GIGO (Garbage In Garb
 
 ## Supervised Learning Models
 
+In Supervied Learning we have two large groups:
+- Classification Models
+- Regression Models
+
+Each group can be divided in subgroups:
+Classification and Regression models have versions of each one of them
+because it is feasible convert classification models into regression models and viceversa:
+- Linear
+- Support Vector Machines
+    - SVC
+    - SVM
+    - SVR
+- Tree
+    - Decision
+    - Extra
+- Random Forest
+    - Extra
+    - LGBM
+    - Random Forest
+    - XGBRF
+- Boosting
+    - LBGM
+    - XGB
+- Other
+
+
+List of some models found in Scikit-Learn library for each group:
+1. Classification
+    - Linear
+        - LogisticRegression
+        - LogisticRegressionCV
+        - PassiveAggressiveClassifier
+        - Perceptron
+        - RidgeClassifier
+        - RidgeClassifierCV
+        - SGDClassifier
+2. Regression
+    - Linear
+        - ARDRegression
+        - BayesianRidge
+        - ElasticNet
+        - ElasticNetCV
+        - GammaRegressor
+        - HuberRegressor
+        - Lars
+        - LarsCV
+        - Lasso
+        - LassoCV
+        - LassoLars
+        - LassoLarsCV
+        - LassoLarsIC
+        - LinearRegression
+        - OrthogonalMatchingPursuit
+        - OrthogonalMatchingPursuitCV
+        - PassiveAggressiveRegressor
+        - PoissonRegressor
+        - RANSACRegressor
+        - Ridge
+        - RidgeCV
+        - SGDRegressor
+        - TheilSenRegressor
+        - TweedieRegressor
+
 - Linear Regression Model
 - Logistic Regression Model
 - Decision Trees
@@ -123,15 +201,7 @@ An important principle that should be remembered always is GIGO (Garbage In Garb
 - Neural Networks
 - Graph Neural Networks
 
-## Building a Linear Regression Model
 
-**Linear regression** refers to modeling the relationship between a set of independent variables $\mathbb{X}$ and the output or dependent variables $y$. 
-
-$$ y = ax+b $$
-
-If the input variables contains $n$ independent variables, this is known as **multivariable linear regression**. 
-
-$$ y = a_{0}+a_{1}x_{1}+a_{2}x_{2}+\cdots + a_{n}x_{n}$$
 
 
 
