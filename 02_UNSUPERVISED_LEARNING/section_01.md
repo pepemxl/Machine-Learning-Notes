@@ -17,5 +17,25 @@ These are classic example that you will find searching for examples.
 
 
 
+# Clusters
+
+A cluster is a set of groups of instances of a dataset that have been automatically classified together according to a distance measure computed using the fields of the dataset.
+
+Clusters can handle numeric, categorical, text and items fields as inputs:
+
+- Numeric fields: the Eucledian distance is computed between the instances numeric values.
+- Categorical fields: a common way to handle categorical data is to take each category as a new field and assign 0 or 1 depending on the category. 
+- Text and item fields: each instance is assigned a vector of terms and then cosine similarity is computed to determine closeness between instances.
+
+For categorial field with 20 categories will become 20 separate binary fields. Big Data usually uses a technique called k-prototypes which modifies the distance function to operate as though the categories were transformed to binary values.
+
+
+Each cluster group is represented by a centroid or center that is computed using the mean for each numeric field and the mode for each categorical field. For text and items fields each centroid contains the terms or items which minimize the average cosine distance between the centroid and the points in its neighborhood.
+
+To create a cluster, you can select an arbitrary number of clusters and also select an arbitrary subset of fields from your dataset as input_fields. You can use scales to select how each field influences the distance measure used to group instances together.
+
+
+
+
 
 

@@ -2,7 +2,18 @@
 """
 Created on Wed Sep 14 11:09:24 2022
 
-@author: pepem
+@author: pepemxl
+
+StateMachine implementation based on transitions library
+
+- Context - it is the original class of our application. 
+    It maintains a reference to one of the concrete states on which its behavior depends. 
+    It also has a method to modify the internal state.
+-  State interface - All supported states share the same state interface. 
+    Only the state interface allows Context to communicate with state objects. 
+    Context can only communicate with state objects via the state interface.
+-  Concrete states - For each state, these objects implement the 'State' interface. 
+    These are the main objects which contain the state-specific methods. 
 """
 
 
@@ -16,7 +27,8 @@ import logging
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.NullHandler())
 
-def listify(obj:object)->Union[list, tuple]:
+
+def listify(obj:object) -> Union[list, tuple]:
     """ Wraps a passed object into a list in case it has not been a list or a 
     tuple before.
     Returns an empty list in case "obj" is None.
@@ -36,6 +48,16 @@ def listify(obj:object)->Union[list, tuple]:
     except ReferenceError:
         return [obj]
 
+
+class Context(object):
+    """ Context
+    
+    """
+    def __init__(self,
+                name:Union[str, Enum]
+                ):
+        pass
+
 class State(object):
     """ State
         
@@ -44,7 +66,8 @@ class State(object):
     # Dynamic methods for states must start with prefix "on_"
     list_dynamic_methods = ['on_enter', 'on_exit']
 
-    def __init__(self, name:Union[str, Enum], 
+    def __init__(self, 
+                 name:Union[str, Enum], 
                  on_enter:Union[str, list, None]=None, 
                  on_exit:Union[str, list, None]=None,
                  ignore_invalid_triggers:Optional[bool]=None
@@ -157,6 +180,7 @@ class Condition(object):
 if __name__=='__main__':
     class MachineLearningModel(object):
         states = ['training', 'validating']
+        
     hello_state = State(name='Hello World', on_enter='print', on_exit='exit')
     print(hello_state.name)
     

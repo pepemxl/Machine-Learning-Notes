@@ -1,5 +1,17 @@
 # Linear Regressions
 
+## Building a Linear Regression Model
+
+**Linear regression** refers to modeling the relationship between a set of independent variables $\mathbb{X}$ and the output or dependent variables $y$. 
+
+$$ y = ax+b $$
+
+If the input variables contains $n$ independent variables, this is known as **multivariable linear regression**. 
+
+$$ y = a_{0}+a_{1}x_{1}+a_{2}x_{2}+\cdots + a_{n}x_{n}$$
+
+
+## Math behind a linear regression model
 
 As we discused previously in order to fit regularized 
 linear models we use variants of [gradient descent](https://en.wikipedia.org/wiki/Gradient_descent).
@@ -41,6 +53,13 @@ then,
 $$\nabla F(\mathbf{x}) = 2A^{T}(A\mathbf{x} -\mathbf{b} )$$
 
 
-## 
+## Stochastic Gradient Descent (SGD)
+
+The name Stochastic Gradient Descent Classifier might mislead some user to think that SGD is a classifier. But that’s not the case! SGD Classifier is a linear classifier optimized by the SGD!!!. 
+
+These are two different concepts. While SGD is a optimization method, Logistic Regression or linear Support Vector Machine are machine learning algorithms or models. 
+
+You can think of that a machine learning model defines a loss function, and the optimization method minimizes/maximizes its loss function.
+
 
 

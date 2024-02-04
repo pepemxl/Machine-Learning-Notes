@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import unittest
-
-import sys
-sys.path.append("../")
+if __name__ == '__main_-':
+    import sys
+    sys.path.append("../")
 import os
 
 from ml.io.storage import Storage

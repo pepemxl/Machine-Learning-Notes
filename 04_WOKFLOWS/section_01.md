@@ -25,4 +25,8 @@ Usually they show the transfer of information from one part of the system to ano
 - etc...
 
 
-In this sense many solutions are available.
+In this sense many solutions are available, however depends on our data and goals to achieve, which one will be better. In the same sense that a devOps depends takes architecture decisions based on properties desired for the system to guarantee requirements, it will need special patterns in its architecture.
+
+
+
+

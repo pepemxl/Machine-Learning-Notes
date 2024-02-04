@@ -19,7 +19,13 @@ For now we will focus in supervised and unsupervised learning.
 
 ## Supervised Learning
 
-**Supervised learning** is maybe the most utilized machine learning method in the last years. Common algorithms used during supervised learning includes **neural networks**, **decision trees**, **linear regression**, and **support vector machines**. In **Supervised Learning** every point $(X,y)$ in a training dataset $\mathbb{X}\times Y$, where the input maps to an output. 
+**Supervised learning** is maybe the most utilized machine learning method in the last years. Common algorithms used during supervised learning includes 
+- **linear regression**,
+- **decision trees**, 
+- **support vector machines**, and 
+- **neural networks**.
+
+In **Supervised Learning** every point $(X,y)$ in a training dataset $\mathbb{X}\times Y$, where the input maps to an output. 
 
 
 ![Training Set](../diagrams/training_set.png)
@@ -118,14 +124,25 @@ firstly find suitable $\{f_{i}\}$ that will create our **space of features** and
 Both problems represents a challenge where several computational and statistical techniques are implemented, there are some techniques using very deep mathematical theory, however many impresive results make used of heuristics.
 
 
-## General ML Workflow
+# General ML Workflow
 
 The input data for training the model is preprocessed,then features are created. Once the machine learning model is trained, it can be used to make predictions on the unseen data. 
 
 
-### GIGO Principle
+## GIGO Principle
 
 An important principle that should be remembered always is GIGO (Garbage In Garbage Out), unfortunately very often ML practitioners use supervised methods without pay enough attention to creation of features, using incorrectly techniques of clustering that finish generating swaping and masking effects on our features, making features unable to create good models, always is hard to get a good labeling process, but if bad decision are took while features are created it will become many times harder to obtain a good model.
+
+## New Trends in MLOps
+
+It has been clear for many data scientist that ignore data and pretend that ML models will learn patterns in its owns will be feasible without an special attention in data.
+
+Then Data Focus MLOps has started to be a trend.
+
+
+
+
+
 
 ## Supervised Learning Models
 

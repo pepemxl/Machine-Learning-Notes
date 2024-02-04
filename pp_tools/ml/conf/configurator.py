@@ -18,25 +18,62 @@ import shutil
 import logging
 from omegaconf import DictConfig, OmegaConf
 import hydra
+from typing import Optional
+from ctypes import Structure, c_int32, c_uint64, sizeof, byref, windll
+
+class MemoryStatusEx(Structure):
+    _fields_ = [
+        ('length', c_int32),
+        ('memoryLoad', c_int32),
+        ('totalPhys', c_uint64),
+        ('availPhys', c_uint64),
+        ('totalPageFile', c_uint64),
+        ('availPageFile', c_uint64),
+        ('totalVirtual', c_uint64),
+        ('availVirtual', c_uint64),
+        ('availExtendedVirtual', c_uint64)]
+    def __init__(self):
+        self.length = sizeof(self)
 
 log = logging.getLogger(__name__)
 
 
-def compute_memory():
+def compute_memory()->Optional[float]:
     """ Getting all memory using os.popen()
         It will be RAM + SWAP in case of linux
     """
     log.info("Computing node memory available")
-    total_memory, used_memory, free_memory = map(
-        int, 
-        os.popen('free -t -m').readlines()[-1].split()[1:]
-    )
+    pct_memory = None
+    used_memory = None
+    free_memory = None
+    total_memory = None
+    if platform == "linux" or platform == "linux2":
+        # linux
+        total_memory, used_memory, free_memory = map(
+            int, 
+            os.popen('free -t -m').readlines()[-1].split()[1:]
+        )
+        print(used_memory, free_memory, total_memory)
+        print(used_memory/1024, free_memory/1024, total_memory/1024)
+        pct_memory = round((used_memory/total_memory) * 100, 2)
+    elif platform == "darwin":
+        # OS X
+        total_memory, used_memory, free_memory = map(
+            int, 
+            os.popen('free -t -m').readlines()[-1].split()[1:]
+        )
+        pct_memory = round((used_memory/total_memory) * 100, 2)
+    elif platform == "win32":
+        # Windows
+        m = MemoryStatusEx()
+        assert windll.kernel32.GlobalMemoryStatusEx(byref(m))
+        print('You have %0.2f GiB of RAM installed' % (m.totalPhys / (1024.)**3))
+    
   
     # Memory usage
     #print("RAM memory % used:", round((used_memory/total_memory) * 100, 2))
-    print(used_memory, free_memory, total_memory)
-    print(used_memory/1024, free_memory/1024, total_memory/1024)
-    return round((used_memory/total_memory) * 100, 2)
+    
+    return pct_memory
 
 
 # DEFAULT_ARGS = {

@@ -3,7 +3,7 @@
 @author: Jose Alonzo
 @email: pepemxl@gmail.com
 Machine Learning projects are scalable through data pipelines, however resources for development are often an issue in scaled systems, 
-it don't make sense for relative small datasets being pulled thousands of times, these petitions are waiting in a queue of jobs for a large time,
+it doesn't make sense for relative small datasets being pulled thousands of times, these petitions are waiting in a queue of jobs for a large time,
 while the current process takes a few minutes and a small machine. That's where a local/dev environment will become handy.
 
 We need a handler of data in local/dev environments and monitors to handle this data and its transformations, as it will be working with a 
@@ -25,9 +25,9 @@ data science and analytics, while Presto is employed for interactive querying. V
 This storage Data Access Layer (DAL) have the following goals:
 
 - Data Discovery: 
-    - how can we find datasets that are the most important? 
-    - who owns these datasets? 
-    - what are their semantics and other relevant metadata?
+    - How can we find datasets that are the most important? 
+    - Who owns these datasets? 
+    - What are their semantics and other relevant metadata?
 - Data Auditing: 
     - who creates or consumes these datasets, 
     - how are they created, 
@@ -114,7 +114,7 @@ class StoragePlaceHolder(Enum):
     """ Storage place holder system.
 
     Args:
-        Enum (PICKLE): Use standar built in pickle storage
+        Enum (PICKLE): Use standard built in pickle storage
     """    
     LOCAL = 0
     HDFS = 1
