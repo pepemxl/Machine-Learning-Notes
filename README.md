@@ -47,20 +47,20 @@ In many large business or startups we deploy machine learning projects going thr
 1. Machine learning frameworks
     - Open AI
     - Tensorflow
-    - Pytorch
+    - **Pytorch**
     - SageMaker
     - GridAI
 2. Distributed compute
     - Dask
-    - Spark
+    - **Spark**
     - Databricks
 3. Model evaluation and experiment tracking
-    - MLFlow
+    - **MLFlow**
     - neptune.ai
     - Comet
 4. Model deployment
     - OctoML
-    - BentoML
+    - **BentoML**
 5. Model monitoring and management
     - Fidler
     - Cortex
@@ -68,6 +68,51 @@ In many large business or startups we deploy machine learning projects going thr
     - nvidia
     - databricks
     - SageMaker
+
+
+## Big Data Stacks
+
+- SMACK
+- Hadoop Ecosystem
+- ELK Stack
+- Flink Stack
+- Lambda Architecture
+- Microsoft Azure Stack
+
+## SMACK
+- Spark
+- Mesos
+- Akka
+- Cassandra
+- Kafka
+
+
+Spark: Apache Spark is an in-memory data processing framework that facilitates distributed processing and analysis of large data sets efficiently.
+
+Mesos: Apache Mesos is a cluster management system that enables efficient resource allocation between applications and services in a distributed environment.
+
+Akka: Akka is a toolkit and runtime for building concurrent and distributed systems based on the actor model, which are independent processing units that communicate with each other.
+
+Cassandra: Apache Cassandra is a highly scalable and fault-tolerant distributed database used to manage large volumes of data distributed across multiple nodes.
+
+Kafka: Apache Kafka is a distributed event streaming platform that facilitates real-time data ingestion and processing through event streams.
+
+
+## Review of Projects
+
+- Geolocation Analysis for Transportation Applications
+    - Proximity Service
+    - Nearby Friends
+- Visual Search System
+- Google Street View Blurring System
+- Youtube Video Search
+- Harmful Content Detection
+- Video Recommendation System
+- Event Recommendation System
+- Ad Click Prediction on Social Platforms
+- Similar Listings on Vacation Rental Platforms
+- Personalized News Feed
+- People You May Know
 
 
 ### Requirements
