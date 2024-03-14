@@ -98,7 +98,7 @@ Cassandra: Apache Cassandra is a highly scalable and fault-tolerant distributed 
 Kafka: Apache Kafka is a distributed event streaming platform that facilitates real-time data ingestion and processing through event streams.
 
 
-## Review of Projects
+## Review of Projects Big Data + ML + Data Mining
 
 - Geolocation Analysis for Transportation Applications
     - Proximity Service
