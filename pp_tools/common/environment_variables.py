@@ -6,7 +6,7 @@ if __name__  == '__main__':
     package_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
     sys.path.append(package_path)
 from pp_tools.common.constants import CONFIG_FILE_PATH
-from pp_tools.common.utils.logger import get_logger
+from pp_tools.common.logger import get_logger
 
 
 log = get_logger(__file__, "INFO")
@@ -26,7 +26,7 @@ def load_environment_variables_from_local_config():
         sys.exit(1)
 
 
-def get_env_var(env_var_key: str) -> Optional[str]:
+def get_env_var(env_var_key: str, default: Optional[str]=None) -> Optional[str]:
     global FLAG_ENV_VARS_LOADED
     if not FLAG_ENV_VARS_LOADED:
         load_environment_variables_from_local_config()
@@ -36,6 +36,8 @@ def get_env_var(env_var_key: str) -> Optional[str]:
         log.exception("Exception with environment variable with key: {0} Exception:{1}".format(env_var_key, str(e)))
     if value is None:
         log.error("Environment variable with key: {0} was not found!".format(env_var_key))
+        if default:
+            return default
         return value
     return value
 
@@ -43,4 +45,5 @@ def get_env_var(env_var_key: str) -> Optional[str]:
 
 
 if __name__ == '__main__':
+    log.info("Llamada a modulo {0}".format(__file__))
     print(CONFIG_FILE_PATH)
