@@ -4,7 +4,7 @@ if __name__  == '__main__':
     package_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
     sys.path.append(package_path)
 from pp_tools.common.constants import PATH_STRUCTURE
-from pp_tools.common.utils.logger import get_logger
+from pp_tools.common.logger import get_logger
 
 
 log = get_logger(__file__, "INFO")
