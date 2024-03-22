@@ -1,20 +1,14 @@
 from enum import Enum
 import os
 from sqlalchemy import (
-    Boolean,
-    Column,
     DateTime,
     Enum, 
     Integer,
-    JSON,
     String,
-    Text,
 )
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
-from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.schema import ForeignKey
-from sqlalchemy.schema import MetaData
 from sqlalchemy.schema import UniqueConstraint
 if __name__  == '__main__':
     import sys
@@ -88,7 +82,7 @@ class TblDevices(Base):
         nullable=False,
         comment='Date created'
     )
-    last_logged_in_at: Mapped[DateTime] = mapped_column(
+    last_loggin_at: Mapped[DateTime] = mapped_column(
         DateTime,
         nullable=False,
         comment='Date created'
