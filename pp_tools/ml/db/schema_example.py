@@ -4,17 +4,17 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-class Parent(Base):
-    __tablename__ = 'parents'
+class TblParents(Base):
+    __tablename__ = 'tbl_parents'
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    children = relationship("Child")  # Definición de la relación con la clase Child
+    children = relationship("TblChildrens")  # Definición de la relación con la clase Child
 
-class Child(Base):
-    __tablename__ = 'children'
+class TblChildrens(Base):
+    __tablename__ = 'tbl_childrens'
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    parent_id = Column(Integer, ForeignKey('parents.id'))  # Definición de la clave foránea
+    parent_id = Column(Integer, ForeignKey('tbl_parents.id'))  # Definición de la clave foránea
 
 # En este ejemplo, estamos definiendo una relación uno a muchos entre las clases Parent y Child.
 # Cada instancia de la clase Parent puede tener múltiples instancias de la clase Child asociadas a ella.

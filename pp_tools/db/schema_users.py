@@ -27,6 +27,7 @@ class TblUsers(Base):
     __tablename__ = 'tbl_users'
 
     id: Mapped[int] = mapped_column(
+        Integer,
         primary_key=True,
         autoincrement=True,
         nullable=False,
@@ -51,6 +52,11 @@ class TblUsers(Base):
         nullable=False,
         comment='Date created'
     )
+    updated_at: Mapped[DateTime] = mapped_column(
+        DateTime,
+        nullable=False,
+        comment='Date Updated'
+    )
 
     __table_args__ = (
         UniqueConstraint('email'),
@@ -61,6 +67,7 @@ class TblDevices(Base):
     __tablename__ = 'tbl_devices'
 
     id: Mapped[int] = mapped_column(
+        Integer,
         primary_key=True,
         autoincrement=True,
         nullable=False,
@@ -81,6 +88,11 @@ class TblDevices(Base):
         DateTime,
         nullable=False,
         comment='Date created'
+    )
+    updated_at: Mapped[DateTime] = mapped_column(
+        DateTime,
+        nullable=False,
+        comment='Date udpated'
     )
     last_loggin_at: Mapped[DateTime] = mapped_column(
         DateTime,

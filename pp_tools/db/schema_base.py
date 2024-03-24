@@ -2,7 +2,6 @@ import os
 from sqlalchemy import MetaData
 from sqlalchemy import URL
 from sqlalchemy.orm import DeclarativeBase
-from sqlalchemy.schema import CreateTable
 if __name__  == '__main__':
     import sys
     package_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
