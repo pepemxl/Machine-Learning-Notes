@@ -1,7 +1,39 @@
-# PMYK 
+# PYMK People You May Know
+
+People You May Know is a list of users/things with whom you may want to connect, based on things you have in common, such a mutual friend, school, or workplace.
+
+
+```mermaid
+    C4Context
+      title People You May Know
+      Boundary(b0, "Know Each Other"){
+        Person(p1, "P1")
+        Person(p2, "P2")
+        Person(p3, "P3")
+      }
+      Container(s1, "Object", $borderColor="#d73027")      
+      Person(p4, "P4")
+      BiRel(p1, p2, "know")
+      BiRel(p1, p3, "know")
+      BiRel(p2, p3, "know")
+      Rel(p3, p4, "know")
+      Rel(p1, s1, "know")
+      UpdateElementStyle(p1, $fontColor="red", $bgColor="grey", $borderColor="red")
+      UpdateElementStyle(p2, $fontColor="red", $bgColor="grey", $borderColor="red")
+      UpdateElementStyle(p3, $fontColor="red", $bgColor="grey", $borderColor="red")
+      UpdateRelStyle(p1, p2, $textColor="blue", $lineColor="blue", $offsetX="5")
+      UpdateRelStyle(p1, p3, $textColor="blue", $lineColor="blue", $offsetX="5")
+      UpdateRelStyle(p2, p3, $textColor="blue", $lineColor="blue", $offsetX="5")
+      UpdateRelStyle(p3, p4, $textColor="orange", $lineColor="orange", $offsetX="5")
+      UpdateRelStyle(p1, s1, $textColor="orange", $lineColor="orange", $offsetX="5")
+      UpdateElementStyle(b0, $fontColor="red", $borderColor="red", $legendTitleColor ="red")
+      UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+```
+
+
 
 ### 1. Problem Formulation
-Recommend a list of users that you may want to connect with 
+Recommend a list of users/things that you may want to connect with. For any ML recommender system shold be addresed the next questions:
 * Clarifying questions
   * What is the primary business objective of the system? 
   * What's the primary use case of the system?
@@ -28,7 +60,7 @@ Recommend a list of users that you may want to connect with
 * Data: Sources and Availability:
 
 * Assumptions:
-    * symmetric firendships
+    * symmetric friendships
   
 * ML Formulation:
     * Objective: 

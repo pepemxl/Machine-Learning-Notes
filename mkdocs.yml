@@ -1,0 +1,26 @@
+site_name: Machine Learning Notes
+nav:
+  - Home: 'index.md'
+  - Data Science: 
+    - 'The Six Phases of data Analysis': '00_DATA/README.md'
+    - 'Dimensions of Data Analytics': '00_DATA/section_01.md'
+    - 'Databases': '00_DATA/section_02.md'
+    - Math: 
+      - 'section 1': '05_MATH/section_01.md'
+      - 'section 2': '05_MATH/section_02.md'
+    - Workflows: '04_WORKFLOWS/section_01.md'
+  - Machine Learning:
+    - Supervised-Learning:
+      - 'Introduction': '01_SUPERVISED_LEARNING/section_01.md'
+      - 'Linear Regressions': '01_SUPERVISED_LEARNING/section_02.md'
+      - 'Support Vector Machines': '01_SUPERVISED_LEARNING/section_03.md'
+    - Unsupervised-Learning: '02_UNSUPERVISED_LEARNING/section_01.md'
+  - Data Mining: 
+
+plugins:
+  - search
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+markdown_extensions:
+  - smarty
+  - mdx_math

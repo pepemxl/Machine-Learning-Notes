@@ -36,3 +36,11 @@ clean: ${VENV}
 clean_cache: ${VENV}
 	find . -type f -name *.pyc -delete
 	ind . -type d -name __pycache__ -delete
+
+.PHONY: serve_doc
+serve_doc:
+	mkdocs serve
+
+.PHONY: build_doc
+build_doc:
+	mkdocs serve

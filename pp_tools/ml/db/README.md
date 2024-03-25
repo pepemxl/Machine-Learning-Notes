@@ -1,14 +1,12 @@
-# Why knowledge graph?
+# Knowledge graph dabatabase details
 
-Facts can be represented in form of triplets in either of the ways,
+Facts will be represented in form of triplets in:
 - HRT: <head, relation, tail>
-- SPO: <subject, predicate, object>
-
 
 ## HRT
 
-— Head or tail: these are entities that are real-world objects or abstract concepts which are represented as nodes
-— Relation: these are the connection between entities which represented as edges
+- Head or tail: these are entities that are real-world objects or abstract concepts which are represented as nodes
+-  Relation: these are the connection between entities which represented as edges
 
 ## Compared to Normal Graphs
 
@@ -63,3 +61,16 @@ pos = nx.spring_layout(G, k = 0.5) # k regulates the distance between nodes
 nx.draw(G, with_labels=True, node_color='skyblue', node_size=1500, edge_cmap=plt.cm.Blues, pos = pos)
 plt.show()
 ```
+
+
+## Code Analysis
+
+The basic structure of a graph consists of nodes and edges connecting them. For our Python codebase, nodes can be classes, functions, imports, etc. and edges can represent how these nodes are connected to each other.
+
+
+```mermaid
+flowchart TD
+    File.py
+
+```
+

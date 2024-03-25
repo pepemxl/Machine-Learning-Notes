@@ -13,8 +13,7 @@ however we can include other 2 small categories:
 
 For now we will focus in supervised and unsupervised learning.
 
-![ML Taxonomy](../diagrams/ml_taxonomy.png)
-
+![ML Taxonomy](../images/ml_taxonomy.png)
 
 
 ## Supervised Learning
@@ -25,7 +24,7 @@ For now we will focus in supervised and unsupervised learning.
 - **support vector machines**, and 
 - **neural networks**.
 
-In **Supervised Learning** every point $(X,y)$ in a training dataset $\mathbb{X}\times Y$, where the input maps to an output. 
+In **Supervised Learning** every point \((X,y)\) in a training dataset \(\mathbb{X}\times Y\), where the input maps to an output. 
 
 
 ![Training Set](../diagrams/training_set.png)

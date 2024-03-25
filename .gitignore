@@ -138,4 +138,5 @@ dmypy.json
 pp_tools/conf/outputs/
 
 /**/outputs/
-/diagrams/*.png
+/diagrams/*.pngsite/
+site/
