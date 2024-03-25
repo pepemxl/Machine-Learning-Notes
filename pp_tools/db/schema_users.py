@@ -1,3 +1,4 @@
+from datetime import datetime
 from enum import Enum
 import os
 from sqlalchemy import (
@@ -49,13 +50,14 @@ class TblUsers(Base):
     )
     created_at: Mapped[DateTime] = mapped_column(
         DateTime,
-        nullable=False,
-        comment='Date created'
+        comment='Date created',
+        default=datetime.now()
     )
     updated_at: Mapped[DateTime] = mapped_column(
         DateTime,
-        nullable=False,
-        comment='Date Updated'
+        comment='Date Updated',
+        default=datetime.now(), 
+        onupdate=datetime.now()
     )
 
     __table_args__ = (
@@ -86,18 +88,21 @@ class TblDevices(Base):
     )
     created_at: Mapped[DateTime] = mapped_column(
         DateTime,
-        nullable=False,
-        comment='Date created'
+        comment='Date created',
+        default=datetime.now()
     )
     updated_at: Mapped[DateTime] = mapped_column(
         DateTime,
-        nullable=False,
-        comment='Date udpated'
+        comment='Date Updated',
+        default=datetime.now(),
+        onupdate=datetime.now()
     )
     last_loggin_at: Mapped[DateTime] = mapped_column(
         DateTime,
         nullable=False,
-        comment='Date created'
+        comment='last logging at',
+        default=datetime.now(),
+        onupdate=datetime.now()
     )
 
     __table_args__ = (
