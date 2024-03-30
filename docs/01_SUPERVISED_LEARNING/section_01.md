@@ -6,19 +6,38 @@ Machine Learning can be divided into 2 large categories:
 1. Supervised Learning
 2. Unsupervised Learning
 
-however we can include other 2 small categories:
+however we can include other 3 "small" categories:
 
 3. Semi-supervised Learning
 4. Reinforcement Learning
+5. Deep Learning
 
 For now we will focus in supervised and unsupervised learning.
 
-![ML Taxonomy](../images/ml_taxonomy.png)
+```mermaid
+graph TD;
+    A[Machine Learning] --> B[Supervised Learning]
+    A[Machine Learning] --> C[Unsupervised Learning]
+    A[Machine Learning] --> D[Reinforcement Learning]
+    A[Machine Learning] --> E[Semi-supervised Learning]
+    A[Machine Learning] --> F[Deep Learning]
+    B --> B1[Classification]
+    B --> B2[Regression]
+    C --> C1[Clustering]
+    C --> C2[Dimensionality Reduction]
+    D --> D1[Q-Learning]
+    D --> D2[Policy Gradient Methods]
+    F --> F1[Artificial Neural Networks]
+    F --> F2[Convolutional Neural Networks]
+    F --> F3[Recurrent Neural Networks]
+    F --> F4[Generative Adversarial Networks]
+```
 
 
 ## Supervised Learning
 
 **Supervised learning** is maybe the most utilized machine learning method in the last years. Common algorithms used during supervised learning includes 
+
 - **linear regression**,
 - **decision trees**, 
 - **support vector machines**, and 
@@ -26,8 +45,11 @@ For now we will focus in supervised and unsupervised learning.
 
 In **Supervised Learning** every point \((X,y)\) in a training dataset \(\mathbb{X}\times Y\), where the input maps to an output. 
 
+```mermaid
+graph LR;
+    X[X] --> Y[Y]
+```
 
-![Training Set](../diagrams/training_set.png)
 
 
 The learning problem consists of inferring the function that maps between the input and the output, such that the learned function can be used to predict the output from future input.

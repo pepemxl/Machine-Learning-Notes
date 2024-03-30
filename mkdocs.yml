@@ -1,10 +1,12 @@
 site_name: Machine Learning Notes
 nav:
   - Home: 'index.md'
-  - Data Science: 
+  - Data Analysis: 
     - 'The Six Phases of data Analysis': '00_DATA/README.md'
     - 'Dimensions of Data Analytics': '00_DATA/section_01.md'
-    - 'Databases': '00_DATA/section_02.md'
+    - 'Databases': 
+      - 'Introduction': '00_DATA/section_02.md'
+      - 'Goku': '00_DATA/databases/goku.md'
     - Math: 
       - 'section 1': '05_MATH/section_01.md'
       - 'section 2': '05_MATH/section_02.md'
@@ -15,10 +17,11 @@ nav:
       - 'Linear Regressions': '01_SUPERVISED_LEARNING/section_02.md'
       - 'Support Vector Machines': '01_SUPERVISED_LEARNING/section_03.md'
     - Unsupervised-Learning: '02_UNSUPERVISED_LEARNING/section_01.md'
-  - Data Mining: 
+  - Data Mining: '02_UNSUPERVISED_LEARNING/section_01.md'
 
 plugins:
   - search
+  - mermaid2
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 markdown_extensions:

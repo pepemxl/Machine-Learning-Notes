@@ -3,6 +3,7 @@ from cryptography.fernet import Fernet
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+from datetime import datetime
 import sys
 
 
@@ -59,3 +60,13 @@ def get_encryption_key(texto="ApplicacionPPTools"):
     key_base64 = base64.urlsafe_b64encode(key)
     return key_base64
 
+
+def generate_timestamp_pattern(basename, prefix=None, timestamp_format="%Y_%m_%d", extension=None):
+    now = datetime.now()
+    sufix = now.strftime(timestamp_format)
+    pattern_filename = "{0}_{1}".format(basename, sufix)
+    if prefix:
+        pattern_filename = prefix + "_" + pattern_filename
+    if extension:
+        pattern_filename = pattern_filename + "." + extension
+    return pattern_filename

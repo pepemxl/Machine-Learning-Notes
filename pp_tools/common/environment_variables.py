@@ -6,10 +6,16 @@ if __name__  == '__main__':
     package_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
     sys.path.append(package_path)
 from pp_tools.common.constants import CONFIG_FILE_PATH
+from pp_tools.common.constants import DEFAULT_LOG_LEVEL
 from pp_tools.common.logger import get_logger
 
 
-log = get_logger(__file__, "INFO")
+log = get_logger(
+    logger_name=__name__,
+    logger_caller=__file__,
+    level=DEFAULT_LOG_LEVEL,
+    flag_stdout=True
+)
 FLAG_ENV_VARS_LOADED = False
 
 
@@ -42,8 +48,9 @@ def get_env_var(env_var_key: str, default: Optional[str]=None) -> Optional[str]:
     return value
 
 
+def test_logger():
+    log.info("Llamada a modulo {0}".format(__file__))
 
 
 if __name__ == '__main__':
-    log.info("Llamada a modulo {0}".format(__file__))
-    print(CONFIG_FILE_PATH)
+    test_logger()

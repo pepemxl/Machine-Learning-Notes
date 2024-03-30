@@ -35,6 +35,9 @@ PATH_STRUCTURE = [
         ]
     }
 ]
+# Constant Variables used by package
+APP_NAME = 'pp_tools'
+DEFAULT_LOG_LEVEL = 'INFO'
 
 
 
