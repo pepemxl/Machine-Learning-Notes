@@ -141,4 +141,5 @@ Analytics is widely needed for all industries and Pinterest is no exception. Que
 ## References
 - [goku-building-a-scalable-and-high-performant-time-series-database-system](https://medium.com/pinterest-engineering/goku-building-a-scalable-and-high-performant-time-series-database-system-a8ff5758a181)
 - [Gorilla paper](https://www.vldb.org/pvldb/vol8/p1816-teller.pdf)
+- [OpenTSDB understanding opentsdb a distributed and scalable time series database](https://medium.com/analytics-vidhya/understanding-opentsdb-a-distributed-and-scalable-time-series-database-e4efc7a3dbb7)
 
