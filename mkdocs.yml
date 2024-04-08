@@ -6,6 +6,7 @@ nav:
     - 'Dimensions of Data Analytics': '00_DATA/section_01.md'
     - 'Databases': 
       - 'Introduction': '00_DATA/section_02.md'
+      - 'OpenTSDB': '00_DATA/databases/opentsdb.md'
       - 'Goku': '00_DATA/databases/goku.md'
     - Math: 
       - 'section 1': '05_MATH/section_01.md'
