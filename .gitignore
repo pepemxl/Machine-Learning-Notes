@@ -136,6 +136,7 @@ dmypy.json
 
 # Configuration outputs
 pp_tools/conf/outputs/
+pp_tools/LOCAL_DATA/*
 
 /**/outputs/
 /diagrams/*.pngsite/

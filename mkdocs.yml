@@ -18,13 +18,24 @@ nav:
       - 'Linear Regressions': '01_SUPERVISED_LEARNING/section_02.md'
       - 'Support Vector Machines': '01_SUPERVISED_LEARNING/section_03.md'
     - Unsupervised-Learning: '02_UNSUPERVISED_LEARNING/section_01.md'
+    - LLM: 
+      - 'Introduction': '10_LLM/intro.md'
+      - 'Prompt': '10_LLM/prompt.md'
+      - 'Open Source': '10_LLM/open_source.md'
   - Data Mining: '02_UNSUPERVISED_LEARNING/section_01.md'
+  - Graph Analysis: 
+    - 'Introduction': '08_GRAPH/intro.md'
+    - 'Knowledge Graph': '08_GRAPH/section_02.md'
 
 plugins:
   - search
   - mermaid2
 extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg-full.js
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 markdown_extensions:
   - smarty
   - mdx_math
+  - pymdownx.arithmatex
+  - pymdownx.highlight

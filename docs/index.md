@@ -25,10 +25,10 @@ Machine learning, data mining and data analysis are related fields within the br
 
 In summary, while data analysis focuses on exploring and understanding data to gain insights, machine learning focuses on building models that can learn from data and make predictions or decisions. Data mining is another related field within data science, but it has a slightly different focus and methodology compared to both data analysis and machine learning.
 
-Data analysis is often a precursor to machine learning, as it involves preparing and analyzing data before training machine learning models. Additionally, machine learning techniques are often used within the context of data analysis to uncover deeper insights or automate decision-making processes.
+**Data analysis** is often a **precursor** to **machine learning**, as it involves preparing and analyzing data before training machine learning models. Additionally, machine learning techniques are often used within the context of data analysis to uncover deeper insights or automate decision-making processes.
 
 
-Data mining involves using a variety of techniques to extract valuable insights and knowledge from large datasets. It often complements data analysis and machine learning by providing additional tools and methods for exploring and understanding data, identifying patterns, and making data-driven decisions.
+**Data mining** involves using a variety of techniques to extract valuable insights and knowledge from large datasets. It often **complements data analysis and machine learning** by providing additional tools and methods for exploring and understanding data, identifying patterns, and making data-driven decisions.
 
 ## Table of Contents
 0. Data Analysis
@@ -44,7 +44,12 @@ Data mining involves using a variety of techniques to extract valuable insights 
 2. Unsupervised Learning
     1. Clustering
 3. Reinforcement Learning
-4. Machine Learning Systems
+4. Workflows
+5. Maths for Machine Learning
+6. Torch
+7. Natural Language Processing
+8. Graph for Data Analysis
+9. Machine Learning Systems
     1. Dataflow Systems
     2. Compute Features
     3. Fetch Labels
@@ -54,95 +59,4 @@ Data mining involves using a variety of techniques to extract valuable insights 
     7. Hyperparameter Sweeping
     8. Feature Importance
     9. Metrics
-
-
-## General Machine Learning Projects
-
-Machine Learning projects needs in general the next steps:
-
-1. Data Collection
-2. Data Pre-processing
-3. Building Datasets
-4. Model Training Online/Offline
-5. Model Deployment
-6. Prediction
-7. Monitoring Models
-8. Maintenance, Diagnosis, and Retraining
-
-In order to achieve all these steps we need enough tools in our stack, we will incorporate 
-enough tools to achieve.
-
-In many large business or startups we deploy machine learning projects going through the next stages:
-
-1. Machine learning frameworks
-    - Open AI
-    - Tensorflow
-    - **Pytorch**
-    - SageMaker
-    - GridAI
-2. Distributed compute
-    - Dask
-    - **Spark**
-    - Databricks
-3. Model evaluation and experiment tracking
-    - **MLFlow**
-    - neptune.ai
-    - Comet
-4. Model deployment
-    - OctoML
-    - **BentoML**
-5. Model monitoring and management
-    - Fidler
-    - Cortex
-6. End-to-end platform solutions
-    - nvidia
-    - databricks
-    - SageMaker
-
-
-## Big Data Stacks
-
-- SMACK
-- Hadoop Ecosystem
-- ELK Stack
-- Flink Stack
-- Lambda Architecture
-- Microsoft Azure Stack
-
-## SMACK
-- Spark
-- Mesos
-- Akka
-- Cassandra
-- Kafka
-
-
-Spark: Apache Spark is an in-memory data processing framework that facilitates distributed processing and analysis of large data sets efficiently.
-
-Mesos: Apache Mesos is a cluster management system that enables efficient resource allocation between applications and services in a distributed environment.
-
-Akka: Akka is a toolkit and runtime for building concurrent and distributed systems based on the actor model, which are independent processing units that communicate with each other.
-
-Cassandra: Apache Cassandra is a highly scalable and fault-tolerant distributed database used to manage large volumes of data distributed across multiple nodes.
-
-Kafka: Apache Kafka is a distributed event streaming platform that facilitates real-time data ingestion and processing through event streams.
-
-
-## Review of Projects Big Data + ML + Data Mining
-
-- Geolocation Analysis for Transportation Applications
-    - Proximity Service
-    - Nearby Friends
-- Visual Search System
-- Google Street View Blurring System
-- Youtube Video Search
-- Harmful Content Detection
-- Video Recommendation System
-- Event Recommendation System
-- Ad Click Prediction on Social Platforms
-- Similar Listings on Vacation Rental Platforms
-- Personalized News Feed
-- People You May Know
-
-
-
+10. Large Language Models
