@@ -5,13 +5,19 @@ if __name__  == '__main__':
     import os
     package_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
     sys.path.append(package_path)
+from pp_tools.common.constants import DEFAULT_LOG_LEVEL
 from pp_tools.common.logger import get_logger
 from pp_tools.db.schema_base import get_url_object
 from pp_tools.db.schema_snyk import Base as schema_snyk_base
 from pp_tools.db.schema_users import Base as schema_users_base
 
 
-log = get_logger(__file__, "INFO")
+log = get_logger(
+    logger_name=__name__,
+    logger_caller=__file__,
+    level=DEFAULT_LOG_LEVEL,
+    flag_stdout=True
+)
 
 
 def check_schema_consistency(
