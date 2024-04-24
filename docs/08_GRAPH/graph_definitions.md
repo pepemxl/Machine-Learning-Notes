@@ -1,6 +1,7 @@
 # Knowledge Graph
 
 A $KG$ is defined as $G = (V, P, R, L_{V} , \varphi)$, where 
+
 - $V$ is the set of nodes or entities, 
 - $P$ is a set of relation types, i.e., properties, 
 - $R \subset V \times P \times V$ is a set of relations or triples between nodes,  
@@ -9,13 +10,101 @@ A $KG$ is defined as $G = (V, P, R, L_{V} , \varphi)$, where
 
 
 **Definition 1** (Node feature). Given $G = (V, P, R, L_{V} , \varphi)$, the feature of a node $v \in V$ is
-defined as a finite set of elements that characterizing $v$, denoted as $$F(v) = \{f_{1}, f_{2},\ldots, f_{s}\}.$$
+defined as a finite set of elements that characterizing $v$, denoted as 
+
+$$ F(v) = \{f_{1}, f_{2},\ldots, f_{s}\}. $$
+
+## Knowledge Graph Example using Departments and Projects
+
+Consider $V$ as the departments and projects of an organization:
+
+### Nodes:
+
+- Departments:
+    - Marketing
+    - Sales
+    - Development
+    - Finance
+- Projects:
+    - Website
+    - Marketing campaign
+    - CRM
+    - Mobile App
+
+$$V = \{Marketing, Sales, Development, Finance, Website, Marketing\, campaign, CRM, Mobile\, App\}$$
+
+### Properties:
+
+- Properties
+    - create by
+    - owned by
+    - used by
+
+$$P=\{created\,by, owned\,by, used\,by\}$$
+
+### Relationships:
+
+$R \subset V\times P \times V$
+
+- "Created by"
+    - Website - created by Development
+    - Marketing campaign - created by Marketing
+    - CRM - created by Development
+    - Mobile App - created by Development
+- "Owned by"
+    - Website - owned by Marketing
+    - Marketing campaign - owned by Marketing
+    - CRM - owned by Sales
+    - Mobile App - owned by Sales
+- "Used by"
+    - New website - used by Marketing, Sales
+    - Marketing campaign - used by Marketing, Sales
+    - CRM - used by Sales, Finance
+    - Mobile App - used by Sales, Marketing
+
+| Head | Relation | Tail |
+| --- | --- | --- |
+| Website | created by | Development |
+| Marketing campaign | created by | Marketing |
+| CRM | created by | Development |
+| Mobile App | created by | Development |
+| Website | owned by | Marketing |
+| Marketing campaign | owned by | Marketing |
+| CRM | owned by | Sales |
+| Mobile App | owned by | Sales |
+
+
+In this example, the knowledge graph shows how the different departments and projects are related to each other. The "Marketing" node, for example, is connected to the "Marketing campaign" nodes through the "created by" relationship. This means that the marketing department is responsible for the creation of this project.
+
+```
+    Marketing -- Creates --> New website
+    Marketing -- Creates --> Marketing campaign
+    Development -- Creates --> Customer relationship management (CRM) system
+    Development -- Creates --> Mobile app
+
+    Marketing -- Owns --> New website
+    Marketing -- Owns --> Marketing campaign
+    Sales -- Owns --> Customer relationship management (CRM) system
+    Sales -- Owns --> Mobile app
+
+    New website -- Used by --> Marketing
+    New website -- Used by --> Sales
+    Marketing campaign -- Used by --> Marketing
+    Marketing campaign -- Used by --> Sales
+    Customer relationship management (CRM) system -- Used by --> Sales
+    Customer relationship management (CRM) system -- Used by --> Finance
+    Mobile app -- Used by --> Sales
+    Mobile app -- Used by --> Marketing
+```
+
+
 
 **Definition 2** (Feature Pattern, $FP$ ). Given $G = (V, P, R, L_{V} , \varphi)$, a feature pattern ($FP$)
 is defined as a tuple: $c = (W, T)$, where $W$ is a subset of $V$ and $T$ is a subset of $P$ and
 satisfies: 
-- (i) $\forall v \in W, F(v) = T$, and 
-- (ii) for any subset of $V$ that include $W$, i.e., $W' \subset V$ and $W ⊆ W'$, the condition (i) does not hold for every node in $W'$.
+
+- $\forall v \in W, F(v) = T$, and 
+- for any subset of $V$ that include $W$, i.e., $W' \subset V$ and $W ⊆ W'$, the condition (i) does not hold for every node in $W'$.
 
 Definition 2 describes that an $FP$ is a maximum set of common features for a set of nodes. $T$ in an $FP$ $c$ is called the feature set.
 
@@ -26,10 +115,13 @@ Definition 2 describes that an $FP$ is a maximum set of common features for a se
 
 ![graph_example_01](../images/graph_example_01.png)
 
-#### $KG = (V, P, R, L_{V})$ where
-- $V = {v_{1}, v_{2}, v_{3}, v_{4}, v_{5}, v_{6}, v_{7}, v_{8}, v_{9}, v_{10}, v_{11}, v_{12}, v_{13}, v_{14}}$
-- $P = {p_{1}, p_{2}, p_{3}, p_{4}, p_{5}}$
-- $R = $
+#### 
+
+$KG = (V, P, R, L_{V})$ where
+
+- $V = \{v_{1}, v_{2}, v_{3}, v_{4}, v_{5}, v_{6}, v_{7}, v_{8}, v_{9}, v_{10}, v_{11}, v_{12}, v_{13}, v_{14}\}$
+- $P = \{p_{1}, p_{2}, p_{3}, p_{4}, p_{5}\}$
+- $R =$
 
 | V initial | R | V end | | V initial | R | V end |
 | --- | --- | --- | --- | --- | --- | --- | 
@@ -45,25 +137,26 @@ Definition 2 describes that an $FP$ is a maximum set of common features for a se
 
 
 
-Lets define $F(v) = $ outgoing properties then 
+Lets define $F(v) =$ outgoing properties then
 
 | $F(v)$ | outgoing properties from $v$| | $F(v)$ | outgoing properties from $v$|
 | --- | --- | --- | --- | --- |
-| $F(v_{1})$ | $\{p_{1}\}$ | | $F(v_{8})$ | $\{\empty\}$ |
-| $F(v_{2})$ | $\{p_{1}\}$ | | $F(v_{9})$ | $\{\empty\}$ |
-| $F(v_{3})$ | $\{p_{1}, p_{3}, p_{4}\}$ | | $F(v_{10})$ | $\{\empty\}$ |
-| $F(v_{4})$ | $\{p_{1}, p_{2}, p_{3}\}$ | | $F(v_{11})$ | $\{\empty\}$ |
-| $F(v_{5})$ | $\{p_{1}\}$ | | $F(v_{12})$ | $\{\empty\}$ |
-| $F(v_{6})$ | $\{p_{1}, p_{3}, p_{5}\}$ | | $F(v_{13})$ | $\{\empty\}$ |
-| $F(v_{7})$ | $\{p_{1}, p_{3}, p_{4}, p_{5}\}$ | | $F(v_{14})$ | $\{\empty\}$ |
+| $F(v_{1})$ | $\{p_{1}\}$ | | $F(v_{8})$ | $\{\emptyset\}$ |
+| $F(v_{2})$ | $\{p_{1}\}$ | | $F(v_{9})$ | $\{\emptyset\}$ |
+| $F(v_{3})$ | $\{p_{1}, p_{3}, p_{4}\}$ | | $F(v_{10})$ | $\{\emptyset\}$ |
+| $F(v_{4})$ | $\{p_{1}, p_{2}, p_{3}\}$ | | $F(v_{11})$ | $\{\emptyset\}$ |
+| $F(v_{5})$ | $\{p_{1}\}$ | | $F(v_{12})$ | $\{\emptyset\}$ |
+| $F(v_{6})$ | $\{p_{1}, p_{3}, p_{5}\}$ | | $F(v_{13})$ | $\{\emptyset\}$ |
+| $F(v_{7})$ | $\{p_{1}, p_{3}, p_{4}, p_{5}\}$ | | $F(v_{14})$ | $\{\emptyset\}$ |
 
 
 
 
 with this the summary $L$ based on HD $C$ has 6 distinct elements
+
 | $C$ | value | Cardinality | Layer |
 | --- | --- | --- | --- |
-| $c_{1}$ | $(\{v_{8}, v_{9}, v_{10}, v_{11}, v_{12}, v_{13}, v_{14}\}, \empty)$ | 0 | 1 |
+| $c_{1}$ | $(\{v_{8}, v_{9}, v_{10}, v_{11}, v_{12}, v_{13}, v_{14}\}, \emptyset)$ | 0 | 1 |
 | $c_{2}$ | $(\{v_{1}, v_{2}, \{p_{1}\})$ | 1 | 2 |
 | $c_{3}$ | $(\{v_{3}\}, \{p_{1}, p_{3}, p_{4}\})$ | 3 | 3 |
 | $c_{4}$ | $(\{v_{5}, v_{6}\}, \{p_{1}, p_{3}, p_{5}\})$ | 3 | 3 |
@@ -72,7 +165,13 @@ with this the summary $L$ based on HD $C$ has 6 distinct elements
 
 The **height** of this summary $L$ is 4.
 
-**Definition 4** (Base graph of an $FP$). Given $G = (V, P, R, L_{V} , \varphi)$, a summary $L = (C,E)$, and an $FP$ $c = (W, T) \in C$, the base graph of $c$ is a subgraph of $G: g_{b} = (V_{b}, P_{b}, R_{b}, L^{b}_{V}, \varphi_{b})$, where: 
+**Definition 4** (Base graph of an $FP$). Given $G = (V, P, R, L_{V} , \varphi)$
+a summary $L = (C,E)$, and an $FP$ $c = (W, T) \in C$, the base graph of $c$ is a subgraph of $G$
+
+$$ g_{b} = (V_{b}, P_{b}, R_{b}, L^{b}_{V}, \varphi_{b})$$ 
+
+where:
+
 - (1) $V_{b} = V_{\sigma} \cup V_{N}$, $V_{\sigma} = \bigcup_{ W \in c}W$ and $V_{N}$ includes all the one-hop neighbor of the nodes in $V_{\sigma}$;
 - (2) $R_{b} = \left\{(u, p, v)|u \in V_{\sigma}\, or\, v \in V_{\sigma}\right\}$;
 - (3) $P_{b} = \left\{p| p \in P\, and\, (u, p, v) \in Rb\right\}$;
@@ -80,7 +179,9 @@ The **height** of this summary $L$ is 4.
 - (5) $\varphi_{b}$ is a labeling function that maps each node in $V_{b}$ to its types.
 
 
-**Definition 5** (Base graph of a summary). Given $G = (V, P, R, L_{V} , \varphi)$ and a summary $L = (C, E)$, the base graph $G_{L} = (V_{s}, P_{s}, R_{s}, L^{s}_{V}, \varphi_{s})$ of $L$ is the union of the base graphs of all its $FPs$: 
+**Definition 5** (Base graph of a summary). Given $G = (V, P, R, L_{V} , \varphi)$
+and a summary $L = (C, E)$, the base graph $G_{L} = (V_{s}, P_{s}, R_{s}, L^{s}_{V}, \varphi_{s})$ of $L$ is the union of the base graphs of all its $FPs$:
+
 - (1) $V_{s} = V_{\sigma} \cup V_{N}$, $V_{\sigma} = \bigcup_{W \in c}W$ and $V_{N}$ includes all the one-hop neighbor of the nodes in $V_{\sigma}$; 
 - (2) $P_{s} = \bigcup_{T\in c} T$;
 - (3) $R_{s} = \left\{(u, p, v)| u \in V_{\sigma}\, or\, v \in V_{\sigma}\right\}$; 

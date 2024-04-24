@@ -31,7 +31,7 @@ In summary, while data analysis focuses on exploring and understanding data to g
 **Data mining** involves using a variety of techniques to extract valuable insights and knowledge from large datasets. It often **complements data analysis and machine learning** by providing additional tools and methods for exploring and understanding data, identifying patterns, and making data-driven decisions.
 
 ## Table of Contents
-0. Data Analysis
+0. [Data Analysis](./00_DATA/README.md)
 1. Supervised Learning
     1. [Definition](./01_SUPERVISED_LEARNING/section_01.md)
     2. [Decision Trees](./01_SUPERVISED_LEARNING/section_01.md)

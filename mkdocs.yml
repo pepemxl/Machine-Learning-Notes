@@ -11,7 +11,6 @@ nav:
     - Math: 
       - 'section 1': '05_MATH/section_01.md'
       - 'section 2': '05_MATH/section_02.md'
-    - Workflows: '04_WORKFLOWS/section_01.md'
   - Machine Learning:
     - Supervised-Learning:
       - 'Introduction': '01_SUPERVISED_LEARNING/section_01.md'
@@ -22,10 +21,11 @@ nav:
       - 'Introduction': '10_LLM/intro.md'
       - 'Prompt': '10_LLM/prompt.md'
       - 'Open Source': '10_LLM/open_source.md'
+    - Workflows: '04_WORKFLOWS/section_01.md'
   - Data Mining: '02_UNSUPERVISED_LEARNING/section_01.md'
   - Graph Analysis: 
     - 'Introduction': '08_GRAPH/intro.md'
-    - 'Knowledge Graph': '08_GRAPH/section_02.md'
+    - 'Knowledge Graph': '08_GRAPH/graph_definitions.md'
 
 plugins:
   - search
