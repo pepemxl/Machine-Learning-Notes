@@ -21,6 +21,7 @@ nav:
       - 'Introduction': '10_LLM/intro.md'
       - 'Prompt': '10_LLM/prompt.md'
       - 'Open Source': '10_LLM/open_source.md'
+      - 'ChatBot': '10_LLM/build_llm_rag_chatbot_langchain.md'
     - Workflows: '04_WORKFLOWS/section_01.md'
   - Data Mining: '02_UNSUPERVISED_LEARNING/section_01.md'
   - Graph Analysis: 
