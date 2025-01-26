@@ -20,6 +20,52 @@
     - Predict new connections
 
 
+## What is a Graph?
+
+Usually people missunderstand the term **graph** thinking that every chart is a graph.
+
+
+Graph analytics is based on Graph Theory.
+
+The typical problem to understand this are is the problem of the briges of koinsigner
+
+The matrhematical definition of a graph $G$ is a pair $(V,E)$ where $V$ is a set of vertices and $E$ is a set of edges.
+
+The computer science defintion of a graph is an abstract data type:
+
+1. Has a data structure to represent the mathematical graph
+2. Supports a number of operations
+    - add_edge
+    - add_vertex
+    - get_neighboors
+
+we have some ways to represent a graph maybe the most common is a matrix, called the adjacency matrix or matrix of adjacencies.
+
+
+Facebook is a classical example where all data existing there can be easier represented as a graph. This is a social network.
+
+
+Tweets are Gprah
+- Many kind of node in the graph
+    - Users
+    - Tweets
+    - Likes
+    - Urls
+    - Media
+        - Image
+        - Video
+    - Hashtags
+- Many kind of edges (actions)
+    - Users **creates** Tweets
+    - A tweet is **in response** to another
+    - A tweet **retweets** another
+    - User **mentions** User
+    - Tweet **contains** hashtag
+    - User **follows** User
+
+
+
+
 
 
 ## References
