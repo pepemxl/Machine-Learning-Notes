@@ -45,7 +45,8 @@ we have some ways to represent a graph maybe the most common is a matrix, called
 Facebook is a classical example where all data existing there can be easier represented as a graph. This is a social network.
 
 
-Tweets are Gprah
+Tweets are a Graph
+
 - Many kind of node in the graph
     - Users
     - Tweets
@@ -63,6 +64,36 @@ Tweets are Gprah
     - Tweet **contains** hashtag
     - User **follows** User
 
+Tipical problems studied using graph are:
+
+- Social Networks
+- Biological Networks
+    - Ilnes connected by genes
+- Smart Cities
+    - optimizing traffic models
+    - planning smart hubs
+    - 
+- Threat Detection
+
+
+## Why we do analytics?
+
+- Uncocer characteristics of datasets based on its matehmatical properties.
+- Answer specific questions from  multiple data sets.
+- Develop a mathematical model for predicting the behavior of some variables.
+- Detect emergent phenomena and explain its contributing factors.
+
+## Graphs and the V's of Big Data
+
+The three well known **V's** are:
+
+- **Volume**
+- **Velocity**
+- **Variety**
+
+the lesser known **V** is:
+
+- **Valence**: Degree of interdependency among data. The idea is we increase the valence (Heterogenity) of a graph we increase the connections of a graph. 
 
 
 
