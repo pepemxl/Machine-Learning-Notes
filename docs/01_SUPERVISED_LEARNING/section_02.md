@@ -8,7 +8,7 @@ $$ y = ax+b $$
 
 If the input variables contains \(n\) independent variables, this is known as **multivariable linear regression**. 
 
-$$ y = a_{0}+a_{1}x_{1}+a_{2}x_{2}+\cdots + a_{n}x_{n}$$
+$$ y = a_{0}+a_{1}x_{1}+a_{2}x_{2}+\cdots + a_{n}x_{n} $$
 
 
 ## Math behind a linear regression model
