@@ -54,7 +54,7 @@ graph LR;
 
 The learning problem consists of inferring the function that maps between the input and the output, such that the learned function can be used to predict the output from future input.
 
-This machine learning type got its name because the machine is “supervised” while it's learning, which means that you’re feeding the algorithm information to help it learn. The outcome you provide the machine is labeled data, and the rest of the information you give is used as input features.
+This machine learning type got its name because the machine is **supervised** while it's learning, which means that you’re feeding the algorithm information to help it learn. The outcome you provide the machine is labeled data, and the rest of the information you give is used as input features.
 
 Supervised learning is effective for a variety of business purposes, including sales forecasting, inventory optimization, and fraud detection. Some classic examples of use cases include:
 
@@ -68,23 +68,23 @@ Supervised machine learning drives a several business applications and it is the
 
 ### Supervised Methods Approach
 
-Consider a set $\Omega$ and a subset $D\subset \Omega$, where $D$ is fully labeled.
+Consider a set \(\Omega\) and a subset \(D\subset \Omega\), where \(D\) is fully labeled.
 
-Given the set of labels $L$ with a mapping function 
+Given the set of labels \(L\) with a mapping function 
 
 $$\begin{array}{cccc}
 \mathcal{L}: & D & \longrightarrow & L \\
 & \omega & \longmapsto & l_{\omega} \\
 \end{array}$$
 
-we want to extend this function $\mathcal{L}$ to the full set $\Omega$,
+we want to extend this function \(\mathcal{L}\) to the full set \(\Omega\),
 
 $$\begin{array}{cccc}
 \widehat{\mathcal{L}}: & \Omega & \longrightarrow & L^{*} \\
 & \omega & \longmapsto & l_{\omega} \\
 \end{array}$$
 
-such that $ \widehat{\mathcal{L}}_{|_{D}} = \mathcal{L} $
+such that $$ \widehat{\mathcal{L}}_{|_{D}} = \mathcal{L} $$
 
 
 ## Applying Maths
@@ -92,6 +92,7 @@ such that $ \widehat{\mathcal{L}}_{|_{D}} = \mathcal{L} $
 There are many simple and complex ways to achieve this goal, that usually involves statistics and/or differential equations with linear/nonlinear optimizations which can be convex/non-convex problems, where deterministic and stochastic algorithms are used to create applications in images, speech recognition, recommendation systems, search engines and more.
 
 Our prefered algorithms have the next charateristics:
+
 - scale well with the number of variables
 - parallelize well
 
@@ -101,10 +102,13 @@ In supervised learning base principle is Empirical Risk Minimization (ERM), this
 
 The core idea is that we cannot know exactly how well an algorithm will work in practice (the actual "risk") because we don't know the true distribution of data that the algorithm will work on, but we can instead measure its performance on a known set of training data (the "empirical" risk).
 
-In many cases supervised methods are mapping each element in a dataset $D \subset \Omega$ into another space where exist some order or at least a partial order, it means we have some structure that permit us to group elements, this is a very oversimplified consecuence of Dvoretzky's theorem . 
+In many cases supervised methods are mapping each element in a dataset \(D \subset \Omega\) into another space where exist some order or at least a partial order, it means we have some structure that permit us to group elements, this is a very oversimplified consecuence of Dvoretzky's theorem . 
 
 Consider a partition 
-$\Omega=\bigcup_{i=1}^{k}\Omega_{i}$ and functions $\{f_{i}\}$
+
+$$\Omega=\bigcup_{i=1}^{k}\Omega_{i}$$ 
+
+and functions \( \{f_{i}\} \)
 
 $$\begin{array}{cccc}
 f_{i}: & \Omega_{i} & \longrightarrow & U_{i}\\
@@ -112,7 +116,7 @@ f_{i}: & \Omega_{i} & \longrightarrow & U_{i}\\
 \end{array}
 $$
 
-We are creating features from our dataset, which can be created only using numerical values based on each $\omega \in \Omega_{i}$ or they can be aggregated values that depends on all values in $\Omega_{i}$.
+We are creating features from our dataset, which can be created only using numerical values based on each \(\omega \in \Omega_{i}\) or they can be aggregated values that depends on all values in \(\Omega_{i}\).
 
 To achieve this goal we dotate of more structure to our dataset adding some metrics or indicators, it means we create functions that goes from our dataset to another espace that we will call **spaces of features**, where a measurement can be defined or at least categorized.
 
@@ -122,12 +126,12 @@ $$\mathbb{X}=\bigcup_{i=1}^{k}U_{i}$$
 our space of features. Hopefully $\mathbb{X}$ can be dotated with a nice structure capable to perform statistical inference.
 
 
-We always can map categories to values in $\mathbb{R}$, then our features $\{f_{1}, ...,f_{m}\}$ are functions:
+We always can map categories to values in \(\mathbb{R}\), then our features \(\{f_{1}, ...,f_{m}\}\) are functions:
 
 $$f_{i}:D\cap \Omega_{i} \longrightarrow U_{i}\subset\mathbb{R}^{m_{i}}$$
 
 
-now we want to find maps $\{g_{i}\}$ such that:
+now we want to find maps \(\{g_{i}\}\) such that:
 
 $$\begin{array}{cccc}
 g_{i}: & U_{i}\subset \mathbb{X} & \longrightarrow & V_{i}\subset L^{*}\\
@@ -140,7 +144,7 @@ $$\widehat{\mathcal{L}}_{|_{\Omega_{i}}} = g_{i}\circ f_{i}$$
 
 
 With this approach we have created two apparently different problems, 
-firstly find suitable $\{f_{i}\}$ that will create our **space of features** and as second problem find $\{g_{i}\}$ that maps our new features with the labels of our fully labeled dataset $D$.
+firstly find suitable \(\{f_{i}\}\) that will create our **space of features** and as second problem find \(\{g_{i}\}\) that maps our new features with the labels of our fully labeled dataset \(D\).
 
 Both problems represents a challenge where several computational and statistical techniques are implemented, there are some techniques using very deep mathematical theory, however many impresive results make used of heuristics.
 
@@ -168,12 +172,14 @@ Then Data Focus MLOps has started to be a trend.
 ## Supervised Learning Models
 
 In Supervied Learning we have two large groups:
+
 - Classification Models
 - Regression Models
 
 Each group can be divided in subgroups:
 Classification and Regression models have versions of each one of them
 because it is feasible convert classification models into regression models and viceversa:
+
 - Linear
 - Support Vector Machines
     - SVC
@@ -194,6 +200,7 @@ because it is feasible convert classification models into regression models and 
 
 
 List of some models found in Scikit-Learn library for each group:
+
 1. Classification
     - Linear
         - LogisticRegression
