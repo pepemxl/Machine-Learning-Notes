@@ -8,6 +8,7 @@ Learning insights from these abstractions will help you to decide strategies to 
 **''Any sufficiently advanced technology is indistinguishable from magic.''**, Arthur C. Clarke
 
 In order to have a deep understanding, you would perform an overview of
+
 - Linear Algebra
 - Statistics
 - Hilbert Spaces
@@ -19,21 +20,21 @@ In order to have a deep understanding, you would perform an overview of
 there are many more math topics and full areas that could be considered, however it will take a life to go under all those topics.
 
 
-# Learning Theory
+## Learning Theory - Computational Learning Theory
 
 Computational learning theory is a field of study concerned with the use of formal mathematical methods applied to learning systems.
 
 These involves
+
 - Supervised
 - Unsupervised
 - Online
 - Reinforcement
 
-nowadays supervised is the most used technique, where every point $(X,y)$ in a training dataset $\mathbb{X}\times Y$, where the input maps to an output. The learning problem consists of inferring the function that maps between the input and the output, such that the learned function can be used to predict the output from future input.
+nowadays supervised is the most used technique, where every point \((X,y)\) in a training dataset \(\mathbb{X}\times Y\), where the input maps to an output. The learning problem consists of inferring the function that maps between the input and the output, such that the learned function can be used to predict the output from future input.
 
 
-
-# Density Estimation
+## Density Estimation
 
 **Density estimation** walks the line between unsupervised learning, feature engineering, and data modeling. A large group of useful density estimations techniques is mixture models such as **Gaussian Mixtures**, and neighbor based approaches such as the **kernel density estimation**.
 
