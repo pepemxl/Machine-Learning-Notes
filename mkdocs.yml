@@ -22,15 +22,36 @@ nav:
       - 'Prompt': '10_LLM/prompt.md'
       - 'Open Source': '10_LLM/open_source.md'
       - 'ChatBot': '10_LLM/build_llm_rag_chatbot_langchain.md'
+    - JARVIS:
+      - 'intro': '11_JARVIS/intro.md'
     - Workflows: '04_WORKFLOWS/section_01.md'
   - Data Mining: '02_UNSUPERVISED_LEARNING/section_01.md'
   - Graph Analysis: 
     - 'Introduction': '08_GRAPH/intro.md'
     - 'Knowledge Graph': '08_GRAPH/graph_definitions.md'
 
+theme:
+  name: material
+  features:
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
+  palette:
+    scheme: slate
+    primary: indigo
+    accent: indigo
+  highlightjs: true
+  hljs_languages:
+    - yaml
+    - python
+    - typespec
+    - rust
+  collapse_navigation: True
+  locale: es
 plugins:
   - search
   - mermaid2
+  - glightbox
 extra_javascript:
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg-full.js
@@ -39,4 +60,17 @@ markdown_extensions:
   - smarty
   - mdx_math
   - pymdownx.arithmatex
-  - pymdownx.highlight
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - attr_list
+  - md_in_html
+  - pymdownx.blocks.caption
