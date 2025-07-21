@@ -1,6 +1,8 @@
 site_name: Machine Learning Notes
 nav:
   - Home: 'index.md'
+  - Proyectos: 
+    - 'Knowledge Graph': 'PROYECTOS/KG_CODE/intro.md'
   - Data Analysis: 
     - 'The Six Phases of data Analysis': '00_DATA/README.md'
     - 'Dimensions of Data Analytics': '00_DATA/section_01.md'
