@@ -3,6 +3,7 @@ pp_tools/LOCAL_DATA/LOCAL_CONFIGS/config.yml
 temp/*
 .vscode/*
 images_ignore/*
+TEMP/
 poetry.lock
 # Byte-compiled / optimized / DLL files
 __pycache__/
