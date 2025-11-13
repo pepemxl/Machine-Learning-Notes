@@ -15,22 +15,25 @@ however we can include other 3 "small" categories:
 For now we will focus in supervised and unsupervised learning.
 
 ```mermaid
-graph TD;
-    A[Machine Learning] --> B[Supervised Learning]
-    A[Machine Learning] --> C[Unsupervised Learning]
-    A[Machine Learning] --> D[Reinforcement Learning]
-    A[Machine Learning] --> E[Semi-supervised Learning]
-    A[Machine Learning] --> F[Deep Learning]
-    B --> B1[Classification]
-    B --> B2[Regression]
-    C --> C1[Clustering]
-    C --> C2[Dimensionality Reduction]
-    D --> D1[Q-Learning]
-    D --> D2[Policy Gradient Methods]
-    F --> F1[Artificial Neural Networks]
-    F --> F2[Convolutional Neural Networks]
-    F --> F3[Recurrent Neural Networks]
-    F --> F4[Generative Adversarial Networks]
+---
+config:
+  theme: forest
+  layout: elk
+---
+flowchart TB
+    A["Machine Learning"] --> B(["Supervised Learning"]) & C(["Unsupervised Learning"]) & D(["Reinforcement Learning"]) & E(["Semi-supervised Learning"]) & F(["Deep Learning"])
+    B --> B1["Classification"] & B2["Regression"]
+    C --> C1["Clustering"] & C2["Dimensionality Reduction"]
+    D --> D1["Q-Learning"] & D2["Policy Gradient Methods"]
+    F --> F1["Artificial Neural Networks"] & F2["Convolutional Neural Networks"] & F3["Recurrent Neural Networks"] & F4["Generative Adversarial Networks"]
+    A@{ shape: rounded}
+    style A fill:#FFD600
+    style B fill:#AA00FF,color:#000000
+    style C stroke:none,fill:#AA00FF
+    style D fill:#AA00FF
+    style E fill:#AA00FF
+    style F fill:#AA00FF
+
 ```
 
 
@@ -46,8 +49,15 @@ graph TD;
 In **Supervised Learning** every point \((X,y)\) in a training dataset \(\mathbb{X}\times Y\), where the input maps to an output. 
 
 ```mermaid
-graph LR;
-    X[X] --> Y[Y]
+---
+config:
+  theme: neutral
+  layout: elk
+---
+flowchart LR
+    X["X"] --> Y["Y"]
+    X@{ shape: event}
+    Y@{ shape: event}
 ```
 
 
@@ -106,7 +116,7 @@ In many cases supervised methods are mapping each element in a dataset \(D \subs
 
 Consider a partition 
 
-$$\Omega=\bigcup_{i=1}^{k}\Omega_{i}$$ 
+$$ \Omega = \bigcup_{i=1}^{k}\Omega_{i} $$
 
 and functions \( \{f_{i}\} \)
 
