@@ -1,5 +1,10 @@
 # Model Control Protocol
 
+In november of 2024 Anthropic introduce MCP [https://www.anthropic.com/news/model-context-protocol](https://www.anthropic.com/news/model-context-protocol) which now is an standard.
+
+You can find it in [https://github.com/modelcontextprotocol](https://github.com/modelcontextprotocol)
+
+
 ## Protocols
 
 A **protocol** is a set of **rules and conventions** that define how systems communicate and exchange data. Unlike an **API**, an **implementation specific interface**, a protocol establishes a universal standard for interactions.
