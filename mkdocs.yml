@@ -19,12 +19,14 @@ nav:
       - 'Linear Regressions': '01_SUPERVISED_LEARNING/section_02.md'
       - 'Support Vector Machines': '01_SUPERVISED_LEARNING/section_03.md'
     - Unsupervised-Learning: '02_UNSUPERVISED_LEARNING/section_01.md'
-  - LLM: 
+  - LLM:
     - 'Introduction': '10_LLM/intro.md'
     - 'Prompt': '10_LLM/prompt.md'
     - 'Open Source': '10_LLM/open_source.md'
-    - 'ChatBot': '10_LLM/build_llm_rag_chatbot_langchain.md'
-    - 'MCP': '10_LLM/model_control_protocol.md'
+    - 'ChatBot': '10_LLM/RAGS/build_llm_rag_chatbot_langchain.md'
+    - 'MCP': 
+      - 'Intro': '10_LLM/MCP/section_01.md'
+      - 'Claude': '10_LLM/MCP/section_02.md'
     - JARVIS:
       - 'intro': '11_JARVIS/intro.md'
   - Workflows: '04_WORKFLOWS/section_01.md'
