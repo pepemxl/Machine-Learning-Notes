@@ -135,23 +135,25 @@ MCP simplifies AI interactions, but authentication and structured API access rem
 
 ### Main Components
 
-```
-┌─────────────────┐
-│  Claude Desktop │  ← MCP Client
-│   (Host App)    │
-└────────┬────────┘
-         │
-         ├─── MCP Protocol ───┐
-         │                     │
-    ┌────▼────┐           ┌───▼────┐
-    │  MCP    │           │  MCP   │
-    │Server 1 │           │Server 2│
-    └────┬────┘           └───┬────┘
-         │                    │
-    ┌────▼────┐          ┌───▼─────┐
-    │  File   │          │Database │
-    │ System  │          │         │
-    └─────────┘          └─────────┘
+```mermaid
+---
+config:
+  theme: forest
+  layout: elk
+---
+graph TD
+    A["Claude Desktop<br>(Host App)"] -->|Protocol MCP| B[MCP Server 1]
+    A -->|Protocol MCP| C[MCP Server 2]
+    B --> D[Filesystem]
+    C --> E[Database]
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#bbf,stroke:#333,stroke-width:2px
+    style D fill:#ffd,stroke:#333,stroke-width:2px
+    style E fill:#ffd,stroke:#333,stroke-width:2px
+    subgraph "MCP Client"
+        A
+    end
 ```
 
 ### 1. **MCP Client**

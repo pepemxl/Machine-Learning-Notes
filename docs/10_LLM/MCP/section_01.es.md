@@ -135,23 +135,25 @@ MCP simplifica las interacciones de IA, pero la autenticación y el acceso estru
 
 ### Componentes Principales
 
-```
-┌─────────────────┐
-│  Claude Desktop │  ← Cliente MCP
-│   (Host App)    │
-└────────┬────────┘
-         │
-         ├─── Protocolo MCP ───┐
-         │                      │
-    ┌────▼────┐            ┌───▼────┐
-    │ Servidor│            │Servidor│
-    │  MCP 1  │            │ MCP 2  │
-    └────┬────┘            └───┬────┘
-         │                     │
-    ┌────▼────┐           ┌───▼─────┐
-    │Sistema  │           │  Base   │
-    │Archivos │           │  Datos  │
-    └─────────┘           └─────────┘
+```mermaid
+---
+config:
+  theme: forest
+  layout: elk
+---
+graph TD
+    A["Claude Desktop<br>(Host App)"] -->|Protocolo MCP| B[Servidor MCP 1]
+    A -->|Protocolo MCP| C[Servidor MCP 2]
+    B --> D[Sistema Archivos]
+    C --> E[Base Datos]
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#bbf,stroke:#333,stroke-width:2px
+    style D fill:#ffd,stroke:#333,stroke-width:2px
+    style E fill:#ffd,stroke:#333,stroke-width:2px
+    subgraph "Cliente MCP"
+        A
+    end
 ```
 
 ### 1. **Cliente MCP**
