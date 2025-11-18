@@ -138,22 +138,22 @@ MCP simplifies AI interactions, but authentication and structured API access rem
 ```mermaid
 ---
 config:
-  theme: forest
+  theme: neo-dark
   layout: elk
+  look: classic
 ---
-graph TD
-    A["Claude Desktop<br>(Host App)"] -->|Protocol MCP| B[MCP Server 1]
-    A -->|Protocol MCP| C[MCP Server 2]
-    B --> D[Filesystem]
-    C --> E[Database]
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style B fill:#bbf,stroke:#333,stroke-width:2px
-    style C fill:#bbf,stroke:#333,stroke-width:2px
-    style D fill:#ffd,stroke:#333,stroke-width:2px
-    style E fill:#ffd,stroke:#333,stroke-width:2px
-    subgraph "MCP Client"
-        A
-    end
+flowchart TB
+ subgraph subGraph0["Cliente MCP"]
+        A["Claude Desktop<br>(Host App)"]
+  end
+    A -- Protocolo MCP --> B["Servidor MCP 1"] & C["Servidor MCP 2"]
+    B --> D["Sistema Archivos"]
+    C --> E["Base Datos"]
+    style A fill:#2962FF,stroke:#333,stroke-width:2px
+    style B fill:#AA00FF,stroke:#333,stroke-width:2px
+    style C fill:#AA00FF,stroke:#333,stroke-width:2px
+    style D fill:#FFF9C4,stroke:#333,stroke-width:2px,color:#000000
+    style E fill:#FFF9C4,stroke:#333,stroke-width:2px,color:#000000
 ```
 
 ### 1. **MCP Client**

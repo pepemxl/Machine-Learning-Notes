@@ -29,7 +29,7 @@ MCP define cómo los modelos de IA deben solicitar y consumir datos externos, ya
 MCP está construido sobre un modelo cliente-servidor que estructura cómo los modelos de IA recuperan e interactúan con fuentes de datos externas.
 
 Los clientes MCP son agentes de IA, aplicaciones o cualquier sistema que solicita datos estructurados.
-Los servidores MCP actúan como intermediarios, obteniendo datos de varias APIs, bases de datos o sistemas empresariales y devolviéndolos en un formato consistente.
+Los servidores MCP actúan como intermediarios, obteniendo datos de varias APIs, bases de datos o sistemas y devolviéndolos en un formato consistente.
 
 En lugar de que los modelos de IA hagan solicitudes directas a las APIs, los servidores MCP manejan la complejidad de la autenticación, recuperación de datos y normalización de respuestas. Esto significa que los agentes de IA ya no necesitan gestionar múltiples credenciales de API, diferentes formatos de solicitud o estructuras de respuesta inconsistentes.
 
@@ -138,31 +138,33 @@ MCP simplifica las interacciones de IA, pero la autenticación y el acceso estru
 ```mermaid
 ---
 config:
-  theme: forest
+  theme: neo-dark
   layout: elk
+  look: classic
 ---
-graph TD
-    A["Claude Desktop<br>(Host App)"] -->|Protocolo MCP| B[Servidor MCP 1]
-    A -->|Protocolo MCP| C[Servidor MCP 2]
-    B --> D[Sistema Archivos]
-    C --> E[Base Datos]
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style B fill:#bbf,stroke:#333,stroke-width:2px
-    style C fill:#bbf,stroke:#333,stroke-width:2px
-    style D fill:#ffd,stroke:#333,stroke-width:2px
-    style E fill:#ffd,stroke:#333,stroke-width:2px
-    subgraph "Cliente MCP"
-        A
-    end
+flowchart TB
+ subgraph subGraph0["Cliente MCP"]
+        A["Claude Desktop<br>(Host App)"]
+  end
+    A -- Protocolo MCP --> B["Servidor MCP 1"] & C["Servidor MCP 2"]
+    B --> D["Sistema Archivos"]
+    C --> E["Base Datos"]
+    style A fill:#2962FF,stroke:#333,stroke-width:2px
+    style B fill:#AA00FF,stroke:#333,stroke-width:2px
+    style C fill:#AA00FF,stroke:#333,stroke-width:2px
+    style D fill:#FFF9C4,stroke:#333,stroke-width:2px,color:#000000
+    style E fill:#FFF9C4,stroke:#333,stroke-width:2px,color:#000000
 ```
 
 ### 1. **Cliente MCP**
+
 - Aplicación host que ejecuta el modelo de IA (ej: Claude Desktop)
 - Descubre y se conecta a servidores MCP
 - Gestiona múltiples conexiones de servidores simultáneamente
 - Presenta herramientas y recursos disponibles al modelo
 
 ### 2. **Servidor MCP**
+
 - Programa ligero que expone capacidades específicas
 - Puede proporcionar:
   - **Recursos**: Datos o contenido (archivos, bases de datos, APIs)
