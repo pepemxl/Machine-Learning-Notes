@@ -437,56 +437,41 @@ mcp_api.fetch("https://external-api.com/data")
 mcp_custom.anything()
 ```
 
-### Comparison with Cursor
+### Comparison Claude with Cursor
 
-#### Cursor
-```
-Strengths:
-✓ Polished user experience
-✓ Intelligent autocompletion
-✓ Native VS Code integration
-✓ Advanced code refactoring
+#### Strengths
 
-Limitations:
-✗ Closed ecosystem
-✗ Limited integrations
-✗ Primarily focused on code
-✗ Difficult deep customization
-```
+- Polished user experience
+- Intelligent autocompletion
+- Native VS Code integration
+- Advanced code refactoring
 
-#### MCP with Claude Desktop
-```
-Strengths:
-✓ Open and extensible protocol
-✓ Unlimited integrations via servers
-✓ Natural conversation + code execution
-✓ Granular permission control
-✓ Community can create servers
+#### Limitations
 
-Limitations:
-✗ Requires manual configuration
-✗ Less polished for pure coding
-✗ Initial learning curve
-```
+- Closed ecosystem
+- Limited integrations
+- Primarily focused on code
+- Difficult deep customization
 
-### Use Case: Practical Comparison
 
-**Task:** "Analyze all Python files in my project, query the user database, and generate a report in Google Docs"
+### MCP with Claude Desktop
 
-#### With Cursor:
-```
-❌ Cannot access database directly
-❌ Cannot write to Google Docs
-📝 You need: Multiple manual steps, copy/paste
-```
 
-#### With MCP + Claude:
-```
-✅ Filesystem server reads Python files
-✅ Postgres server queries database
-✅ Google-docs server creates report
-📝 All in one fluid conversation
-```
+#### Strengths
+
+- Open and extensible protocol
+- Unlimited integrations via servers
+- Natural conversation + code execution
+- Granular permission control
+- Community can create servers
+
+#### Limitations
+
+- Requires manual configuration
+- Less polished for pure coding
+- Initial learning curve
+
+
 
 ## MCP Server Ecosystem
 

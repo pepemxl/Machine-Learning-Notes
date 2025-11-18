@@ -185,17 +185,103 @@ flowchart TB
 La configuración de servidores MCP se realiza mediante un archivo JSON ubicado en:
 
 **Windows:**
-```
+
+```bash
 %APPDATA%\Claude\claude_desktop_config.json
 ```
 
-**macOS:**
+En mi caso
+
+
+```bash
+%APPDATA%\Roaming\Claude\extensions-installations.json
 ```
+
+se ve algo asi
+
+
+
+```json
+{
+    "extensions":
+    {
+        "ant.dir.ant.anthropic.filesystem":
+        {
+            "id":"ant.dir.ant.anthropic.filesystem",
+            "version":"0.1.6",
+            "hash":"801e23a29560699cae1a8c05be192883892f2035428b699f3243bcb5d545cc55",
+            "installedAt":"2025-11-13T03:47:32.310Z",
+            "manifest":
+            {
+                "dxt_version":"0.1",
+                "name":"Filesystem",
+                "display_name":"Filesystem",
+                "version":"0.1.6",
+                "description":"Let Claude access your filesystem to read and write files.",
+                "long_description":"This extension allows Claude to interact with your local filesystem, enabling it to read and write files directly. This can be useful for tasks such as file management, data processing, and automation of repetitive tasks. The extension provides a set of tools that can be used to navigate directories, read file contents, and write new files or modify existing ones.\n\nUnderneath the hood, it uses @modelcontextprotocol/server-filesystem.",
+                "author":
+                {
+                    "name":"Anthropic",
+                    "url":"https://www.claude.ai"
+                },
+                "homepage":"https://www.claude.ai",
+                "documentation":"https://support.anthropic.com/en/collections/4078531-claude-ai",
+                "support":"https://support.anthropic.com/en/collections/4078531-claude-ai",
+                "icon":"icon.png",
+                "server":
+                {
+                    "type":"node",
+                    "entry_point":"server/index.js",
+                    "mcp_config":
+                    {
+                        "command":"node",
+                        "args":[
+                            "${__dirname}/server/index.js","${user_config.allowed_directories}"
+                            ]
+                    }
+                },
+                "tools":[
+                    {"name":"read_file","description":"Read the contents of a file"},
+                    {"name":"read_multiple_files","description":"Read the contents of multiple files"},{"name":"write_file","description":"Write content to a file"},
+                    {"name":"edit_file","description":"Edit the contents of a file"},
+                    {"name":"create_directory","description":"Create a new directory"},
+                    {"name":"list_directory","description":"List contents of a directory"},
+                    {"name":"directory_tree","description":"Display directory structure as a tree"},
+                    {"name":"move_file","description":"Move or rename a file"},
+                    {"name":"search_files","description":"Search for files by name or content"},
+                    {"name":"get_file_info","description":"Get information about a file"},
+                    {"name":"list_allowed_directories","description":"List directories that can be accessed"}
+                ],
+                "keywords":["api","automation","productivity"],
+                "license":"MIT",
+                "compatibility":{"claude_desktop":">=0.10.0","platforms":["darwin","win32","linux"],
+                "runtimes":{"node":">=16.0.0"}},
+                "user_config":
+                {
+                    "allowed_directories":
+                    {
+                        "type":"directory",
+                        "title":"Allowed Directories",
+                        "description":"Select directories the filesystem server can access",
+                        "required":true,"default":[],"multiple":true}
+                    }
+                },
+                "signatureInfo":{"status":"unsigned"},"source":"registry"}
+            }
+        }
+```
+
+
+
+**macOS:**
+
+```bash
 ~/Library/Application Support/Claude/claude_desktop_config.json
 ```
 
 **Linux:**
-```
+
+```bash
 ~/.config/Claude/claude_desktop_config.json
 ```
 
@@ -237,6 +323,7 @@ La configuración de servidores MCP se realiza mediante un archivo JSON ubicado 
 ### Paso 4: Ejemplos de Servidores MCP Comunes
 
 #### Servidor de Sistema de Archivos
+
 Permite a Claude leer/escribir archivos en directorios específicos:
 
 ```json
@@ -247,7 +334,7 @@ Permite a Claude leer/escribir archivos en directorios específicos:
       "args": [
         "-y",
         "@modelcontextprotocol/server-filesystem",
-        "D:\\MisProyectos",
+        "D:\\Sandbox",
         "C:\\Documentos"
       ]
     }
@@ -256,6 +343,7 @@ Permite a Claude leer/escribir archivos en directorios específicos:
 ```
 
 #### Servidor de Git
+
 Permite operaciones con repositorios Git:
 
 ```json
@@ -274,6 +362,7 @@ Permite operaciones con repositorios Git:
 ```
 
 #### Servidor de Brave Search
+
 Permite búsquedas web:
 
 ```json
@@ -303,13 +392,13 @@ Después de modificar el archivo de configuración:
 ### Paso 6: Verificar la conexión
 
 En Claude Desktop:
-- Busca el ícono de 🔌 (enchufe) o herramientas disponibles
+- Busca el ícono de herramientas disponibles
 - Claude te informará qué herramientas MCP están disponibles
 - Puedes preguntar: "¿Qué herramientas tienes disponibles?"
 
 ## Creación de un Servidor MCP Personalizado
 
-### Ejemplo Básico (Node.js/TypeScript)
+### Ejemplo Básico con Node.js/TypeScript
 
 ```typescript
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
@@ -393,6 +482,11 @@ main();
 }
 ```
 
+
+### Ejemplo Básico con Python
+
+
+
 ## MCP vs Otras Herramientas (Cursor, Copilot, etc.)
 
 ### Características Distintivas de MCP
@@ -409,12 +503,14 @@ main();
 ### Ventajas de MCP
 
 #### 1. **Estandarización**
+
 - Protocolo único para todas las integraciones
 - Cualquier desarrollador puede crear servidores compatibles
 - No hay lock-in de proveedor
 
 #### 2. **Seguridad y Control**
-```
+
+```bash
 Usuario define explícitamente:
 ├── Qué datos puede acceder Claude
 ├── Qué operaciones puede realizar
@@ -423,11 +519,13 @@ Usuario define explícitamente:
 ```
 
 #### 3. **Composabilidad**
+
 - Múltiples servidores pueden trabajar juntos
 - Claude puede combinar información de diferentes fuentes
 - Ejemplo: Leer DB + Acceder archivos + Consultar API en una sola tarea
 
 #### 4. **Flexibilidad**
+
 ```python
 # Cursor: Limitado a archivos del proyecto
 cursor.read("archivo.py")
@@ -439,56 +537,35 @@ mcp_api.fetch("https://api.externa.com/datos")
 mcp_custom.cualquier_cosa()
 ```
 
-### Comparación con Cursor
+### Comparación de Claude con Cursor
 
-#### Cursor
-```
-Fortalezas:
-✓ Experiencia de usuario pulida
-✓ Autocompletado inteligente
-✓ Integración nativa con VS Code
-✓ Refactorización de código avanzada
+#### Fortalezas
 
-Limitaciones:
-✗ Ecosistema cerrado
-✗ Integraciones limitadas
-✗ Principalmente enfocado en código
-✗ Difícil personalización profunda
-```
+- Autocompletado inteligente con VS Code
+- Integración nativa con VS Code
 
-#### MCP con Claude Desktop
-```
-Fortalezas:
-✓ Protocolo abierto y extensible
-✓ Integraciones ilimitadas vía servidores
-✓ Conversación natural + ejecución de código
-✓ Control granular de permisos
-✓ Comunidad puede crear servidores
+#### Limitaciones
 
-Limitaciones:
-✗ Requiere configuración manual
-✗ Menos pulido para coding puro
-✗ Curva de aprendizaje inicial
-```
+- Ecosistema cerrado
+- Integraciones limitadas
+- Principalmente enfocado en código
+- Difícil personalización profunda
 
-### Caso de Uso: Comparación Práctica
 
-**Tarea:** "Analiza todos los archivos Python en mi proyecto, consulta la base de datos de usuarios, y genera un reporte en Google Docs"
+### MCP con Claude Desktop
 
-#### Con Cursor:
-```
-❌ No puede acceder a la base de datos directamente
-❌ No puede escribir en Google Docs
-📝 Necesitas: Múltiples pasos manuales, copiar/pegar
-```
+#### Fortalezas
 
-#### Con MCP + Claude:
-```
-✅ Servidor filesystem lee archivos Python
-✅ Servidor postgres consulta la base de datos
-✅ Servidor google-docs crea el reporte
-📝 Todo en una conversación fluida
-```
+- Protocolo abierto y extensible
+- Integraciones ilimitadas vía servidores
+- Control granular de permisos
+- Comunidad puede crear servidores
+
+#### Limitaciones
+
+- Requiere configuración manual
+- Menos pulido para coding puro
+- Curva de aprendizaje inicial
 
 ## Ecosistema de Servidores MCP
 
