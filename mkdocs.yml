@@ -25,8 +25,10 @@ nav:
     - 'Open Source': '10_LLM/open_source.md'
     - 'ChatBot': '10_LLM/RAGS/build_llm_rag_chatbot_langchain.md'
     - 'MCP': 
-      - 'Intro': '10_LLM/MCP/section_01.md'
-      - 'Claude': '10_LLM/MCP/section_02.md'
+      - 'Intro': '10_LLM/MCP/section_01.es.md'
+      - 'Clientes para usar MCPs': '10_LLM/MCP/section_02.es.md'
+      - 'MCP example': '10_LLM/MCP/section_03.es.md'
+      - 'MCP context': '10_LLM/MCP/section_04.es.md'
     - JARVIS:
       - 'intro': '11_JARVIS/intro.md'
   - Workflows: '04_WORKFLOWS/section_01.md'
