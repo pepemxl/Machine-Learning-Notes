@@ -12,7 +12,9 @@ Users (100M) ←→ Products (100M) ←→ Sellers (5M)
 Interactions           Categories
 ```
 
-### **Specific GNN Architectures:**
+Categories usually will be called taxonomies.
+
+### **Specific GNN Architectures**
 
 #### **A. GraphSAGE for Scale**
 ```python

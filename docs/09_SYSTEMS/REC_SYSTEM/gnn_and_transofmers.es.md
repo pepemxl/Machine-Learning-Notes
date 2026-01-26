@@ -6,6 +6,7 @@
 Pensaremos en el típico problema de recomendación para un servicio similar a Amazon con una escala menor.
 
 ### **Representación Nativa de tu Ecosistema**
+
 Tu plataforma es un **grafo heterogéneo masivo**:
 ```
 Usuarios (100M) ←→ Productos (100M) ←→ Vendedores (5M)
@@ -13,9 +14,17 @@ Usuarios (100M) ←→ Productos (100M) ←→ Vendedores (5M)
 Interacciones           Categorías
 ```
 
-### **Arquitecturas GNN Específicas:**
+Las categorias usualmente son llamadas taxonomias.
+
+- Impresiones
+- Productos Comprados
+- Productos Favoritos
+
+
+### **Arquitecturas GNN Específicas**
 
 #### **A. GraphSAGE para Escala**
+
 ```python
 # Para embeddings de usuarios similares
 UserNode → [Vecinos: productos comprados] → Embedding
