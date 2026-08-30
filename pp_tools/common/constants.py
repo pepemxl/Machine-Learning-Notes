@@ -7,6 +7,8 @@ if 'BASE_PATH' not in env_var:
     PP_TOOLS_PATH = os.path.dirname(COMMON_PATH)
     BASE_PATH = PP_TOOLS_PATH
 LOCAL_DATA_PATH = os.path.join(BASE_PATH, 'LOCAL_DATA')
+AGENTS_DATA_PATH = os.path.join(LOCAL_DATA_PATH, 'AGENTS')
+AGENTS_SECURITY_PATH = os.path.join(AGENTS_DATA_PATH, 'SECURITY')
 CONFIG_PATH = os.path.join(LOCAL_DATA_PATH, 'LOCAL_CONFIGS')
 DATA_OUTPUT_PATH = os.path.join(LOCAL_DATA_PATH, 'DATA')
 LOGS_PATH = os.path.join(LOCAL_DATA_PATH, 'LOGS')
@@ -17,9 +19,18 @@ PATH_STRUCTURE = [
         "path": LOCAL_DATA_PATH,
         "children": [
             {
+                "path": AGENTS_DATA_PATH,
+                "children": [
+                    {
+                        "path": AGENTS_SECURITY_PATH,
+                        "children": []
+                    },
+                ]
+            },
+            {
                 "path": CONFIG_PATH,
                 "children": []
-            }, 
+            },
             {
                 "path": DATA_OUTPUT_PATH,
                 "children": []
