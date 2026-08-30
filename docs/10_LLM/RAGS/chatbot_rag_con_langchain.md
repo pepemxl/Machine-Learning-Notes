@@ -77,6 +77,10 @@ Recopilado el contenido textual, pasamos a la fase de indexación. Lo primero es
 
 En este ejemplo fijamos `chunk_size` en 1000 y `chunk_overlap` en 4.
 
+Partir por número de caracteres es el enfoque más simple, pero rompe tablas y separa los
+párrafos de su encabezado. Ver [Docling](../DOCUMENTOS/docling.md) para una ingesta que respeta
+la estructura del documento.
+
 A continuación introducimos una utilidad de *embeddings*, en concreto `HuggingFaceEmbedding`, que será la encargada de vectorizar nuestros segmentos de texto.
 
 ```python

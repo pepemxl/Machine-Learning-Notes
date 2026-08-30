@@ -32,6 +32,7 @@ número de parámetros y, por tanto, más capaces, con ejemplos conocidos como G
 - [LLMs open source](llms_open_source.md)
 - [Requerimientos de hardware](requerimientos_de_hardware.md)
 - [Prompting](prompting.md)
+- [Docling](DOCUMENTOS/docling.md) — convertir documentos en algo que un LLM pueda usar.
 - [MCP](MCP/introduccion_mcp.md) — el protocolo para dar contexto y herramientas a los modelos.
 - [RAGs](RAGS/chatbot_rag_con_langchain.md) — generación aumentada por recuperación.
 - [LM Studio](llmstudio/introduccion_lm_studio.md) y

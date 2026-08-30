@@ -1,5 +1,10 @@
 # De Rags a LLM-wiki
 
+!!! note "Nota del curso"
+    Varias de las críticas de este texto —la fragmentación que destruye las tablas, los chunks
+    sin contexto— son problemas de **ingesta**, no del paradigma RAG en sí. Ver
+    [Docling](../DOCUMENTOS/docling.md), que ataca justamente esa parte.
+
 Pero a medida que avanzamos por 2026, las grietas del enfoque de “RAG para todo” se han vuelto demasiado grandes para ignorarlas. La fragmentación en chunks destruye estructuras complejas de tablas, la recuperación vectorial es inherentemente probabilística (puedes obtener el chunk correcto, o puedes obtener uno desactualizado), y mantener sincronizados los embeddings con datos que se actualizan rápidamente es una pesadilla operativa absoluta.
 
 Para resolver esto, Google Cloud silenció el ruido de “RAG para todo” al abrir el código de Open Knowledge Format (OKF v0.1). No es una nueva base de datos en la nube, ni un framework para LLM, ni un SDK. En cambio, es una especificación portátil y neutral respecto al proveedor que formaliza el paradigma de “LLM Wiki”, es decir, el concepto exacto de un “cerebro” estructurado e interconectado que investigadores de IA como Andrej Karpathy han defendido durante años.

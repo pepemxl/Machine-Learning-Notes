@@ -107,6 +107,9 @@ nav:
       - 'Clientes MCP': '10_LLM/MCP/clientes_mcp.md'
       - 'Servidor MCP de filesystem': '10_LLM/MCP/servidor_mcp_filesystem.md'
       - 'Manejo de contexto': '10_LLM/MCP/manejo_de_contexto.md'
+    - Documentos:
+      - 'Docling': '10_LLM/DOCUMENTOS/docling.md'
+      - 'Docling en la práctica': '10_LLM/DOCUMENTOS/docling_en_practica.md'
     - RAGs:
       - 'Chatbot RAG con LangChain': '10_LLM/RAGS/chatbot_rag_con_langchain.md'
       - 'RAG para documentación técnica': '10_LLM/RAGS/rag_para_documentacion_tecnica.md'

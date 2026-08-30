@@ -116,6 +116,8 @@ aportando métodos adicionales de exploración.
   [clientes](10_LLM/MCP/clientes_mcp.md) ·
   [servidor de filesystem](10_LLM/MCP/servidor_mcp_filesystem.md) ·
   [manejo de contexto](10_LLM/MCP/manejo_de_contexto.md)
+- Documentos: [Docling](10_LLM/DOCUMENTOS/docling.md) ·
+  [Docling en la práctica](10_LLM/DOCUMENTOS/docling_en_practica.md)
 - RAGs: [chatbot con LangChain](10_LLM/RAGS/chatbot_rag_con_langchain.md) ·
   [documentación técnica](10_LLM/RAGS/rag_para_documentacion_tecnica.md) ·
   [de RAGs a LLM-Wiki](10_LLM/RAGS/de_rags_a_llm_wiki.md) ·
