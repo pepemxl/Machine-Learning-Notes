@@ -84,6 +84,8 @@ nav:
     - 'Creación de Knowledge Graphs': '08_GRAPH/creacion_de_knowledge_graphs.md'
     - 'Grafo de código': '08_GRAPH/grafo_de_codigo.md'
     - 'Apache TinkerPop': '08_GRAPH/apache_tinkerpop.md'
+    - 'Apache HugeGraph': '08_GRAPH/apache_hugegraph.md'
+    - 'HugeGraph con IA': '08_GRAPH/hugegraph_ai.md'
     - 'Gremlin': '08_GRAPH/gremlin.md'
     - 'Servidores MCP con KGs': '08_GRAPH/servidores_mcp_con_kgs.md'
     - 'Proyectos Apache para KG': '08_GRAPH/proyectos_apache_para_kg.md'

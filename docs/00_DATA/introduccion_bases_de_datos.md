@@ -43,6 +43,7 @@ análisis de relaciones complejas, como redes sociales y
 - Neo4j
 - Amazon Neptune
 - JanusGraph
+- [Apache HugeGraph](../08_GRAPH/apache_hugegraph.md)
 
 Ver también la sección de [grafos](../08_GRAPH/introduccion.md), y
 [Apache TinkerPop](../08_GRAPH/apache_tinkerpop.md), la capa de abstracción que permite

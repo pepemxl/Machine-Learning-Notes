@@ -97,7 +97,8 @@ TinkerPop no almacena nada por sí mismo. Los motores que implementan su interfa
 | **JanusGraph** | Distribuido | Código abierto. Almacena en Cassandra, HBase o BerkeleyDB; indexa con Elasticsearch o Solr. |
 | **Amazon Neptune** | Gestionado | Servicio de AWS. Soporta Gremlin y también SPARQL. |
 | **Azure Cosmos DB** | Gestionado | A través de su API de Gremlin. |
-| **ArcadeDB**, **HugeGraph**, **OrientDB** | Variados | Otras implementaciones de la especificación. |
+| **[HugeGraph](apache_hugegraph.md)** | Distribuido | Proyecto Apache. Esquema fuerte obligatorio y API REST con algoritmos de recorrido. |
+| **ArcadeDB**, **OrientDB** | Variados | Otras implementaciones de la especificación. |
 | **Neo4j** | Vía adaptador | Su lenguaje nativo es [Cypher](../10_LLM/RAGS/cypher.md); Gremlin funciona mediante el plugin `neo4j-gremlin`. |
 
 ## Cómo se usa

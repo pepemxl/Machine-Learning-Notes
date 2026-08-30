@@ -104,6 +104,7 @@ Ver [Dimensiones de la analítica](../00_DATA/dimensiones_analitica.md).
 - [Creación de Knowledge Graphs](creacion_de_knowledge_graphs.md)
 - [Grafo de código](grafo_de_codigo.md)
 - [Apache TinkerPop](apache_tinkerpop.md) y [Gremlin](gremlin.md)
+- [Apache HugeGraph](apache_hugegraph.md) y [HugeGraph con IA](hugegraph_ai.md)
 - [Servidores MCP con KGs](servidores_mcp_con_kgs.md)
 - [Proyectos Apache para KG](proyectos_apache_para_kg.md)
 - [Knowledge Graphs y blockchain](knowledge_graphs_y_blockchain.md)

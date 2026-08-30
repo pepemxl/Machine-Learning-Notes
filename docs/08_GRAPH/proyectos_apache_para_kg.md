@@ -24,6 +24,14 @@ En el ecosistema Apache, hay varios proyectos relacionados con Knowledge Graphs,
      - Útil para análisis de redes y conocimiento estructurado.
    - Ver [Apache TinkerPop](apache_tinkerpop.md) y [Gremlin](gremlin.md) para el detalle.
 
+#### 5. Apache HugeGraph
+   - Enfoque: base de datos de grafos distribuida, compatible con TinkerPop.
+   - Características:
+     - Esquema fuerte y obligatorio, que evita la degradación de los datos.
+     - API REST con algoritmos de recorrido integrados.
+     - Subproyecto **hugegraph-ai** para GraphRAG y construcción de grafos con LLMs.
+   - Ver [Apache HugeGraph](apache_hugegraph.md) y [HugeGraph con IA](hugegraph_ai.md).
+
 #### 4. Apache RDF4J (antes Sesame)
    - Enfoque: Herramienta para trabajar con RDF y grafos semánticos.
    - Características:

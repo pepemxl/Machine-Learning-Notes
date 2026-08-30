@@ -96,6 +96,7 @@ aportando métodos adicionales de exploración.
 - [Grafo de código](08_GRAPH/grafo_de_codigo.md)
 - [Representation learning en grafos](08_GRAPH/representation_learning_en_grafos.md)
 - [Apache TinkerPop](08_GRAPH/apache_tinkerpop.md) · [Gremlin](08_GRAPH/gremlin.md)
+- [Apache HugeGraph](08_GRAPH/apache_hugegraph.md) · [HugeGraph con IA](08_GRAPH/hugegraph_ai.md)
 - [Servidores MCP con KGs](08_GRAPH/servidores_mcp_con_kgs.md)
 - [Proyectos Apache para KG](08_GRAPH/proyectos_apache_para_kg.md)
 - [Knowledge Graphs y blockchain](08_GRAPH/knowledge_graphs_y_blockchain.md)
