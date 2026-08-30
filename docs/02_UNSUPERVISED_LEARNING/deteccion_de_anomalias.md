@@ -1,12 +1,37 @@
-# Anomaly Detection
+# Detección de Anomalías
 
+Existen muchos modelos de machine learning capaces de detectar anomalías. El más adecuado
+depende de las características concretas de los datos y del **tipo de anomalía** que quieras
+detectar. Los modelos más comunes se agrupan en tres familias.
 
-There are many machine learning models that can be used to detect anomalies, and the best one for a particular situation will depend on the specific characteristics of the data and the type of anomalies you are trying to detect. Some common models for anomaly detection include:
+## Modelos basados en densidad
 
-- Density-based models, such as One-Class Support Vector Machines (OCSVMs) and Local Outlier Factor (LOF) algorithms, which identify anomalies as points in the data that are less dense than their surroundings.
+Identifican como anomalías los puntos que están **en zonas menos densas** que su entorno.
 
-- Distance-based models, such as K-Nearest Neighbors (KNN) and K-Means clustering, which identify anomalies as points that are far from the majority of the data points.
+- **One-Class SVM** (OCSVM) — ver
+  [máquinas de vectores de soporte](../01_SUPERVISED_LEARNING/support_vector_machines.md).
+- **Local Outlier Factor** (LOF).
 
-- Probabilistic models, such as Gaussian Mixture Models (GMMs) and Markov models, which model the normal behavior of the data and identify anomalies as points that do not conform to the expected behavior.
+## Modelos basados en distancia
 
-Ultimately, the best approach will depend on the specific characteristics of the data and the type of anomalies you are trying to detect. It is often helpful to try out multiple different models and compare their performance to determine which one works best for your particular situation.
+Identifican como anomalías los puntos que están **lejos de la mayoría** de los datos.
+
+- **K-Nearest Neighbors** (KNN).
+- **K-Means clustering**.
+
+## Modelos probabilísticos
+
+Modelan el **comportamiento normal** de los datos e identifican como anomalías los puntos que
+no se ajustan a ese comportamiento esperado.
+
+- **Modelos de mezcla de gaussianas** (GMM).
+- **Modelos de Markov**.
+
+## Cómo elegir
+
+En última instancia, el mejor enfoque depende de las características específicas de los datos y
+del tipo de anomalía buscada. Suele ser útil **probar varios modelos distintos y comparar su
+rendimiento** para determinar cuál funciona mejor en tu situación concreta.
+
+Ver [Isolation Forest](isolation_forest.md) para un método basado en aislamiento, que parte de
+un supuesto distinto a los tres anteriores.

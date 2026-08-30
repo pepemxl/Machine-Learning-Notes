@@ -1,41 +1,66 @@
-# Inttroduction
+# Introducción al Aprendizaje No Supervisado
 
-While **supervised learning** requires users to help the machine to learn from labeling data, **unsupervised learning** doesn't use the same labeled training sets neither data. Instead, the machine looks for less obvious patterns in the data. This machine learning type is very helpful when you need to identify patterns and use data to make decisions. Common algorithms used in unsupervised learning include **Hidden Markov models**, **k-means**, **hierarchical clustering**, and **Gaussian mixture models**.
+Mientras que el [aprendizaje supervisado](../01_SUPERVISED_LEARNING/introduccion.md) requiere
+que el usuario ayude a la máquina a aprender **etiquetando datos**, el **aprendizaje no
+supervisado** no usa conjuntos de entrenamiento etiquetados. En su lugar, la máquina busca
+**patrones menos evidentes** en los datos.
 
-Using the example from supervised learning, let's say you didn't know which customers did or didn't default on loans. Instead, you'd provide the machine with borrower information and it would look for patterns between borrowers before grouping them into several clusters.
+Este tipo de machine learning es muy útil cuando necesitas identificar patrones y usar los
+datos para tomar decisiones. Los algoritmos más comunes incluyen **modelos ocultos de Markov**,
+**k-means**, **clustering jerárquico** y **modelos de mezcla de gaussianas**.
 
-This type of machine learning is widely used to create predictive models. Common applications also include clustering, which creates a model that groups objects together based on specific properties, and association, which identifies the rules existing between the clusters. A few example use cases include:
+Retomando el ejemplo del aprendizaje supervisado: supongamos que **no sabes** qué clientes
+incumplieron o no el pago de sus préstamos. En ese caso proporcionas a la máquina la
+información de los prestatarios, y ella busca patrones entre ellos para agruparlos en varios
+*clusters*.
 
-Creating customer groups based on purchase behavior
+Este tipo de aprendizaje se usa ampliamente para crear modelos predictivos. Sus aplicaciones
+habituales incluyen el **clustering**, que agrupa objetos según propiedades específicas, y la
+**asociación**, que identifica las reglas existentes entre los grupos. Algunos casos de uso:
 
-Grouping inventory according to sales and/or manufacturing metrics
+- Crear **grupos de clientes** basados en su comportamiento de compra.
+- Agrupar el **inventario** según métricas de ventas o de fabricación.
+- Identificar **asociaciones** en los datos de clientes (por ejemplo, quienes compran un cierto
+  estilo de bolso podrían interesarse por un cierto estilo de zapato).
 
-Pinpointing associations in customer data (for example, customers who buy a specific style of handbag might be interested in a specific style of shoe)
+Son los ejemplos clásicos que encontrarás al buscar sobre el tema.
 
-These are classic example that you will find searching for examples.
+## Clusters
 
+Un **cluster** es un conjunto de grupos de instancias de un dataset que se han clasificado
+automáticamente según una **medida de distancia** calculada sobre los campos del dataset.
 
+Los clusters pueden manejar campos numéricos, categóricos, de texto y de ítems como entrada:
 
+- **Campos numéricos**: se calcula la distancia euclídea entre los valores numéricos de las
+  instancias.
+- **Campos categóricos**: una forma común de tratarlos es convertir cada categoría en un campo
+  nuevo y asignar 0 o 1 según corresponda.
+- **Campos de texto e ítems**: a cada instancia se le asigna un vector de términos y se calcula
+  la **similitud del coseno** para determinar la cercanía entre instancias.
 
-# Clusters
+Un campo categórico con 20 categorías se convertirá en 20 campos binarios separados. En Big
+Data suele usarse una técnica llamada **k-prototypes**, que modifica la función de distancia
+para operar como si las categorías se hubieran transformado a valores binarios.
 
-A cluster is a set of groups of instances of a dataset that have been automatically classified together according to a distance measure computed using the fields of the dataset.
+Cada grupo se representa por un **centroide** o centro, calculado usando la media de cada campo
+numérico y la moda de cada campo categórico. Para campos de texto e ítems, cada centroide
+contiene los términos o ítems que minimizan la distancia coseno promedio entre el centroide y
+los puntos de su vecindario.
 
-Clusters can handle numeric, categorical, text and items fields as inputs:
+Para crear un cluster puedes elegir un número arbitrario de grupos y también un subconjunto
+arbitrario de campos del dataset como `input_fields`. Las escalas permiten controlar cuánto
+influye cada campo en la medida de distancia usada para agrupar las instancias.
 
-- Numeric fields: the Eucledian distance is computed between the instances numeric values.
-- Categorical fields: a common way to handle categorical data is to take each category as a new field and assign 0 or 1 depending on the category. 
-- Text and item fields: each instance is assigned a vector of terms and then cosine similarity is computed to determine closeness between instances.
+## Taxonomía de métodos de clustering
 
-For categorial field with 20 categories will become 20 separate binary fields. Big Data usually uses a technique called k-prototypes which modifies the distance function to operate as though the categories were transformed to binary values.
+![Taxonomía de métodos de clustering](../images/taxonomy_clustering.png)
 
+Diagrama generado por el script `docs/diagrams/clustering_types.py`.
+Ver `docs/diagrams/README.md` para regenerarlo.
 
-Each cluster group is represented by a centroid or center that is computed using the mean for each numeric field and the mode for each categorical field. For text and items fields each centroid contains the terms or items which minimize the average cosine distance between the centroid and the points in its neighborhood.
+## En esta sección
 
-To create a cluster, you can select an arbitrary number of clusters and also select an arbitrary subset of fields from your dataset as input_fields. You can use scales to select how each field influences the distance measure used to group instances together.
-
-
-
-
-
-
+- [Clustering en Big Data](clustering_en_big_data.md)
+- [Detección de anomalías](deteccion_de_anomalias.md)
+- [Isolation Forest](isolation_forest.md)

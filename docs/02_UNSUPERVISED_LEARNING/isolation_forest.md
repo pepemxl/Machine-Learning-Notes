@@ -1,23 +1,55 @@
 # Isolation Forest
 
-Isolation Forest algorithm utilizes the fact that anomalous observations are few and significantly different from `normal` observations.
+El algoritmo **Isolation Forest** aprovecha un hecho sencillo: las observaciones anómalas son
+**pocas y significativamente distintas** de las observaciones `normales`. Por tanto, son más
+fáciles de **aislar**.
 
-The forest is built on the basis of decision trees, each of the trees having access to a sub-sample of the training data. 
+Esa es la diferencia de fondo con los métodos de la
+[detección de anomalías](deteccion_de_anomalias.md) clásica: en lugar de modelar qué es normal
+y medir la desviación, Isolation Forest mide **cuánto cuesta separar un punto del resto**.
 
-In order to create a branch in the tree,
-- a random feature is selected.
-    - a random split value ( between min and max value) is chosen for that feature. 
-    - If the given observation has a lower value of this feature then the one selected it follows the left branch, otherwise the right one. 
+## Cómo funciona
 
-This process is continued until a single point is isolated or specified maximum depth is reached.
+El bosque se construye a base de **árboles de decisión**, y cada árbol tiene acceso a una
+submuestra de los datos de entrenamiento.
 
+Para crear una rama del árbol:
 
-## Some drawbacks
+- Se selecciona una **feature al azar**.
+- Se elige un **valor de corte aleatorio** para esa feature (entre su mínimo y su máximo).
+- Si la observación tiene un valor menor que el corte, sigue la rama izquierda; en caso
+  contrario, la derecha.
 
-Our intuition tells that anomalies will be radial outliers of central common points, however, the nature creation of decision trees and how works Isolation Forest led us some conclusion about problems caused by only spliting features by random values. 
+El proceso continúa hasta que **un único punto queda aislado**, o hasta alcanzar la profundidad
+máxima especificada.
 
-If we visualize a 2D plot of anomalies
+La intuición es que un punto anómalo queda aislado tras **pocos cortes**, mientras que un punto
+normal, rodeado de muchos otros, requiere muchos más. La profundidad promedio a la que un punto
+queda aislado, a lo largo de todos los árboles, es su **puntuación de anomalía**.
 
+## Algunas limitaciones
 
-and plot anomaly score we can notice how anomaly score values in verticals and horizontals are affected by this decision, then it is clear the our partition of the freatue space affects our anomaly score, is where make sense to create a new partition.
+La intuición nos dice que las anomalías serán *outliers* radiales respecto a los puntos
+centrales comunes. Sin embargo, la forma en que se construyen los árboles de decisión —y cómo
+opera Isolation Forest— revela problemas causados por dividir las features **únicamente
+mediante cortes aleatorios paralelos a los ejes**.
 
+Si visualizamos un gráfico 2D de anomalías y trazamos la puntuación de anomalía, se aprecia
+cómo los valores se ven afectados **en franjas verticales y horizontales**. Queda claro
+entonces que nuestra partición del espacio de features condiciona la puntuación: los cortes
+solo pueden ser perpendiculares a los ejes, así que el modelo tiende a marcar como sospechosas
+regiones rectangulares en lugar de radiales.
+
+De ahí que tenga sentido plantear un **esquema de partición distinto**. La variante
+**Extended Isolation Forest** aborda justamente esto, permitiendo cortes con pendiente
+arbitraria en lugar de solo paralelos a los ejes.
+
+## Notebooks
+
+- [Isolation Forest](Examples/Isolation%20Forest.ipynb)
+- [Isolation Forest Feature Selection](Examples/Isolation%20Forest%20Feature%20Selection.ipynb)
+
+## Referencias
+
+- Liu, F. T., Ting, K. M. y Zhou, Z.-H. *Isolation Forest*, ICDM (2008).
+- Hariri, S., Kind, M. C. y Brunner, R. J. *Extended Isolation Forest* (2018).
