@@ -70,8 +70,14 @@ aportando métodos adicionales de exploración.
 - [Definición de proyectos de IA](04_WORKFLOWS/definicion_de_proyectos_de_ia.md)
 - [Descubrimiento de datos](04_WORKFLOWS/descubrimiento_de_datos.md)
 - [Workflows, máquinas de estado y colas](04_WORKFLOWS/workflows_maquinas_de_estado_y_colas.md)
+- [DVC](04_WORKFLOWS/dvc.md) ·
+  [pipelines y experimentos con DVC](04_WORKFLOWS/dvc_pipelines_y_experimentos.md)
+- [OpenLineage](04_WORKFLOWS/openlineage.md) ·
+  [OpenLineage en la práctica](04_WORKFLOWS/openlineage_en_practica.md)
 - [Kedro](04_WORKFLOWS/kedro.md) · [Kedro en producción](04_WORKFLOWS/kedro_en_produccion.md)
 - [Ray](04_WORKFLOWS/ray.md) · [bibliotecas de IA de Ray](04_WORKFLOWS/ray_bibliotecas_ia.md)
+- [Feast](04_WORKFLOWS/feast.md) · [Feast en la práctica](04_WORKFLOWS/feast_en_practica.md)
+- [MLflow](04_WORKFLOWS/mlflow.md) · [MLflow en la práctica](04_WORKFLOWS/mlflow_en_practica.md)
 - [ONNX](04_WORKFLOWS/onnx.md) · [ONNX Runtime](04_WORKFLOWS/onnx_runtime.md)
 
 ### 05 · Matemáticas

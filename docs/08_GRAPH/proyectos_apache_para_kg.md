@@ -50,6 +50,7 @@ En el ecosistema Apache, hay varios proyectos relacionados con Knowledge Graphs,
    - Enfoque: Gobernanza de datos y metadatos (usado en Hadoop).
    - Relación con Knowledge Graphs:
      - Permite modelar linaje de datos y relaciones entre conjuntos de datos (similar a un grafo de metadatos).
+   - Ver [OpenLineage](../04_WORKFLOWS/openlineage.md) para el estándar abierto de recolección de linaje.
 
 
 

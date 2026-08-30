@@ -49,17 +49,30 @@ nav:
     - 'Funciones de base radial': '05_MATH/funciones_de_base_radial.md'
 
   - Workflows:
-    - 'Sistemas de machine learning': '04_WORKFLOWS/sistemas_de_machine_learning.md'
-    - 'Feature stores': '04_WORKFLOWS/feature_stores.md'
-    - 'Definición de proyectos de IA': '04_WORKFLOWS/definicion_de_proyectos_de_ia.md'
-    - 'Descubrimiento de datos': '04_WORKFLOWS/descubrimiento_de_datos.md'
-    - 'Workflows, máquinas de estado y colas': '04_WORKFLOWS/workflows_maquinas_de_estado_y_colas.md'
-    - 'Kedro': '04_WORKFLOWS/kedro.md'
-    - 'Kedro en producción': '04_WORKFLOWS/kedro_en_produccion.md'
-    - 'Ray': '04_WORKFLOWS/ray.md'
-    - 'Bibliotecas de IA de Ray': '04_WORKFLOWS/ray_bibliotecas_ia.md'
-    - 'ONNX': '04_WORKFLOWS/onnx.md'
-    - 'ONNX Runtime': '04_WORKFLOWS/onnx_runtime.md'
+    - Fundamentos:
+      - 'Sistemas de machine learning': '04_WORKFLOWS/sistemas_de_machine_learning.md'
+      - 'Definición de proyectos de IA': '04_WORKFLOWS/definicion_de_proyectos_de_ia.md'
+      - 'Descubrimiento de datos': '04_WORKFLOWS/descubrimiento_de_datos.md'
+      - 'Workflows, máquinas de estado y colas': '04_WORKFLOWS/workflows_maquinas_de_estado_y_colas.md'
+    - Features:
+      - 'Feature stores': '04_WORKFLOWS/feature_stores.md'
+      - 'Feast': '04_WORKFLOWS/feast.md'
+      - 'Feast en la práctica': '04_WORKFLOWS/feast_en_practica.md'
+    - Versionado y trazabilidad:
+      - 'DVC': '04_WORKFLOWS/dvc.md'
+      - 'Pipelines y experimentos con DVC': '04_WORKFLOWS/dvc_pipelines_y_experimentos.md'
+      - 'OpenLineage': '04_WORKFLOWS/openlineage.md'
+      - 'OpenLineage en la práctica': '04_WORKFLOWS/openlineage_en_practica.md'
+    - Estructura y cómputo:
+      - 'Kedro': '04_WORKFLOWS/kedro.md'
+      - 'Kedro en producción': '04_WORKFLOWS/kedro_en_produccion.md'
+      - 'Ray': '04_WORKFLOWS/ray.md'
+      - 'Bibliotecas de IA de Ray': '04_WORKFLOWS/ray_bibliotecas_ia.md'
+    - Experimentos y despliegue:
+      - 'MLflow': '04_WORKFLOWS/mlflow.md'
+      - 'MLflow en la práctica': '04_WORKFLOWS/mlflow_en_practica.md'
+      - 'ONNX': '04_WORKFLOWS/onnx.md'
+      - 'ONNX Runtime': '04_WORKFLOWS/onnx_runtime.md'
 
   - NLP:
     - 'Detección de patrones de nombres': '07_NLP/deteccion_de_patrones_de_nombres.md'
