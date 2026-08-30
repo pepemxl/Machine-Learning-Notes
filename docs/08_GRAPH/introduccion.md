@@ -1,106 +1,115 @@
-# Graph Algorithm for Data Science
+# Algoritmos de Grafos para Ciencia de Datos
 
-1. Graph modeling and construction
-    - Identify relationships between data points
-    - Describe a graph structure
-    - Import data into a graph database
-2. Graph query language
-    - Identify graph patterns
-    - Transverse connections
-    - Aggregate data
-    - Perform exploratory data analysis
-3. Graph algorithms and inferred networks
-    - Find the most important or critical nodes
-    - Group node into comunities
-    - Identify similar nodes
-    - Analyze indirect relationships
-4. Graph Machine Learning
-    - Extract features from graphs
-    - Predict node labels
-    - Predict new connections
+1. **Modelado y construcción del grafo**
+    - Identificar relaciones entre puntos de datos
+    - Describir una estructura de grafo
+    - Importar datos a una base de datos de grafos
+2. **Lenguaje de consulta de grafos**
+    - Identificar patrones en el grafo
+    - Recorrer conexiones
+    - Agregar datos
+    - Realizar análisis exploratorio
+3. **Algoritmos de grafos y redes inferidas**
+    - Encontrar los nodos más importantes o críticos
+    - Agrupar nodos en comunidades
+    - Identificar nodos similares
+    - Analizar relaciones indirectas
+4. **Machine learning sobre grafos**
+    - Extraer features de los grafos
+    - Predecir etiquetas de nodos
+    - Predecir nuevas conexiones
 
+## ¿Qué es un grafo?
 
-## What is a Graph?
+Es habitual confundir el término **grafo** pensando que cualquier gráfica lo es. No es el caso:
+la analítica de grafos se basa en la **teoría de grafos**.
 
-Usually people missunderstand the term **graph** thinking that every chart is a graph.
+El problema típico para entender el área es el de los **puentes de Königsberg**.
 
+La definición matemática de un grafo $G$ es un par $(V,E)$, donde $V$ es un conjunto de
+**vértices** y $E$ un conjunto de **aristas**.
 
-Graph analytics is based on Graph Theory.
+La definición desde ciencias de la computación es la de un **tipo de dato abstracto**:
 
-The typical problem to understand this are is the problem of the briges of koinsigner
+1. Tiene una estructura de datos que representa el grafo matemático.
+2. Soporta un conjunto de operaciones:
+    - `add_edge`
+    - `add_vertex`
+    - `get_neighbors`
 
-The matrhematical definition of a graph $G$ is a pair $(V,E)$ where $V$ is a set of vertices and $E$ is a set of edges.
+Hay varias formas de representar un grafo. Quizá la más común sea una matriz, llamada **matriz
+de adyacencia**.
 
-The computer science defintion of a graph is an abstract data type:
+## Ejemplos
 
-1. Has a data structure to represent the mathematical graph
-2. Supports a number of operations
-    - add_edge
-    - add_vertex
-    - get_neighboors
+**Facebook** es el ejemplo clásico: todos los datos que existen ahí se representan más fácilmente
+como un grafo. Es una red social.
 
-we have some ways to represent a graph maybe the most common is a matrix, called the adjacency matrix or matrix of adjacencies.
+**Los tuits también son un grafo:**
 
-
-Facebook is a classical example where all data existing there can be easier represented as a graph. This is a social network.
-
-
-Tweets are a Graph
-
-- Many kind of node in the graph
-    - Users
-    - Tweets
-    - Likes
-    - Urls
+- Muchos tipos de nodo:
+    - Usuarios
+    - Tuits
+    - *Likes*
+    - URLs
     - Media
-        - Image
+        - Imagen
         - Video
     - Hashtags
-- Many kind of edges (actions)
-    - Users **creates** Tweets
-    - A tweet is **in response** to another
-    - A tweet **retweets** another
-    - User **mentions** User
-    - Tweet **contains** hashtag
-    - User **follows** User
+- Muchos tipos de arista (acciones):
+    - Un usuario **crea** un tuit
+    - Un tuit está **en respuesta** a otro
+    - Un tuit **retuitea** a otro
+    - Un usuario **menciona** a otro usuario
+    - Un tuit **contiene** un hashtag
+    - Un usuario **sigue** a otro usuario
 
-Tipical problems studied using graph are:
+## Problemas típicos
 
-- Social Networks
-- Biological Networks
-    - Ilnes connected by genes
-- Smart Cities
-    - optimizing traffic models
-    - planning smart hubs
-    - 
-- Threat Detection
+Los problemas que habitualmente se estudian con grafos son:
 
+- **Redes sociales**
+- **Redes biológicas**
+    - Enfermedades conectadas por genes
+- **Ciudades inteligentes**
+    - Optimización de modelos de tráfico
+    - Planificación de nodos de transporte
+- **Detección de amenazas**
 
-## Why we do analytics?
+## ¿Por qué hacemos analítica?
 
-- Uncocer characteristics of datasets based on its matehmatical properties.
-- Answer specific questions from  multiple data sets.
-- Develop a mathematical model for predicting the behavior of some variables.
-- Detect emergent phenomena and explain its contributing factors.
+- Descubrir características de los datasets a partir de sus propiedades matemáticas.
+- Responder preguntas específicas que cruzan múltiples conjuntos de datos.
+- Desarrollar un modelo matemático para predecir el comportamiento de ciertas variables.
+- Detectar fenómenos emergentes y explicar los factores que contribuyen a ellos.
 
-## Graphs and the V's of Big Data
+## Los grafos y las V del Big Data
 
-The three well known **V's** are:
+Las tres V conocidas son:
 
-- **Volume**
-- **Velocity**
-- **Variety**
+- **Volumen**
+- **Velocidad**
+- **Variedad**
 
-the lesser known **V** is:
+Y la menos conocida:
 
-- **Valence**: Degree of interdependency among data. The idea is we increase the valence (Heterogenity) of a graph we increase the connections of a graph. 
+- **Valencia**: el grado de interdependencia entre los datos. La idea es que al aumentar la
+  valencia (la heterogeneidad) de un grafo, aumentamos sus conexiones.
 
+Ver [Dimensiones de la analítica](../00_DATA/dimensiones_analitica.md).
 
+## En esta sección
 
+- [Definiciones de Knowledge Graph](definiciones_knowledge_graph.md)
+- [Creación de Knowledge Graphs](creacion_de_knowledge_graphs.md)
+- [Grafo de código](grafo_de_codigo.md)
+- [Apache TinkerPop](apache_tinkerpop.md) y [Gremlin](gremlin.md)
+- [Servidores MCP con KGs](servidores_mcp_con_kgs.md)
+- [Proyectos Apache para KG](proyectos_apache_para_kg.md)
+- [Knowledge Graphs y blockchain](knowledge_graphs_y_blockchain.md)
 
+## Referencias
 
-## References
-
-- [Schema Org](https://schema.org/)
-- [RDFLib is a pure Python package for working with RDF](https://rdflib.readthedocs.io/en/stable/index.html)
-- [A Survey on Knowledge Graph Embedding: Approaches, Applications and Benchmarks](https://www.mdpi.com/2079-9292/9/5/750) by Yuanfei Dai 
+- [Schema.org](https://schema.org/)
+- [RDFLib, paquete Python puro para trabajar con RDF](https://rdflib.readthedocs.io/en/stable/index.html)
+- Dai, Y. et al. [*A Survey on Knowledge Graph Embedding: Approaches, Applications and Benchmarks*](https://www.mdpi.com/2079-9292/9/5/750)

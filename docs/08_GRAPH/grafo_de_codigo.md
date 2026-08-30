@@ -1,23 +1,29 @@
-# Code Graph
+# Grafo de Código
 
-Enabling Large Language Models (LLMs) to reason over selected code snippets within their context size is relatively straightforward. By copying and pasting the code snippet with some prompt engineering, LLMs often handle the request quite well. For example, GitHub Coplit Chat already allows you to generate 
-- unit test, 
-- fixing bugs, or 
-- explain a manually selected code snippet. 
+Conseguir que un [LLM](../10_LLM/introduccion.md) razone sobre fragmentos de código
+seleccionados dentro de su ventana de contexto es relativamente sencillo. Copiando y pegando el
+fragmento con algo de *prompt engineering*, los LLMs suelen resolver la petición bastante bien.
+Por ejemplo, GitHub Copilot Chat ya permite:
 
-However, how can we extend it to the scope of the whole codebase? Can we also skip the manual selection of code snippet and allow the LLM to figure it out? Building a knowledge graph over the codebase has the potential to tackle these challenges.
+- generar **tests unitarios**,
+- **corregir bugs**, o
+- **explicar** un fragmento de código seleccionado manualmente.
 
-## CodeGraph Context for Coding Copilots
+Pero, ¿cómo extendemos esto al alcance de **toda la base de código**? ¿Podemos además evitar la
+selección manual del fragmento y dejar que el LLM lo averigüe por su cuenta? Construir un
+**knowledge graph sobre la base de código** tiene el potencial de resolver ambos retos.
 
-The flow will be something like:
+## Contexto de grafo de código para copilotos
+
+El flujo sería algo así:
 
 ```mermaid
 flowchart LR
-    A[("Raw Data<br/><small>JSON/CSV/Logs</small>")]:::raw_node --> B["Tasks<br/><small>Cleaning & Processing</small>"]:::tasks_node
-    B --> C[("DataPoints<br/><small>Structured Entities</small>")]:::datapoints_node
-    C --> D[("Graph Network<br/><small>Relationships</small>")]:::graph_node
-    C --> E("fa:fa-tasks Vector Storage<br/><small>Embeddings</small>"):::vector_node
-    D & E --> F["Intelligent Search<br/><small>Semantic + Graph</small>"]:::search_node
+    A[("Datos crudos<br/><small>JSON/CSV/Logs</small>")]:::raw_node --> B["Tareas<br/><small>Limpieza y procesamiento</small>"]:::tasks_node
+    B --> C[("DataPoints<br/><small>Entidades estructuradas</small>")]:::datapoints_node
+    C --> D[("Red de grafo<br/><small>Relaciones</small>")]:::graph_node
+    C --> E("fa:fa-tasks Almacén vectorial<br/><small>Embeddings</small>"):::vector_node
+    D & E --> F["Búsqueda inteligente<br/><small>Semántica + grafo</small>"]:::search_node
 
     classDef raw_node fill:#6A5ACD,stroke:#9370DB,color:white;
     classDef tasks_node fill:#20B2AA,stroke:#00FA9A,color:black;
@@ -34,32 +40,54 @@ flowchart LR
     style F icon:fa-search;
 ```
 
-## Custom Ontologies and Reasoners for Domain "awareness"
+## Ontologías y razonadores propios para "conciencia" del dominio
 
-Let mix some domain driven development with LLMs and code guidelines.
+Se trata de mezclar algo de desarrollo dirigido por el dominio con LLMs y guías de estilo de
+código.
 
-### Code "awarness"
+### "Conciencia" del código
 
-Different static and dynamic analysis of the source code already build graph over source code for machine code optimization or vulnerability detection. 
+Distintos análisis estáticos y dinámicos del código fuente ya construyen grafos sobre él, sea
+para optimización de código máquina o para detección de vulnerabilidades.
 
-### Simple Knowledge Graph
+### Un knowledge graph sencillo
 
-Here, we will showcase how a simple knowledge graph over a codebase can be built that allows a LLM to reason over the whole codebase. 
+Aquí mostramos cómo se puede construir un knowledge graph sencillo sobre una base de código que
+permita a un LLM razonar sobre el conjunto completo.
 
-In the example graph, we use blue node to represent a file/directory, and green node to represent an AST node. Between file nodes we have HAS_FILE edges between the parent directory and the child file. Between file nodes and AST nodes we have HAS_AST edges between the source code files and the root AST node. Between the AST nodes we have HAS_PARENT edges between the parent and child AST nodes. 
+En el grafo de ejemplo usamos **nodos azules** para representar un archivo o directorio, y
+**nodos verdes** para representar un nodo del AST. Las relaciones son:
 
+- Entre nodos de archivo: aristas `HAS_FILE` entre el directorio padre y el archivo hijo.
+- Entre nodos de archivo y nodos del AST: aristas `HAS_AST` entre el archivo de código fuente y
+  el nodo raíz del AST.
+- Entre nodos del AST: aristas `HAS_PARENT` entre nodos padre e hijo.
 
-Lets start to test [Cognee](https://github.com/topoteretes/cognee) which has develppe a Data to Memory process.
+## Cognee: de datos a memoria
 
-In thisc ase **data to memory** is the process of converting and ingesting your raw data into Cognee’s memory system.
+Vamos a probar [Cognee](https://github.com/topoteretes/cognee), que ha desarrollado un proceso
+de *data to memory*.
 
-Node Sets provide a simple yet powerful tagging mechanism that helps in managing the growing complexity of your knowledge base as you add more content.
+En este caso, **data to memory** es el proceso de convertir e ingerir tus datos crudos en el
+sistema de memoria de Cognee.
 
-- **Chunking** is how cognee breaks down large datasets into manageable pieces for efficient processing and analysis.
-- **Memory Processing** encompasses the computational workflows that transform raw data into structured, queryable knowledge.
-- **Tasks** are the building blocks of cognee’s data processing pipeline.
-- **Pipelines** are the data processing workflows that transform raw information into structured knowledge graphs.
-- **DataPoints** are the fundamental units of information that carry 
-metadata and relationships.
-- **Search Memory** enables you to query and retrieve information from your knowledge graphs.
+Los **node sets** proporcionan un mecanismo de etiquetado sencillo pero potente, que ayuda a
+gestionar la complejidad creciente de tu base de conocimiento a medida que añades contenido.
 
+Conceptos clave:
+
+- **Chunking** — cómo Cognee divide grandes conjuntos de datos en piezas manejables para
+  procesarlos y analizarlos de forma eficiente.
+- **Memory processing** — los flujos computacionales que transforman datos crudos en
+  conocimiento estructurado y consultable.
+- **Tasks** — los bloques de construcción del pipeline de procesamiento de datos.
+- **Pipelines** — los flujos de trabajo que transforman información cruda en knowledge graphs
+  estructurados.
+- **DataPoints** — las unidades fundamentales de información, que portan metadatos y
+  relaciones.
+- **Search memory** — permite consultar y recuperar información de tus knowledge graphs.
+
+## Ver también
+
+- [Knowledge Graph para developers](../PROYECTOS/KG_CODE/knowledge_graph_para_developers.md)
+- [Servidores MCP con KGs](servidores_mcp_con_kgs.md)

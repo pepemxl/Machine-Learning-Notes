@@ -22,6 +22,7 @@ En el ecosistema Apache, hay varios proyectos relacionados con Knowledge Graphs,
    - Características:
      - Lenguaje de consulta Gremlin para recorrer grafos.
      - Útil para análisis de redes y conocimiento estructurado.
+   - Ver [Apache TinkerPop](apache_tinkerpop.md) y [Gremlin](gremlin.md) para el detalle.
 
 #### 4. Apache RDF4J (antes Sesame)
    - Enfoque: Herramienta para trabajar con RDF y grafos semánticos.
