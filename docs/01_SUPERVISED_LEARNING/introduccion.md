@@ -1,18 +1,17 @@
-# Introduction
+# Introducción al Aprendizaje Supervisado
 
+El machine learning se puede dividir en dos grandes categorías:
 
-Machine Learning can be divided into 2 large categories:
+1. Aprendizaje supervisado
+2. Aprendizaje no supervisado
 
-1. Supervised Learning
-2. Unsupervised Learning
+Aunque conviene añadir otras tres categorías "menores":
 
-however we can include other 3 "small" categories:
+3. Aprendizaje semi-supervisado
+4. [Aprendizaje por refuerzo](../03_REINFORCEMENT_LEARNING/introduccion.md)
+5. Deep learning
 
-3. Semi-supervised Learning
-4. Reinforcement Learning
-5. Deep Learning
-
-For now we will focus in supervised and unsupervised learning.
+En esta sección nos centramos en el aprendizaje supervisado.
 
 ```mermaid
 ---
@@ -21,11 +20,11 @@ config:
   layout: elk
 ---
 flowchart TB
-    A["Machine Learning"] --> B(["Supervised Learning"]) & C(["Unsupervised Learning"]) & D(["Reinforcement Learning"]) & E(["Semi-supervised Learning"]) & F(["Deep Learning"])
-    B --> B1["Classification"] & B2["Regression"]
-    C --> C1["Clustering"] & C2["Dimensionality Reduction"]
-    D --> D1["Q-Learning"] & D2["Policy Gradient Methods"]
-    F --> F1["Artificial Neural Networks"] & F2["Convolutional Neural Networks"] & F3["Recurrent Neural Networks"] & F4["Generative Adversarial Networks"]
+    A["Machine Learning"] --> B(["Aprendizaje Supervisado"]) & C(["Aprendizaje No Supervisado"]) & D(["Aprendizaje por Refuerzo"]) & E(["Semi-supervisado"]) & F(["Deep Learning"])
+    B --> B1["Clasificación"] & B2["Regresión"]
+    C --> C1["Clustering"] & C2["Reducción de dimensionalidad"]
+    D --> D1["Q-Learning"] & D2["Métodos de gradiente de política"]
+    F --> F1["Redes neuronales artificiales"] & F2["Redes convolucionales"] & F3["Redes recurrentes"] & F4["Redes generativas antagónicas"]
     A@{ shape: rounded}
     style A fill:#FFD600
     style B fill:#AA00FF,color:#000000
@@ -36,17 +35,18 @@ flowchart TB
 
 ```
 
+## Aprendizaje supervisado
 
-## Supervised Learning
+El **aprendizaje supervisado** es probablemente el método de machine learning más utilizado
+en los últimos años. Los algoritmos más comunes incluyen:
 
-**Supervised learning** is maybe the most utilized machine learning method in the last years. Common algorithms used during supervised learning includes 
+- **regresión lineal**,
+- **árboles de decisión**,
+- **máquinas de vectores de soporte**, y
+- **redes neuronales**.
 
-- **linear regression**,
-- **decision trees**, 
-- **support vector machines**, and 
-- **neural networks**.
-
-In **Supervised Learning** every point \((X,y)\) in a training dataset \(\mathbb{X}\times Y\), where the input maps to an output. 
+En aprendizaje supervisado, cada punto \((X,y)\) de un conjunto de entrenamiento
+\(\mathbb{X}\times Y\) asocia una entrada con una salida.
 
 ```mermaid
 ---
@@ -60,65 +60,84 @@ flowchart LR
     Y@{ shape: event}
 ```
 
+El problema de aprendizaje consiste en **inferir la función que mapea la entrada a la
+salida**, de modo que la función aprendida sirva para predecir la salida a partir de entradas
+futuras.
 
+Este tipo de aprendizaje recibe su nombre porque la máquina está **supervisada** mientras
+aprende: se le proporciona información que la guía. El resultado que le das son **datos
+etiquetados**, y el resto de la información se usa como *features* de entrada.
 
-The learning problem consists of inferring the function that maps between the input and the output, such that the learned function can be used to predict the output from future input.
+El aprendizaje supervisado es efectivo para propósitos de negocio muy variados: previsión de
+ventas, optimización de inventario y detección de fraude, entre otros. Algunos casos de uso
+clásicos:
 
-This machine learning type got its name because the machine is **supervised** while it's learning, which means that you’re feeding the algorithm information to help it learn. The outcome you provide the machine is labeled data, and the rest of the information you give is used as input features.
+- Predecir precios inmobiliarios.
+- Clasificar si una transacción bancaria es fraudulenta.
+- Encontrar factores de riesgo de una enfermedad.
+- Determinar si los solicitantes de un préstamo son de riesgo bajo o alto.
+- Predecir el fallo de piezas mecánicas en equipo industrial.
 
-Supervised learning is effective for a variety of business purposes, including sales forecasting, inventory optimization, and fraud detection. Some classic examples of use cases include:
+El aprendizaje supervisado impulsa numerosas aplicaciones de negocio, y esa es la razón por la
+que hoy se considera una de las categorías más importantes.
 
-- Predicting real estate prices
-- Classifying whether bank transactions are fraudulent or not
-- Finding disease risk factors
-- Determining whether loan applicants are low-risk or high-risk
-- Predicting the failure of industrial equipment's mechanical parts
+### Formulación de los métodos supervisados
 
-Supervised machine learning drives a several business applications and it is the reason because nowadays is considered one of the most important categories.
+Consideremos un conjunto \(\Omega\) y un subconjunto \(D\subset \Omega\), donde \(D\) está
+completamente etiquetado.
 
-### Supervised Methods Approach
-
-Consider a set \(\Omega\) and a subset \(D\subset \Omega\), where \(D\) is fully labeled.
-
-Given the set of labels \(L\) with a mapping function 
+Dado el conjunto de etiquetas \(L\) con una función de mapeo
 
 $$\begin{array}{cccc}
 \mathcal{L}: & D & \longrightarrow & L \\
 & \omega & \longmapsto & l_{\omega} \\
 \end{array}$$
 
-we want to extend this function \(\mathcal{L}\) to the full set \(\Omega\),
+queremos extender esta función \(\mathcal{L}\) a todo el conjunto \(\Omega\),
 
 $$\begin{array}{cccc}
 \widehat{\mathcal{L}}: & \Omega & \longrightarrow & L^{*} \\
 & \omega & \longmapsto & l_{\omega} \\
 \end{array}$$
 
-such that $$ \widehat{\mathcal{L}}_{|_{D}} = \mathcal{L} $$
+de manera que $$ \widehat{\mathcal{L}}_{|_{D}} = \mathcal{L} $$
 
+## Aplicando las matemáticas
 
-## Applying Maths
+Hay muchas formas, simples y complejas, de alcanzar este objetivo. Normalmente involucran
+estadística y ecuaciones diferenciales con optimizaciones lineales o no lineales, sobre
+problemas convexos o no convexos, donde se usan algoritmos deterministas y estocásticos para
+crear aplicaciones en imágenes, reconocimiento de voz, sistemas de recomendación, motores de
+búsqueda y más.
 
-There are many simple and complex ways to achieve this goal, that usually involves statistics and/or differential equations with linear/nonlinear optimizations which can be convex/non-convex problems, where deterministic and stochastic algorithms are used to create applications in images, speech recognition, recommendation systems, search engines and more.
+Los algoritmos que preferimos tienen estas características:
 
-Our prefered algorithms have the next charateristics:
+- **escalan bien** con el número de variables,
+- **paralelizan bien**.
 
-- scale well with the number of variables
-- parallelize well
+En problemas reales el tiempo es un factor determinante del éxito. Por eso hay que definir
+umbrales entre complejidad y precisión en función del tiempo disponible: puede que una
+estrategia muy compleja dé los mejores resultados, pero cueste varias veces más construirla.
 
-In real problems the time is a key factor to achieve success. Then is needed to define thresholds between complexity and accuracy based on time available. Maybe a very complex strategy has the best results, but cost several times more to built this strategy.
+El principio base del aprendizaje supervisado es la **minimización del riesgo empírico**
+(*Empirical Risk Minimization*, ERM), un principio de la teoría del aprendizaje estadístico
+que define una familia de algoritmos y permite dar cotas teóricas sobre su rendimiento.
 
-In supervised learning base principle is Empirical Risk Minimization (ERM), this is a principle in statistical learning theory which defines a family of learning algorithms and is used to give theoretical bounds on their performance.
+La idea central es que **no podemos saber con exactitud qué tan bien funcionará un algoritmo
+en la práctica** (el riesgo real), porque no conocemos la distribución verdadera de los datos
+sobre los que operará. Lo que sí podemos hacer es medir su rendimiento sobre un conjunto de
+entrenamiento conocido: el riesgo *empírico*.
 
-The core idea is that we cannot know exactly how well an algorithm will work in practice (the actual "risk") because we don't know the true distribution of data that the algorithm will work on, but we can instead measure its performance on a known set of training data (the "empirical" risk).
+En muchos casos, los métodos supervisados mapean cada elemento de un conjunto
+\(D \subset \Omega\) hacia otro espacio donde existe algún orden, o al menos un orden parcial.
+Es decir, disponemos de una estructura que nos permite agrupar elementos; ésta es una
+consecuencia muy simplificada del teorema de Dvoretzky.
 
-In many cases supervised methods are mapping each element in a dataset \(D \subset \Omega\) into another space where exist some order or at least a partial order, it means we have some structure that permit us to group elements, this is a very oversimplified consecuence of Dvoretzky's theorem . 
-
-Consider a partition 
+Consideremos una partición
 
 $$ \Omega = \bigcup_{i=1}^{k}\Omega_{i} $$
 
-and functions \( \{f_{i}\} \)
+y funciones \( \{f_{i}\} \)
 
 $$\begin{array}{cccc}
 f_{i}: & \Omega_{i} & \longrightarrow & U_{i}\\
@@ -126,77 +145,93 @@ f_{i}: & \Omega_{i} & \longrightarrow & U_{i}\\
 \end{array}
 $$
 
-We are creating features from our dataset, which can be created only using numerical values based on each \(\omega \in \Omega_{i}\) or they can be aggregated values that depends on all values in \(\Omega_{i}\).
+Estamos creando *features* a partir de nuestro conjunto de datos. Pueden construirse usando
+únicamente valores numéricos de cada \(\omega \in \Omega_{i}\), o pueden ser valores agregados
+que dependen de todos los valores en \(\Omega_{i}\).
 
-To achieve this goal we dotate of more structure to our dataset adding some metrics or indicators, it means we create functions that goes from our dataset to another espace that we will call **spaces of features**, where a measurement can be defined or at least categorized.
+Para lograrlo dotamos al conjunto de más estructura, añadiendo métricas o indicadores: creamos
+funciones que van de nuestro conjunto de datos a otro espacio que llamaremos **espacio de
+features**, donde se puede definir una medida o al menos una categorización.
 
+Llamaremos
 
-We will recall this 
 $$\mathbb{X}=\bigcup_{i=1}^{k}U_{i}$$
-our space of features. Hopefully $\mathbb{X}$ can be dotated with a nice structure capable to perform statistical inference.
 
+nuestro espacio de features. Idealmente, \(\mathbb{X}\) puede dotarse de una estructura
+adecuada para realizar inferencia estadística.
 
-We always can map categories to values in \(\mathbb{R}\), then our features \(\{f_{1}, ...,f_{m}\}\) are functions:
+Siempre podemos mapear categorías a valores en \(\mathbb{R}\); entonces nuestras features
+\(\{f_{1}, ...,f_{m}\}\) son funciones:
 
 $$f_{i}:D\cap \Omega_{i} \longrightarrow U_{i}\subset\mathbb{R}^{m_{i}}$$
 
-
-now we want to find maps \(\{g_{i}\}\) such that:
+Ahora queremos encontrar mapeos \(\{g_{i}\}\) tales que:
 
 $$\begin{array}{cccc}
 g_{i}: & U_{i}\subset \mathbb{X} & \longrightarrow & V_{i}\subset L^{*}\\
 & x = f_{i}(\omega) & \longmapsto & l_{x}
 \end{array}$$
 
-then
+y entonces
 
 $$\widehat{\mathcal{L}}_{|_{\Omega_{i}}} = g_{i}\circ f_{i}$$
 
+Con este enfoque hemos creado dos problemas aparentemente distintos: primero, encontrar
+\(\{f_{i}\}\) adecuadas que construyan nuestro **espacio de features**; segundo, encontrar
+\(\{g_{i}\}\) que mapeen esas features con las etiquetas de nuestro conjunto etiquetado \(D\).
 
-With this approach we have created two apparently different problems, 
-firstly find suitable \(\{f_{i}\}\) that will create our **space of features** and as second problem find \(\{g_{i}\}\) that maps our new features with the labels of our fully labeled dataset \(D\).
+Ambos problemas son un reto donde se aplican numerosas técnicas computacionales y
+estadísticas. Algunas se apoyan en teoría matemática muy profunda; sin embargo, muchos
+resultados impresionantes se obtienen mediante heurísticas.
 
-Both problems represents a challenge where several computational and statistical techniques are implemented, there are some techniques using very deep mathematical theory, however many impresive results make used of heuristics.
+## Flujo general de trabajo
 
+Los datos de entrada para entrenar el modelo se preprocesan y luego se construyen las
+*features*. Una vez entrenado, el modelo se usa para hacer predicciones sobre datos no vistos.
 
-# General ML Workflow
+Ver [Sistemas de machine learning](../04_WORKFLOWS/sistemas_de_machine_learning.md) para el
+detalle de la infraestructura que sostiene este flujo.
 
-The input data for training the model is preprocessed,then features are created. Once the machine learning model is trained, it can be used to make predictions on the unseen data. 
+## El principio GIGO
 
+Un principio que conviene tener siempre presente es **GIGO** (*Garbage In, Garbage Out*):
+basura entra, basura sale.
 
-## GIGO Principle
+Con demasiada frecuencia se aplican métodos supervisados sin prestar suficiente atención a la
+**creación de features**, usando incorrectamente técnicas de clustering que terminan generando
+efectos de solapamiento y enmascaramiento sobre las features, dejándolas incapaces de producir
+buenos modelos.
 
-An important principle that should be remembered always is GIGO (Garbage In Garbage Out), unfortunately very often ML practitioners use supervised methods without pay enough attention to creation of features, using incorrectly techniques of clustering that finish generating swaping and masking effects on our features, making features unable to create good models, always is hard to get a good labeling process, but if bad decision are took while features are created it will become many times harder to obtain a good model.
+Conseguir un buen proceso de etiquetado siempre es difícil, pero si además se toman malas
+decisiones al construir las features, obtener un buen modelo se vuelve muchas veces más
+costoso.
 
-## New Trends in MLOps
+## Tendencias en MLOps
 
-It has been clear for many data scientist that ignore data and pretend that ML models will learn patterns in its owns will be feasible without an special attention in data.
+Para muchos científicos de datos ha quedado claro que **ignorar los datos** —y asumir que los
+modelos aprenderán los patrones por su cuenta— no es viable sin prestar atención específica a
+la calidad y la construcción de los datos.
 
-Then Data Focus MLOps has started to be a trend.
+De ahí que el enfoque **MLOps centrado en datos** (*data-centric*) se haya convertido en
+tendencia.
 
+## Modelos de aprendizaje supervisado
 
+En aprendizaje supervisado hay dos grandes grupos:
 
+- Modelos de **clasificación**
+- Modelos de **regresión**
 
+Cada grupo se divide en subgrupos. Ambos tienen versiones equivalentes, porque es factible
+convertir modelos de clasificación en modelos de regresión y viceversa:
 
-
-## Supervised Learning Models
-
-In Supervied Learning we have two large groups:
-
-- Classification Models
-- Regression Models
-
-Each group can be divided in subgroups:
-Classification and Regression models have versions of each one of them
-because it is feasible convert classification models into regression models and viceversa:
-
-- Linear
-- Support Vector Machines
+- Lineales
+- Máquinas de vectores de soporte
     - SVC
     - SVM
     - SVR
-- Tree
-    - Decision
+- Árboles
+    - Decisión
     - Extra
 - Random Forest
     - Extra
@@ -204,15 +239,14 @@ because it is feasible convert classification models into regression models and 
     - Random Forest
     - XGBRF
 - Boosting
-    - LBGM
+    - LGBM
     - XGB
-- Other
+- Otros
 
+### Modelos disponibles en Scikit-Learn
 
-List of some models found in Scikit-Learn library for each group:
-
-1. Classification
-    - Linear
+1. **Clasificación**
+    - Lineales
         - LogisticRegression
         - LogisticRegressionCV
         - PassiveAggressiveClassifier
@@ -220,8 +254,8 @@ List of some models found in Scikit-Learn library for each group:
         - RidgeClassifier
         - RidgeClassifierCV
         - SGDClassifier
-2. Regression
-    - Linear
+2. **Regresión**
+    - Lineales
         - ARDRegression
         - BayesianRidge
         - ElasticNet
@@ -247,16 +281,13 @@ List of some models found in Scikit-Learn library for each group:
         - TheilSenRegressor
         - TweedieRegressor
 
-- Linear Regression Model
-- Logistic Regression Model
-- Decision Trees
+### Familias de modelos a cubrir
+
+- [Regresión lineal](regresion_lineal.md)
+- Regresión logística
+- Árboles de decisión
 - Random Forest
-- Boosted Grandient Algorithms
-- Support Vector Machines
-- Neural Networks
-- Graph Neural Networks
-
-
-
-
-
+- Algoritmos de *gradient boosting*
+- [Máquinas de vectores de soporte](support_vector_machines.md)
+- Redes neuronales
+- [Redes neuronales de grafos](../09_SYSTEMS/REC_SYSTEM/gnn_y_transformers.md)

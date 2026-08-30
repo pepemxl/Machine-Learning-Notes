@@ -1,64 +1,78 @@
-# Linear Regressions
+# Regresión Lineal
 
-## Building a Linear Regression Model
+## Construcción de un modelo de regresión lineal
 
-**Linear regression** refers to modeling the relationship between a set of independent variables \(\mathbb{X}\) and the output or dependent variables \(y\). 
+La **regresión lineal** modela la relación entre un conjunto de variables independientes
+\(\mathbb{X}\) y la salida o variable dependiente \(y\).
 
 $$ y = ax+b $$
 
-If the input variables contains \(n\) independent variables, this is known as **multivariable linear regression**. 
+Si las variables de entrada contienen \(n\) variables independientes, hablamos de **regresión
+lineal multivariable**.
 
 $$ y = a_{0}+a_{1}x_{1}+a_{2}x_{2}+\cdots + a_{n}x_{n} $$
 
+## Las matemáticas detrás del modelo
 
-## Math behind a linear regression model
+Como vimos antes, para ajustar modelos lineales regularizados usamos variantes del
+[descenso de gradiente](https://en.wikipedia.org/wiki/Gradient_descent).
 
-As we discused previously in order to fit regularized 
-linear models we use variants of [gradient descent](https://en.wikipedia.org/wiki/Gradient_descent).
+El descenso de gradiente es un algoritmo para encontrar un **mínimo local** de una función
+diferenciable \(f\in C^{1}(U_{a})\).
 
-Gradient descent is an algorithm for finding a local minimum of a differentiable function \(f\in C^{1}(U_{a})\). 
+La idea es dar pasos sucesivos en la dirección opuesta al gradiente \(\nabla{f}\), porque esa
+es la dirección de máximo descenso.
 
-The idea is to take repeated steps in the opposite direction of the gradient \(\nabla{f}\), because this is the direction of steepest descent.
-
-Given the point \(a_{0} = a\) we iterate 
+Dado el punto \(a_{0} = a\), iteramos
 
 $$a_{n+1} = a_{n}-\lambda_{n}\cdot\nabla{f(a_{n})},\, \lambda \in \mathbb{R}$$
 
-then for \(\lambda_{n} << 1\) we know that $$f(a_{n})\geq f(a_{n+1}) $$
-we obtained a monotonic sequence, that will finish in a local minimum.
- 
-If our function \(f\) is convex or \(\nabla{f}\) is Lipschitz  in a point \(x\) we can define 
+Entonces, para \(\lambda_{n} << 1\) sabemos que
+
+$$f(a_{n})\geq f(a_{n+1}) $$
+
+Obtenemos una sucesión monótona que terminará en un mínimo local.
+
+Si nuestra función \(f\) es convexa, o \(\nabla{f}\) es Lipschitz en un punto \(x\), podemos
+definir
+
 $$\lambda_{n} = \frac{(x_{n}-x_{n-1})^{T}|\nabla{f}(x_{n})-\nabla{f}(x_{n-1})|}{||\nabla{f}(x_{n})-\nabla{f}(x_{n-1})||^{2}}$$
 
-to secure convergence to a local minimum.
+para asegurar la convergencia a un mínimo local.
 
+## Sistemas lineales
 
-## Linear System
-
-Consider a linear system problem 
+Consideremos el problema de un sistema lineal
 
 $$A\mathbf{x}-\mathbf{b} = 0$$
 
-If the system matrix \(A\) is real symmetric and positive-definite, an objective function is defined as the quadratic function, with minimization of
+Si la matriz del sistema \(A\) es real, simétrica y definida positiva, se define una función
+objetivo cuadrática cuya minimización es
 
 $$F(\mathbf{x}) = \mathbf{x}^{T}A\mathbf{x} -2\mathbf{x}^{T}\mathbf{b}$$
-then,
+
+y entonces
+
 $$\nabla F(\mathbf{x}) = 2(A\mathbf{x} -\mathbf{b} )$$
 
-For a general real matrix \(A\), linear least squares define
+Para una matriz real general \(A\), los mínimos cuadrados lineales definen
 
 $$F(\mathbf{x} )=\left\|A\mathbf{x} - \mathbf{b} \right\|^{2}$$
-then,
+
+y entonces
+
 $$\nabla F(\mathbf{x}) = 2A^{T}(A\mathbf{x} -\mathbf{b} )$$
 
+## Descenso de gradiente estocástico (SGD)
 
-## Stochastic Gradient Descent (SGD)
+El nombre *SGD Classifier* puede llevar a pensar que SGD es un clasificador. **No lo es.**
+El `SGDClassifier` es un clasificador lineal **optimizado mediante** SGD.
 
-The name Stochastic Gradient Descent Classifier might mislead some user to think that SGD is a classifier. But that’s not the case! SGD Classifier is a linear classifier optimized by the SGD!!!. 
+Son dos conceptos distintos: mientras SGD es un **método de optimización**, la regresión
+logística o las [máquinas de vectores de soporte](support_vector_machines.md) lineales son
+**algoritmos o modelos** de machine learning.
 
-These are two different concepts. While SGD is a optimization method, Logistic Regression or linear Support Vector Machine are machine learning algorithms or models. 
+Una forma útil de verlo: el modelo de machine learning define una **función de pérdida**, y el
+método de optimización la minimiza o maximiza.
 
-You can think of that a machine learning model defines a loss function, and the optimization method minimizes/maximizes its loss function.
-
-
-
+Ver también [Matemáticas para machine learning](../05_MATH/matematicas_para_machine_learning.md).
