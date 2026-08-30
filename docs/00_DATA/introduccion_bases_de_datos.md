@@ -1,69 +1,103 @@
-# Databases
+# Bases de Datos
 
-Database models have gone through incredible growth amidst recent technological developments. Gone are the days when businesses and organizations relied solely on relational databases to store and manage their data.
+Los modelos de bases de datos han crecido enormemente con los desarrollos tecnológicos
+recientes. Quedaron atrás los días en que las empresas y organizaciones dependían
+únicamente de bases de datos relacionales para almacenar y gestionar su información.
 
-Now we have many uses for database giving origin to very special cases together with the usual:
+Hoy existen muchos usos para las bases de datos, lo que ha dado origen a casos muy
+especializados que conviven con los tradicionales.
 
+Se pueden clasificar según varios criterios: modelo de datos, estructura de almacenamiento,
+forma de acceso y uso previsto. Estos son los tipos más comunes.
 
-Databases can be categorized into several types based on various criteria such as data model, storage structure, accessibility, and intended use. Here are some common types of databases:
+## 1. Bases de datos relacionales (RDBMS)
 
-1. **Relational Databases (RDBMS)**: Relational databases organize data into tables with rows and columns. Examples include:
+Organizan los datos en **tablas con filas y columnas**. Usan SQL (*Structured Query
+Language*) para consultar y gestionar la información.
 
-        - MySQL,
-        - PostgreSQL,
-        - SQL Server
-        - DB2
-        - Oracle,
-        - SQL Server,
-        - SQLite.
-    They use Structured Query Language (SQL) for querying and managing data.
+- MySQL
+- PostgreSQL
+- SQL Server
+- DB2
+- Oracle
+- SQLite
 
-2. **NoSQL Databases**: NoSQL databases encompass a wide range of non-relational database technologies. They are designed to handle various types of unstructured, semi-structured, or structured data. Examples include 
+## 2. Bases de datos NoSQL
 
-        - MongoDB,
-        - Cassandra,
-        - Redis,
-        - Couchbase.
-    NoSQL databases offer flexibility, scalability, and better performance for certain use cases compared to traditional relational databases.
+Agrupan un amplio conjunto de tecnologías **no relacionales**, diseñadas para manejar datos
+no estructurados, semiestructurados o estructurados. Ofrecen flexibilidad, escalabilidad y
+mejor rendimiento que las relacionales en ciertos casos de uso.
 
-3. **Graph Databases**: Graph databases are optimized for storing and querying graph data structures. They represent data as nodes, edges, and properties, which are interconnected. Examples include:
+- MongoDB
+- Cassandra
+- Redis
+- Couchbase
 
-        - Neo4j,
-        - Amazon Neptune,
-        - JanusGraph.
-   Graph databases are suitable for applications requiring complex relationship analysis, such as social networks and recommendation systems.
+## 3. Bases de datos de grafos
 
-4. **Columnar Databases**: Columnar databases store data in columns rather than rows, which can provide faster query performance for analytics and reporting. Examples include:
+Optimizadas para almacenar y consultar **estructuras de grafo**. Representan los datos como
+nodos, aristas y propiedades interconectadas. Son adecuadas para aplicaciones que requieren
+análisis de relaciones complejas, como redes sociales y
+[sistemas de recomendación](../09_SYSTEMS/REC_SYSTEM/introduccion_recomendadores_con_kg.md).
 
-        - Apache Cassandra,
-        - ClickHouse,
-        - Google BigQuery.
-   They are well-suited for **OLAP** (Online Analytical Processing) workloads where aggregations and analytics on large datasets are common.
+- Neo4j
+- Amazon Neptune
+- JanusGraph
 
-5. **Document Databases**: Document databases store data in a semi-structured format like JSON or BSON documents. Each document can have its own structure, making them flexible for storing heterogeneous data. Examples include: 
-        
-        - MongoDB,
-        - Couchbase,
-        - Firebase Firestore.
-   Document databases are commonly used in content management systems, real-time analytics, and applications with frequently changing schemas.
+Ver también la sección de [grafos](../08_GRAPH/introduccion.md), y
+[Apache TinkerPop](../08_GRAPH/apache_tinkerpop.md), la capa de abstracción que permite
+consultar varios de estos motores con el mismo lenguaje.
 
-6. **Spatial Databases**: Spatial databases are designed to store and query spatial data, such as geographic information system (**GIS**) data and geometry data. They support spatial data types and operations for analyzing and visualizing spatial relationships. Examples include:
+## 4. Bases de datos columnares
 
-        - PostGIS (extension of PostgreSQL),
-        - MongoDB (with geospatial indexing),
-        - Oracle Spatial, 
+Almacenan los datos **por columnas en lugar de por filas**, lo que acelera las consultas
+analíticas y de reporte. Encajan bien en cargas **OLAP** (*Online Analytical Processing*),
+donde son frecuentes las agregaciones sobre grandes volúmenes.
 
-7. **Time-Series Databases**: Time-series databases specialize in handling time-series data, which is data points indexed or ordered by time. They are optimized for storing and querying time-stamped data efficiently. Examples include:
+- Apache Cassandra
+- ClickHouse
+- Google BigQuery
 
-        - InfluxDB,
-        - Prometheus,
-        - TimescaleDB.
-        - OpenSTDB
-        - Goku
-   Time-series databases are used in applications such as IoT (Internet of Things), monitoring, and financial trading systems.
+## 5. Bases de datos documentales
 
+Guardan los datos en formato semiestructurado, como documentos JSON o BSON. Cada documento
+puede tener su propia estructura, lo que las hace flexibles para datos heterogéneos. Se usan
+mucho en gestores de contenido, analítica en tiempo real y aplicaciones con esquemas que
+cambian con frecuencia.
 
-Today as the amount and complexity of data are growing, we need a more flexible and dynamic way to represent and analyze relationships between data points. Enter knowledge graphs–a modern data management topology quickly gaining popularity among data-driven businesses. 
+- MongoDB
+- Couchbase
+- Firebase Firestore
 
+## 6. Bases de datos espaciales
 
+Diseñadas para almacenar y consultar **datos espaciales**, como información geográfica
+(**GIS**) y geometrías. Soportan tipos y operaciones espaciales para analizar y visualizar
+relaciones en el espacio.
 
+- PostGIS (extensión de PostgreSQL)
+- MongoDB (con indexación geoespacial)
+- Oracle Spatial
+
+## 7. Bases de datos de series de tiempo
+
+Especializadas en **series temporales**: puntos de datos indexados u ordenados por tiempo.
+Están optimizadas para almacenar y consultar datos con marca temporal de forma eficiente.
+Se usan en IoT, monitoreo y sistemas de *trading*.
+
+- InfluxDB
+- Prometheus
+- TimescaleDB
+- [OpenTSDB](databases/opentsdb.md)
+- [Goku](databases/goku.md)
+
+Ver también la sección de [series de tiempo](../12_TIME_SERIES/introduccion.md).
+
+## Hacia los knowledge graphs
+
+A medida que crecen la cantidad y la complejidad de los datos, hace falta una forma más
+flexible y dinámica de representar y analizar las **relaciones** entre puntos de datos. Ahí
+entran los **knowledge graphs**, una topología moderna de gestión de datos que gana
+popularidad rápidamente entre las organizaciones orientadas a datos.
+
+Ver [Definiciones de Knowledge Graph](../08_GRAPH/definiciones_knowledge_graph.md).

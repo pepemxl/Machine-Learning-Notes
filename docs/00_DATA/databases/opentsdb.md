@@ -1,78 +1,126 @@
 # OpenTSDB
 
-OpenTSDB stands for Open Time Series Data Base. OpenTSDB, as the name suggests, is a time-series database built on top of HBase. It is excellent for IO operations in distributed systems.
+**OpenTSDB** son las siglas de *Open Time Series Data Base*. Como su nombre indica, es una
+base de datos de series de tiempo construida **sobre HBase**. Destaca por su rendimiento en
+operaciones de E/S en sistemas distribuidos.
 
-## Terminology
+## Terminología
 
-- **TSD**: Stands for Time Series Daemon, this is the service that runs on the machine which is responsible for interacting with HBase and store/retrieve data
-- **Epoch**: Numerical representation of time. It has two formats, 10 digits representing the number of seconds elapsed from 1st Jan 1970 and 13 digits representing the number of milliseconds elapsed from the same date. Epoch numbers are used while storing and querying data in OpenTSDB.
+- **TSD** (*Time Series Daemon*). Es el servicio que corre en la máquina y se encarga de
+  interactuar con HBase para almacenar y recuperar datos.
 
-- **Metric**: Metric is the entity we are capturing in the time series data. Example in the case of tracking the BTC price, the cryptocurrency `price` is the metric.
+- **Epoch**. Representación numérica del tiempo. Tiene dos formatos: 10 dígitos, que
+  representan los segundos transcurridos desde el 1 de enero de 1970, y 13 dígitos, que
+  representan los milisegundos desde esa misma fecha. Los valores epoch se usan al
+  almacenar y consultar datos en OpenTSDB.
 
-- **Tags**: We can think of a tag as an annotation over time series data point. A tag describes a metric's property, sets the context of data in the named metric. Tags are `key`-`value` pairs and each data point can have more than one tag. In the case of crypto the price of cryptocurrency, the name of the crypto becomes an annotation, distinguishing each crypto's data separately. Here, `crypto price` is the metric, `name` is the tag, and `BTC`, the name of the crypto, is the value of the tag. Other tags could be `Market Capitalization`, `Trading Valume`, `Prince Change`, `Volatility`, `Hash Rate`, `Transaction Fees`. Tag values are used to filter/aggregate data while querying.
+- **Métrica** (*metric*). Es la entidad que capturamos en la serie de tiempo. Por ejemplo,
+  si seguimos el precio de BTC, la métrica es el `precio` de la criptomoneda.
 
-- **Time Series Data**: A time series is a series of data points indexed in time order. Examples include the continuous monitoring of a person’s heart rate, hourly readings of air temperature, the daily closing price of a company stock etc. In the context of OpenTSDB, a time series data is the information of a metric with a unique set of tags changing over time.
+- **Tags**. Un tag es una **anotación sobre un punto de datos**. Describe una propiedad de
+  la métrica y establece el contexto del dato. Son pares `clave`-`valor`, y cada punto
+  puede tener más de uno. En el caso del precio de criptomonedas, el nombre de la moneda es
+  la anotación que distingue los datos de cada una: `precio_cripto` es la métrica, `nombre`
+  es el tag y `BTC` es el valor. Otros tags podrían ser capitalización de mercado, volumen
+  de operaciones, cambio de precio, volatilidad, *hash rate* o comisiones de transacción.
+  Los valores de los tags se usan para **filtrar y agregar** datos en las consultas.
 
-- **Downsampling**: Downsampling is the process of reducing the sampling rate, or resolution, of data. If data queried is for a longer duration, the number of points received will be high, this will cause slower query throughput. For example, if data is stored at a second level and if we are querying data for 1 week, we get 604800 data points. If we downsample the data and get data at a minute interval, we get 10080. This reduces query time, network latency, and overall load on the system.
+- **Datos de series de tiempo**. Una serie de tiempo es una secuencia de puntos indexados
+  en orden temporal: el monitoreo continuo del ritmo cardíaco de una persona, lecturas
+  horarias de temperatura, el precio de cierre diario de una acción. En OpenTSDB, es la
+  información de una métrica con un conjunto único de tags que cambia en el tiempo.
 
-- **Aggregation**: Aggregation is the collection of multiple data. OpenTSDB was designed to efficiently combine multiple, distinct time series during query execution. For example, if we wish to see the average heart rate of all male patients, then we aggregate all time-series data of male patients using average as an aggregate function. This will give us one set of points that shows the average heart rate of all male patients.
+- **Downsampling**. Es el proceso de **reducir la resolución** de los datos. Si consultas un
+  rango largo, el número de puntos devueltos es alto y la consulta se vuelve lenta. Por
+  ejemplo, con datos almacenados al segundo, consultar una semana devuelve 604 800 puntos;
+  reduciéndolos a intervalos de un minuto quedan 10 080. Esto reduce el tiempo de consulta,
+  la latencia de red y la carga general del sistema.
 
-- **Interpolation**: For aggregation to work, we need data to be present for the queried time range. If we are aggregating data at a minute level, we need data 60 data points for each minute. But in the real world, there is a very good chance that data is missing in between. OpenTSDB fills in these gaps using interpolation. For example, for “zimsum” type of aggregation, OpenTSDB interpolates by filling 0 for all missing values and then aggregates it by summing up data.
+- **Agregación**. Es la combinación de múltiples series. OpenTSDB fue diseñado para
+  combinar eficientemente series distintas durante la ejecución de la consulta. Por
+  ejemplo, para ver el ritmo cardíaco promedio de todos los pacientes varones, se agregan
+  todas sus series usando el promedio como función de agregación, obteniendo un único
+  conjunto de puntos.
 
+- **Interpolación**. Para que la agregación funcione, hacen falta datos en todo el rango
+  consultado. Si agregamos a nivel de minuto, necesitamos 60 puntos por minuto, pero en el
+  mundo real es muy probable que falten datos intermedios. OpenTSDB rellena esos huecos por
+  interpolación. Por ejemplo, para la agregación de tipo `zimsum`, interpola rellenando con
+  0 todos los valores faltantes y después suma.
 
-## Architecture
+## Arquitectura
 
-OpenTSDB is an interface over [HBase](https://hbase.apache.org/). It stored data in 4 HBase tables namely, 
+OpenTSDB es una interfaz sobre [HBase](https://hbase.apache.org/). Almacena los datos en
+cuatro tablas de HBase:
 
-- TSDB, 
-- TSDB-UID, 
-- TSDB-META,
-- TSDB-TREE. 
+- TSDB
+- TSDB-UID
+- TSDB-META
+- TSDB-TREE
 
-So before running OpenTSDB, HBase has to be running.
+Por tanto, **HBase debe estar corriendo antes de arrancar OpenTSDB**.
 
-![architecture](../../images/databases/OpenTSDB_architecture.webp)
+![arquitectura](../../images/databases/OpenTSDB_architecture.webp)
 
-**OpenTSDB** consists of a **Time Series Daemon** (TSD) as well as a set of command-line utilities. Interaction with OpenTSDB is primarily achieved by running one or more of the TSDs. Each TSD is independent. There is no master, no shared state so you can run as many TSDs as required to handle any load you throw at it. The data schema is highly optimized for fast aggregations of similar time series to minimize storage space. Users of the TSD never need to access the underlying store directly. You can communicate with the TSD via a simple 
+OpenTSDB consta de un **Time Series Daemon** (TSD) y de un conjunto de utilidades de línea
+de comandos. La interacción se realiza principalmente ejecutando uno o más TSD. Cada TSD es
+**independiente**: no hay maestro ni estado compartido, así que puedes levantar tantos como
+necesites para soportar la carga. El esquema de datos está muy optimizado para agregaciones
+rápidas de series similares y para minimizar el espacio de almacenamiento.
 
-- telnet-style protocol, 
-- an HTTP API, or a 
-- simple built-in GUI. 
+Los usuarios del TSD nunca necesitan acceder directamente al almacén subyacente. La
+comunicación con el TSD se hace mediante:
 
-A collector is a program that will fetch and feed data to TSD. All communications happen on the same port (the TSD figures out the protocol of the client by looking at the first few bytes it receives).
+- un protocolo sencillo estilo telnet,
+- una API HTTP, o
+- una interfaz gráfica básica incorporada.
 
-We can write data in OpenTSDB using Telnet style API or using HTTP Post request. Reads happen using HTTP get request. OpenTSDB also has an interface which has few controls and displays graph of a metric, it looks like this:
+Un **colector** (*collector*) es un programa que obtiene datos y los alimenta al TSD. Toda
+la comunicación ocurre en el mismo puerto: el TSD deduce el protocolo del cliente mirando
+los primeros bytes que recibe.
 
-![ui](../../images/databases/OpenTSDB_ui.webp)
+La escritura se hace con la API estilo telnet o con peticiones HTTP POST; la lectura, con
+peticiones HTTP GET. OpenTSDB también incluye una interfaz con algunos controles que grafica
+una métrica:
 
-### Writing Data in OpenTSDB
+![interfaz](../../images/databases/OpenTSDB_ui.webp)
 
-As mentioned above, there are two ways of writing data in OpenTSDB, we will briefly discuss both of them here.
+## Escritura de datos
 
-#### Telnet style
+### Estilo telnet
 
-Here we first make a telnet connection to TSD using any telnet client and send commands to insert data into OpenTSDB. Here is the format of the command:
+Se establece una conexión telnet al TSD con cualquier cliente y se envían comandos para
+insertar datos. El formato es:
 
 ```bash
-<Metric Name><Timestamp in epoch> <Value> <Tag Key>=<Tag Value>
+<nombre_metrica> <timestamp_epoch> <valor> <clave_tag>=<valor_tag>
 ```
 
-Example:
-`telnet> room_temperature 1588334464 33 floor=1 room_number=10`
+Ejemplo:
 
-
-#### HTTP Style
-
-To store data in HTTP style, use any HTTP client, and make a post request to OpenTSDB put API. We can store single or multiple data points at once using this API. It also accepts the query parameter, the two most popular query parameters are details and summary. Detail query parameter gives details of the result, how many were successfully stored, how many failed, and the reason for failure as well. And summary just gives the count of success and failure. API looks like this:
-
-`http://<ip-address-of-machine>:<port>/api/put?summary`
-
-###### Example
-
+```bash
+telnet> room_temperature 1588334464 33 floor=1 room_number=10
 ```
-API : http://localhost:4242/api/put/?sumamry
-Method Type: Post
-Body:
+
+### Estilo HTTP
+
+Para almacenar datos por HTTP se hace una petición POST a la API `put` de OpenTSDB. Permite
+guardar uno o varios puntos a la vez. Acepta parámetros de consulta; los dos más usados son
+`details` y `summary`. El primero da el detalle del resultado —cuántos se almacenaron,
+cuántos fallaron y por qué—; el segundo solo devuelve el conteo de éxitos y fallos.
+
+La API tiene esta forma:
+
+```text
+http://<ip-de-la-maquina>:<puerto>/api/put?summary
+```
+
+#### Ejemplo
+
+```text
+API : http://localhost:4242/api/put/?summary
+Tipo de método: POST
+Cuerpo:
 [
     {
         "metric": "room_temperature",
@@ -93,23 +141,27 @@ Body:
         }
     }
 ]
-Output(Expected):
+Salida esperada:
 {
     "failed": 0,
     "success": 2
 }
 ```
 
-We can also compress and send data in the post body using the gzip compression technique.
+También se pueden comprimir los datos del cuerpo de la petición usando gzip.
 
+## Lectura de datos
 
-### Reading data from OpenTSDB
+Se puede usar la interfaz de OpenTSDB —que por defecto corre en el puerto 4242— rellenando
+los campos necesarios, o bien la API HTTP. La API de consulta acepta un amplio abanico de
+opciones: método de agregación, intervalo, valores de tags, etc. Los parámetros se pueden
+pasar en la URL o en el cuerpo de la petición.
 
-We can use the OpenTSDB interface which runs on port 4242 by default to view data by setting all required fields in it. Alternatively, we can use the HTTP API to read data from OpenTSDB. The query API accepts a wide range of options like aggregation method, interval, tag values, etc. We can use query parameters or send the query in the request payload. Here is an example of accessing data using query parameters:
+Ejemplo con parámetros en la URL:
 
-```
+```text
 http://localhost:4242/api/query?start=1h-ago&m=1m-avg-zero:room_temperature{floor=1}
-Output(expected):
+Salida esperada:
 [
     {
         "metric": "room_temperature",
@@ -129,7 +181,17 @@ Output(expected):
 ]
 ```
 
-This example specifies the start time to be 1 hour ago relative to the current time, downsampled for getting 1 point for 1m using avg as aggregation function. We have specified to fill in zero for values that are not available, filtered to get only data for floor 1 
+Esta consulta especifica un tiempo de inicio de una hora antes del momento actual,
+*downsampling* para obtener un punto por minuto usando `avg` como función de agregación,
+relleno con cero para los valores no disponibles, y filtrado para obtener solo los datos
+del piso 1.
 
-Output has the metric name, tags and tag values, it specifies the tags which were aggregated, tsuid (unique id assigned by TSDB), and dps (Data PointS). DPS contains key-value pairs where keys are timestamps in epoch and values are the computed values for the particular timestamp.
+La salida contiene el nombre de la métrica, los tags y sus valores, los tags que fueron
+agregados, el `tsuid` (identificador único asignado por TSDB) y `dps` (*data points*). El
+campo `dps` contiene pares clave-valor donde las claves son timestamps en formato epoch y
+los valores son los valores calculados para ese instante.
 
+## Ver también
+
+- [Goku](goku.md) — la alternativa de Pinterest a OpenTSDB.
+- [Series de tiempo](../../12_TIME_SERIES/introduccion.md).

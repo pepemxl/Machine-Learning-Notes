@@ -1,30 +1,41 @@
 # Spark
 
-Apache Spark is a technology that superseded Hadoop's MapReduce as the preferred big data processing platform. Spark is similar to Hadoop in that it's a distributed, general-purpose computing platform. But Spark's unique design, which allows for keeping large amounts of data in memory, offers tremendous
-performance improvements. Spark programs can be 100X faster than their MapReduce counterparts.
+**Apache Spark** es la tecnología que desplazó a MapReduce de Hadoop como plataforma
+preferida para el procesamiento de big data. Se parece a Hadoop en que es una plataforma de
+cómputo distribuida y de propósito general, pero su diseño —que permite **mantener grandes
+volúmenes de datos en memoria**— ofrece mejoras de rendimiento enormes: un programa de Spark
+puede ser hasta 100 veces más rápido que su equivalente en MapReduce.
 
+Spark combina en un solo framework capacidades **similares a MapReduce** para procesamiento
+por lotes, funciones de procesamiento en tiempo real, manejo de datos estructurados al estilo
+SQL, algoritmos de grafos y machine learning.
 
-Spark combines **MapReduce-like capabilities** for batch programming, realtime data-processing functions, SQL-like handling of structured data, graph algorithms, and machine learning, all in a single framework. 
+## Aplicaciones en Spark
 
+- Una **aplicación** en Spark consiste en un `driver program` y varios `executors` en el
+  clúster.
+- El `cluster manager` es un servicio externo que adquiere recursos en el clúster. Puede ser
+  el gestor integrado de Spark.
+- El **driver program** es el proceso que ejecuta la función `main()` de la aplicación y crea
+  el `SparkContext`.
+- Un `executor` es un proceso lanzado para una aplicación en un nodo *worker*. Ejecuta tareas
+  y mantiene datos en memoria o en disco entre ellas. Cada aplicación tiene sus propios
+  executors.
+- Un `Job` es un cómputo paralelo compuesto de múltiples tareas, que se genera en respuesta a
+  una **acción** de Spark.
+- Cada job se divide en conjuntos más pequeños de tareas, llamados `stages`, que dependen
+  entre sí de forma análoga a las etapas *map* y *reduce* de MapReduce.
+- Una `task` es una unidad de trabajo que se envía a un executor.
+- Un `worker node` es un nodo capaz de ejecutar código de la aplicación en el clúster.
 
-## Applications in Spark
+## Integración de Spark con Iceberg y Kafka
 
-- Application in Spark consists of a `driver program` and `executors` on the cluster.
-- A `cluster manager` is an external service for acquiring resources on the cluster. It can be the Spark built-in cluster manager.
-- Driver program is the process running the `main()` function of the application and creating the `SparkContext`.
-- An `executor` is a process launched for an application on a worker node. The executor runs tasks and keeps data in
-memory or in disk storage across them. Each application has its own executors.
-- A `Job` is a parallel computation consisting of multiple tasks that gets spawned in response to a Spark action
-- Each job gets divided into smaller sets of tasks, called `stages`, that depend on each other similar to the map and reduce stages in MapReduce.
-- A `task unit` is a task of work  that will be sent to one executor.
-- `Worker node` is node that can run an application code in the cluster.
+La integración de **Apache Spark**, **Apache Iceberg** y **Apache Kafka** permite construir
+arquitecturas modernas de procesamiento de datos, combinando **streaming en tiempo real
+(Kafka)**, **procesamiento distribuido (Spark)** y **gestión de tablas analíticas
+(Iceberg)**.
 
-
-## Integration Spacrk with Iceberg and Kafka
-
-Integration **Apache Spark**, **Apache Iceberg** and **Apache Kafka** permits  to build moder architectures to proccess data, combining **real time data streaming (Kafka)**, **distributed processing (Spark)** and **gestion of analytic tables (Iceberg)**.
-
-```
+```text
 Kafka (Streaming) → Spark (Processing) → Iceberg (Tabular storage)
 ```
 

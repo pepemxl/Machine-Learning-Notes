@@ -1,29 +1,33 @@
-# Dimensions of Data Analytics
+# Dimensiones de la Analítica de Datos
 
-Decision intelligence is a combination of applied data science and the social and managerial sciences.
+La **inteligencia de decisiones** (*decision intelligence*) es una combinación de ciencia
+de datos aplicada con las ciencias sociales y de gestión.
 
+La distinción práctica es sencilla:
 
-If you want to make a few important decisions under uncertainty, that is statistics.
+- Si quieres tomar **unas pocas decisiones importantes** bajo incertidumbre, eso es
+  **estadística**.
+- Si quieres **automatizar muchas decisiones** bajo incertidumbre, eso es **machine
+  learning** e inteligencia artificial.
 
-If you want to automate many decisions under uncertainty that is machine learning and AI.
+## Las V del Big Data
 
+Las tres V clásicas son:
 
-The three V's in Big Data are:
+- **Volumen** — la cantidad de datos.
+- **Velocidad** — el ritmo al que llegan y hay que procesarlos.
+- **Variedad** — la diversidad de formatos y fuentes.
 
-- Volume
-- Velocity
-- Variety
+Y una cuarta bastante menos citada:
 
-and another not so famaous 
+- **Valencia** — el grado de conexión entre los datos, es decir, qué tan relacionados
+  están entre sí los elementos del conjunto.
 
-- Valence
+## Contexto histórico
 
+En 2013, un informe de McKinsey estableció que estábamos ante el inicio de la **era del
+big data**.
 
-In 2013 McKinsey Report stablished that it was the start of big data era.
-
-On Demand Computing from cloud computing permit us to compute anytime anywhere!
-
-
-
-
-
+La computación bajo demanda (*on-demand computing*) que trajo el cómputo en la nube
+permite procesar datos **en cualquier momento y desde cualquier lugar**, sin la inversión
+previa en infraestructura que antes era imprescindible.
