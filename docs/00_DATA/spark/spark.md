@@ -10,6 +10,10 @@ Spark combina en un solo framework capacidades **similares a MapReduce** para pr
 por lotes, funciones de procesamiento en tiempo real, manejo de datos estructurados al estilo
 SQL, algoritmos de grafos y machine learning.
 
+Para cargas que no encajan en el modelo de dataflow —tareas heterogéneas, con estado o con
+GPU— ver [Ray](../../04_WORKFLOWS/ray.md), que resuelve un problema distinto y a menudo
+complementario.
+
 ## Aplicaciones en Spark
 
 - Una **aplicación** en Spark consiste en un `driver program` y varios `executors` en el

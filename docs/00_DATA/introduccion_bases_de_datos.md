@@ -69,7 +69,20 @@ cambian con frecuencia.
 - Couchbase
 - Firebase Firestore
 
-## 6. Bases de datos espaciales
+## 6. Bases de datos vectoriales
+
+Almacenan **embeddings** —vectores de alta dimensión— e implementan
+[búsqueda por similitud](databases/busqueda_por_similitud.md) aproximada sobre ellos. Son la
+pieza que sostiene la búsqueda semántica, los recomendadores y la recuperación en las
+arquitecturas RAG.
+
+- [Milvus](databases/milvus.md)
+- Qdrant, Weaviate, Chroma
+- `pgvector` (extensión de PostgreSQL)
+
+Ver [bases de datos vectoriales](databases/bases_de_datos_vectoriales.md).
+
+## 7. Bases de datos espaciales
 
 Diseñadas para almacenar y consultar **datos espaciales**, como información geográfica
 (**GIS**) y geometrías. Soportan tipos y operaciones espaciales para analizar y visualizar
@@ -79,7 +92,7 @@ relaciones en el espacio.
 - MongoDB (con indexación geoespacial)
 - Oracle Spatial
 
-## 7. Bases de datos de series de tiempo
+## 8. Bases de datos de series de tiempo
 
 Especializadas en **series temporales**: puntos de datos indexados u ordenados por tiempo.
 Están optimizadas para almacenar y consultar datos con marca temporal de forma eficiente.

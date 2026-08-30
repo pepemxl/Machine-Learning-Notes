@@ -183,6 +183,8 @@ críticos. Es el algoritmo que se usa en **RLHF** para alinear
   probadas de PPO, SAC, DQN y otros. Es el punto de partida recomendado.
 - [CleanRL](https://docs.cleanrl.dev/) — implementaciones de un solo archivo, ideales para
   leer y entender.
+- [RLlib](../04_WORKFLOWS/ray_bibliotecas_ia.md) — sobre Ray, distribuye la recolección de
+  experiencia, que es el cuello de botella de la eficiencia de muestras.
 
 ## Referencias
 

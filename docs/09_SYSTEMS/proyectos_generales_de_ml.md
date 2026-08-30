@@ -90,6 +90,7 @@ En muchas grandes empresas y startups, los proyectos de machine learning se desp
     - Dask
     - **Spark**
     - Databricks
+    - **Ray**
 3. Evaluación de modelos y seguimiento de experimentos
     - **MLFlow**
     - neptune.ai

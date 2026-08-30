@@ -65,3 +65,5 @@ Hay dos enfoques habituales para llevar los datos crudos al almacén:
 
 - [Sistemas de machine learning](sistemas_de_machine_learning.md)
 - [Descubrimiento de datos](descubrimiento_de_datos.md)
+- [ONNX](onnx.md) — el preprocesamiento que no se exporta con el modelo es una fuente de
+  *training-serving skew*

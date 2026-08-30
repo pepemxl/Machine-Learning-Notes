@@ -50,7 +50,8 @@ En la página de *Access Tokens*, crea un token nuevo llamado `llm-test` o simil
 
 ## Crear una base de datos vectorial en Pinecone
 
-Para crear una cuenta en Pinecone, regístrate en [https://www.pinecone.io/](https://www.pinecone.io/). Ver [bases de datos vectoriales](../../00_DATA/databases/bases_de_datos_vectoriales.md).
+Para crear una cuenta en Pinecone, regístrate en [https://www.pinecone.io/](https://www.pinecone.io/). Ver [bases de datos vectoriales](../../00_DATA/databases/bases_de_datos_vectoriales.md) y,
+como alternativa autoalojada, [Milvus](../../00_DATA/databases/milvus.md).
 
 
 Tras registrarte en el plan gratuito, entra en el proyecto: para uso personal se crea uno automáticamente.
