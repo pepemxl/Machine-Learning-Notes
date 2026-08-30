@@ -27,6 +27,9 @@ flujos enlazan procesos, almacenes y terminadores. Los sistemas de dataflow más
 - Dataswarm
 - Databricks
 
+Conviene no confundir estas herramientas con [Kedro](kedro.md): un orquestador decide **cuándo**
+corre el pipeline; Kedro define **cómo está estructurado**. Se usan juntos.
+
 Hay muchas soluciones disponibles, pero cuál es la mejor depende de nuestros datos y de los
 objetivos a alcanzar. Igual que un equipo de DevOps toma decisiones de arquitectura en función
 de las propiedades deseadas del sistema para garantizar los requisitos, aquí también hacen
@@ -37,6 +40,8 @@ falta **patrones específicos** en la arquitectura.
 - [Feature stores](feature_stores.md)
 - [Definición de proyectos de IA](definicion_de_proyectos_de_ia.md)
 - [Workflows, máquinas de estado y colas](workflows_maquinas_de_estado_y_colas.md)
+- [Kedro](kedro.md) y [Kedro en producción](kedro_en_produccion.md) — cómo estructurar el
+  proyecto y su pipeline de datos
 - [Ray](ray.md) y sus [bibliotecas de IA](ray_bibliotecas_ia.md) — cómputo distribuido para
   entrenar, ajustar y servir
 - [ONNX](onnx.md) y [ONNX Runtime](onnx_runtime.md) — cómo se empaqueta y se sirve el modelo

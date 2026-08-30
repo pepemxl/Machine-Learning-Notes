@@ -1,72 +1,239 @@
 site_name: Machine Learning Notes
+
 nav:
-  - Home: 'index.md'
-  - Proyectos: 
-    - 'Knowledge Graph': 'PROYECTOS/KG_CODE/intro.md'
-  - Data Analysis: 
-    - 'The Six Phases of data Analysis': '00_DATA/README.md'
-    - 'Dimensions of Data Analytics': '00_DATA/section_01.md'
-    - 'Databases': 
-      - 'Introduction': '00_DATA/section_02.md'
+  - Inicio: 'index.md'
+
+  - Proyectos:
+    - 'Knowledge Graph para developers': 'PROYECTOS/KG_CODE/knowledge_graph_para_developers.md'
+
+  - Análisis de Datos:
+    - 'Las seis fases del análisis de datos': '00_DATA/fases_analisis_datos.md'
+    - 'Dimensiones de la analítica': '00_DATA/dimensiones_analitica.md'
+    - Bases de datos:
+      - 'Introducción': '00_DATA/introduccion_bases_de_datos.md'
       - 'OpenTSDB': '00_DATA/databases/opentsdb.md'
       - 'Goku': '00_DATA/databases/goku.md'
-    - Math: 
-      - 'section 1': '05_MATH/section_01.md'
-      - 'section 2': '05_MATH/section_02.md'
+      - 'Bases de datos vectoriales': '00_DATA/databases/bases_de_datos_vectoriales.md'
+      - 'Búsqueda por similitud': '00_DATA/databases/busqueda_por_similitud.md'
+      - 'Milvus': '00_DATA/databases/milvus.md'
+    - Spark:
+      - 'Spark': '00_DATA/spark/spark.md'
+      - 'PySpark': '00_DATA/spark/pyspark.md'
+      - 'Ejemplos': '00_DATA/spark/ejemplos_pyspark.md'
+      - 'Preguntas de práctica': '00_DATA/spark/preguntas.md'
+    - 'Big Data': '00_DATA/big_data.md'
+    - 'Tipos de memoria y almacenamiento': '00_DATA/memory/tipos_de_memoria_y_almacenamiento.md'
+
   - Machine Learning:
-    - Supervised-Learning:
-      - 'Introduction': '01_SUPERVISED_LEARNING/section_01.md'
-      - 'Linear Regressions': '01_SUPERVISED_LEARNING/section_02.md'
-      - 'Support Vector Machines': '01_SUPERVISED_LEARNING/section_03.md'
-    - Unsupervised-Learning: '02_UNSUPERVISED_LEARNING/section_01.md'
+    - Aprendizaje Supervisado:
+      - 'Introducción': '01_SUPERVISED_LEARNING/introduccion.md'
+      - 'Regresión lineal': '01_SUPERVISED_LEARNING/regresion_lineal.md'
+      - 'Support Vector Machines': '01_SUPERVISED_LEARNING/support_vector_machines.md'
+      - 'Notebook: árboles de decisión': '01_SUPERVISED_LEARNING/Decision_Tree_example_01.ipynb'
+    - Aprendizaje No Supervisado:
+      - 'Introducción': '02_UNSUPERVISED_LEARNING/introduccion.md'
+      - 'Clustering en Big Data': '02_UNSUPERVISED_LEARNING/clustering_en_big_data.md'
+      - 'Detección de anomalías': '02_UNSUPERVISED_LEARNING/deteccion_de_anomalias.md'
+      - 'Isolation Forest': '02_UNSUPERVISED_LEARNING/isolation_forest.md'
+      - 'Notebook: Isolation Forest': '02_UNSUPERVISED_LEARNING/Examples/Isolation Forest.ipynb'
+      - 'Notebook: Isolation Forest Feature Selection': '02_UNSUPERVISED_LEARNING/Examples/Isolation Forest Feature Selection.ipynb'
+    - Aprendizaje por Refuerzo:
+      - 'Introducción': '03_REINFORCEMENT_LEARNING/introduccion.md'
+      - 'Procesos de decisión de Markov': '03_REINFORCEMENT_LEARNING/procesos_de_decision_de_markov.md'
+      - 'Q-Learning': '03_REINFORCEMENT_LEARNING/q_learning.md'
+      - 'Deep Reinforcement Learning': '03_REINFORCEMENT_LEARNING/deep_reinforcement_learning.md'
+
+  - Matemáticas:
+    - 'Matemáticas para machine learning': '05_MATH/matematicas_para_machine_learning.md'
+    - 'Forward propagation': '05_MATH/forward_propagation.md'
+    - 'Funciones de base radial': '05_MATH/funciones_de_base_radial.md'
+
+  - Workflows:
+    - 'Sistemas de machine learning': '04_WORKFLOWS/sistemas_de_machine_learning.md'
+    - 'Feature stores': '04_WORKFLOWS/feature_stores.md'
+    - 'Definición de proyectos de IA': '04_WORKFLOWS/definicion_de_proyectos_de_ia.md'
+    - 'Descubrimiento de datos': '04_WORKFLOWS/descubrimiento_de_datos.md'
+    - 'Workflows, máquinas de estado y colas': '04_WORKFLOWS/workflows_maquinas_de_estado_y_colas.md'
+    - 'Kedro': '04_WORKFLOWS/kedro.md'
+    - 'Kedro en producción': '04_WORKFLOWS/kedro_en_produccion.md'
+    - 'Ray': '04_WORKFLOWS/ray.md'
+    - 'Bibliotecas de IA de Ray': '04_WORKFLOWS/ray_bibliotecas_ia.md'
+    - 'ONNX': '04_WORKFLOWS/onnx.md'
+    - 'ONNX Runtime': '04_WORKFLOWS/onnx_runtime.md'
+
+  - NLP:
+    - 'Detección de patrones de nombres': '07_NLP/deteccion_de_patrones_de_nombres.md'
+    - 'Sistemas de detección': '07_NLP/sistemas_de_deteccion.md'
+
+  - Grafos:
+    - 'Introducción': '08_GRAPH/introduccion.md'
+    - 'Definiciones de Knowledge Graph': '08_GRAPH/definiciones_knowledge_graph.md'
+    - 'Creación de Knowledge Graphs': '08_GRAPH/creacion_de_knowledge_graphs.md'
+    - 'Grafo de código': '08_GRAPH/grafo_de_codigo.md'
+    - 'Apache TinkerPop': '08_GRAPH/apache_tinkerpop.md'
+    - 'Gremlin': '08_GRAPH/gremlin.md'
+    - 'Servidores MCP con KGs': '08_GRAPH/servidores_mcp_con_kgs.md'
+    - 'Proyectos Apache para KG': '08_GRAPH/proyectos_apache_para_kg.md'
+    - 'Knowledge Graphs y blockchain': '08_GRAPH/knowledge_graphs_y_blockchain.md'
+    - 'Representation learning en grafos': '08_GRAPH/representation_learning_en_grafos.md'
+
+  - Sistemas de ML:
+    - 'Proyectos generales de ML': '09_SYSTEMS/proyectos_generales_de_ml.md'
+    - 'PYMK - People You May Know': '09_SYSTEMS/PYMK/pymk.md'
+    - Sistemas de recomendación:
+      - 'Recomendadores basados en KG': '09_SYSTEMS/REC_SYSTEM/introduccion_recomendadores_con_kg.md'
+      - 'GNNs y Transformers': '09_SYSTEMS/REC_SYSTEM/gnn_y_transformers.md'
+
   - LLM:
-    - 'Introduction': '10_LLM/intro.md'
-    - 'Prompt': '10_LLM/prompt.md'
-    - 'Open Source': '10_LLM/open_source.md'
-    - 'ChatBot': '10_LLM/RAGS/build_llm_rag_chatbot_langchain.md'
-    - 'MCP': 
-      - 'Intro': '10_LLM/MCP/section_01.es.md'
-      - 'Clientes para usar MCPs': '10_LLM/MCP/section_02.es.md'
-      - 'MCP example': '10_LLM/MCP/section_03.es.md'
-      - 'MCP context': '10_LLM/MCP/section_04.es.md'
-    - JARVIS:
-      - 'intro': '11_JARVIS/intro.md'
-  - Workflows: '04_WORKFLOWS/section_01.md'
-  - Data Mining: '02_UNSUPERVISED_LEARNING/section_01.md'
-  - Graph Analysis: 
-    - 'Introduction': '08_GRAPH/intro.md'
-    - 'Knowledge Graph': '08_GRAPH/graph_definitions.md'
+    - 'Introducción': '10_LLM/introduccion.md'
+    - 'LLMs open source': '10_LLM/llms_open_source.md'
+    - 'Requerimientos de hardware': '10_LLM/requerimientos_de_hardware.md'
+    - 'Prompting': '10_LLM/prompting.md'
+    - MCP:
+      - 'Introducción a MCP': '10_LLM/MCP/introduccion_mcp.md'
+      - 'Clientes MCP': '10_LLM/MCP/clientes_mcp.md'
+      - 'Servidor MCP de filesystem': '10_LLM/MCP/servidor_mcp_filesystem.md'
+      - 'Manejo de contexto': '10_LLM/MCP/manejo_de_contexto.md'
+    - RAGs:
+      - 'Chatbot RAG con LangChain': '10_LLM/RAGS/chatbot_rag_con_langchain.md'
+      - 'RAG para documentación técnica': '10_LLM/RAGS/rag_para_documentacion_tecnica.md'
+      - 'De RAGs a LLM-Wiki': '10_LLM/RAGS/de_rags_a_llm_wiki.md'
+      - 'LangChain': '10_LLM/RAGS/langchain.md'
+      - 'Cypher': '10_LLM/RAGS/cypher.md'
+    - LM Studio:
+      - 'Introducción': '10_LLM/llmstudio/introduccion_lm_studio.md'
+      - 'Instalación': '10_LLM/llmstudio/instalacion_lm_studio.md'
+      - 'LM Studio con Python': '10_LLM/llmstudio/lm_studio_con_python.md'
+    - LLMs locales:
+      - 'LLMs locales': '10_LLM/LOCAL_LLM/llms_locales.md'
+      - 'LM Studio con Claude Code': '10_LLM/LOCAL_LLM/lm_studio_con_claude_code.md'
+
+  - JARVIS:
+    - 'Introducción': '11_JARVIS/introduccion.md'
+    - 'Plan de trabajo': '11_JARVIS/iterations/plan_de_trabajo.md'
+    - 'Desarrollo orientado a ontologías': '11_JARVIS/desarrollo_orientado_a_ontologias.md'
+    - 'Sistema de ontologías': '11_JARVIS/sistema_de_ontologias.md'
+    - 'LangGraph': '11_JARVIS/llm_workflows/langgraph.md'
+    - 'Prompt: Puzzle Solver': '11_JARVIS/prompts/puzzle_solver.md'
+
+  - Series de Tiempo:
+    - 'Introducción': '12_TIME_SERIES/introduccion.md'
+
+  - Problemas:
+    - 'Titanic': '13_PROBLEMS/titanic/titanic.md'
+
+# docs/diagrams/README.md documenta los scripts de diagramas: es tooling
+# interno, no contenido del curso, asi que no entra en el nav.
+not_in_nav: |
+  /diagrams/README.md
 
 theme:
   name: material
+  language: es
   features:
     - content.code.annotate
     - content.code.copy
     - content.code.select
+    - navigation.top
+    - navigation.tracking
+    - navigation.indexes
+    - toc.follow
+    - search.highlight
+    - search.suggest
   palette:
     scheme: slate
     primary: indigo
     accent: indigo
-  highlightjs: true
-  hljs_languages:
-    - yaml
-    - python
-    - typespec
-    - rust
-  collapse_navigation: True
-  locale: es
+
 plugins:
-  - search
+  - search:
+      lang: es
   - mermaid2
   - glightbox
+  - mkdocs-jupyter:
+      include: ["*.ipynb"]
+      execute: false
+      include_source: true
+      ignore_h1_titles: true
+  - redirects:
+      redirect_maps:
+        '00_DATA/README.md': '00_DATA/fases_analisis_datos.md'
+        '00_DATA/section_01.md': '00_DATA/dimensiones_analitica.md'
+        '00_DATA/section_02.md': '00_DATA/introduccion_bases_de_datos.md'
+        '00_DATA/section_03.md': '00_DATA/big_data.md'
+        '00_DATA/databases/vector_database.md': '00_DATA/databases/bases_de_datos_vectoriales.md'
+        '00_DATA/memory/types_of_memory_and_storage.md': '00_DATA/memory/tipos_de_memoria_y_almacenamiento.md'
+        '00_DATA/spark/section_01.md': '00_DATA/spark/spark.md'
+        '00_DATA/spark/section_02.md': '00_DATA/spark/pyspark.md'
+        '00_DATA/spark/section_03.md': '00_DATA/spark/ejemplos_pyspark.md'
+        '01_SUPERVISED_LEARNING/section_01.md': '01_SUPERVISED_LEARNING/introduccion.md'
+        '01_SUPERVISED_LEARNING/section_02.md': '01_SUPERVISED_LEARNING/regresion_lineal.md'
+        '01_SUPERVISED_LEARNING/section_03.md': '01_SUPERVISED_LEARNING/support_vector_machines.md'
+        '02_UNSUPERVISED_LEARNING/section_01.md': '02_UNSUPERVISED_LEARNING/introduccion.md'
+        '02_UNSUPERVISED_LEARNING/section_02.md': '02_UNSUPERVISED_LEARNING/clustering_en_big_data.md'
+        '02_UNSUPERVISED_LEARNING/section_04.md': '02_UNSUPERVISED_LEARNING/deteccion_de_anomalias.md'
+        '02_UNSUPERVISED_LEARNING/section_05.md': '02_UNSUPERVISED_LEARNING/isolation_forest.md'
+        '04_WORKFLOWS/section_01.md': '04_WORKFLOWS/sistemas_de_machine_learning.md'
+        '04_WORKFLOWS/section_02.md': '04_WORKFLOWS/feature_stores.md'
+        '04_WORKFLOWS/section_03.md': '04_WORKFLOWS/definicion_de_proyectos_de_ia.md'
+        '04_WORKFLOWS/section_04.md': '04_WORKFLOWS/descubrimiento_de_datos.md'
+        '04_WORKFLOWS/section_05.md': '04_WORKFLOWS/workflows_maquinas_de_estado_y_colas.md'
+        '05_MATH/section_01.md': '05_MATH/matematicas_para_machine_learning.md'
+        '05_MATH/section_02.md': '05_MATH/forward_propagation.md'
+        '05_MATH/section_03.md': '05_MATH/funciones_de_base_radial.md'
+        '07_NLP/natural_language_processing.md': '07_NLP/deteccion_de_patrones_de_nombres.md'
+        '07_NLP/detection_system.md': '07_NLP/sistemas_de_deteccion.md'
+        '08_GRAPH/intro.md': '08_GRAPH/introduccion.md'
+        '08_GRAPH/knowledge_graph_definitions.md': '08_GRAPH/definiciones_knowledge_graph.md'
+        '08_GRAPH/graph_creation.md': '08_GRAPH/creacion_de_knowledge_graphs.md'
+        '08_GRAPH/code_graph.md': '08_GRAPH/grafo_de_codigo.md'
+        '08_GRAPH/section_01.md': '08_GRAPH/representation_learning_en_grafos.md'
+        '08_GRAPH/section_08.md': '08_GRAPH/servidores_mcp_con_kgs.md'
+        '08_GRAPH/section_09.md': '08_GRAPH/proyectos_apache_para_kg.md'
+        '08_GRAPH/section_10.md': '08_GRAPH/knowledge_graphs_y_blockchain.md'
+        '09_SYSTEMS/projects.md': '09_SYSTEMS/proyectos_generales_de_ml.md'
+        '09_SYSTEMS/PYMK/description.md': '09_SYSTEMS/PYMK/pymk.md'
+        '09_SYSTEMS/REC_SYSTEM/introduction_to_KGs_recs_systems.md': '09_SYSTEMS/REC_SYSTEM/introduccion_recomendadores_con_kg.md'
+        '09_SYSTEMS/REC_SYSTEM/gnn_and_transformers.es.md': '09_SYSTEMS/REC_SYSTEM/gnn_y_transformers.md'
+        '10_LLM/intro.md': '10_LLM/introduccion.md'
+        '10_LLM/prompt.md': '10_LLM/prompting.md'
+        '10_LLM/open_source.md': '10_LLM/llms_open_source.md'
+        '10_LLM/hardware_requirements.md': '10_LLM/requerimientos_de_hardware.md'
+        '10_LLM/LOCAL_LLM/section_01.es.md': '10_LLM/LOCAL_LLM/llms_locales.md'
+        '10_LLM/LOCAL_LLM/section_01.md': '10_LLM/LOCAL_LLM/lm_studio_con_claude_code.md'
+        '10_LLM/MCP/section_01.es.md': '10_LLM/MCP/introduccion_mcp.md'
+        '10_LLM/MCP/section_02.es.md': '10_LLM/MCP/clientes_mcp.md'
+        '10_LLM/MCP/section_03.es.md': '10_LLM/MCP/servidor_mcp_filesystem.md'
+        '10_LLM/MCP/section_04.es.md': '10_LLM/MCP/manejo_de_contexto.md'
+        '10_LLM/RAGS/build_llm_rag_chatbot_langchain.md': '10_LLM/RAGS/chatbot_rag_con_langchain.md'
+        '10_LLM/RAGS/building_rag_chatbots_for_technical_documentation.md': '10_LLM/RAGS/rag_para_documentacion_tecnica.md'
+        '10_LLM/RAGS/LLMs_wiki.md': '10_LLM/RAGS/de_rags_a_llm_wiki.md'
+        '10_LLM/llmstudio/section_01.md': '10_LLM/llmstudio/introduccion_lm_studio.md'
+        '10_LLM/llmstudio/section_02.md': '10_LLM/llmstudio/instalacion_lm_studio.md'
+        '10_LLM/llmstudio/section_03.md': '10_LLM/llmstudio/lm_studio_con_python.md'
+        '11_JARVIS/intro.md': '11_JARVIS/introduccion.md'
+        '11_JARVIS/ontology_oriented_software_development.md': '11_JARVIS/desarrollo_orientado_a_ontologias.md'
+        '11_JARVIS/ontology_system.md': '11_JARVIS/sistema_de_ontologias.md'
+        '11_JARVIS/iterations/section_01.es.md': '11_JARVIS/iterations/plan_de_trabajo.md'
+        '11_JARVIS/llm_workflows/langgraph_01.md': '11_JARVIS/llm_workflows/langgraph.md'
+        '12_TIME_SERIES/intro.md': '12_TIME_SERIES/introduccion.md'
+        '13_PROBLEMS/titanic/intro.md': '13_PROBLEMS/titanic/titanic.md'
+        'PROYECTOS/KG_CODE/intro.md': 'PROYECTOS/KG_CODE/knowledge_graph_para_developers.md'
+        '09_SYSTEMS/REC_SYSTEM/gnn_and_transformers.md': '09_SYSTEMS/REC_SYSTEM/gnn_y_transformers.md'
+        '09_SYSTEMS/REC_SYSTEM/gnn_and_transfomers.md': '09_SYSTEMS/REC_SYSTEM/gnn_y_transformers.md'
+        '09_SYSTEMS/REC_SYSTEM/gnn_and_transofmers.es.md': '09_SYSTEMS/REC_SYSTEM/gnn_y_transformers.md'
+        '10_LLM/MCP/section_01.md': '10_LLM/MCP/introduccion_mcp.md'
+        '10_LLM/MCP/section_02.md': '10_LLM/MCP/clientes_mcp.md'
+        'machine-learning-notes.md': 'index.md'
+
 extra_javascript:
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg-full.js
-  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
 markdown_extensions:
   - smarty
-  - mdx_math
-  - pymdownx.arithmatex
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span

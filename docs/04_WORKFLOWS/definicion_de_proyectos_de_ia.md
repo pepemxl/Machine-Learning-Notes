@@ -19,7 +19,8 @@ El enfoque de manual para hacer análisis de datos es una serie de pasos:
 3. Formular hipótesis a partir del EDA.
 4. Probar modelos sobre ellas para confirmar o descartar las hipótesis.
 
-Ver [Las seis fases del análisis de datos](../00_DATA/fases_analisis_datos.md).
+Ver [Las seis fases del análisis de datos](../00_DATA/fases_analisis_datos.md) y
+[Kedro](kedro.md), que impone esta estructura en el propio proyecto.
 
 ## El enfoque real
 
