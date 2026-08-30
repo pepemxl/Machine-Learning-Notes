@@ -1,43 +1,67 @@
-# Maths
+# Matemáticas para Machine Learning
 
-In order to understand better how machine learning works and how select models applyable in each situation, it is important to get some insights from learning theory, we can consider learning theory as a combination of statistical and functional analysis but there are more things there and many siblings areas.
+Para entender mejor cómo funciona el machine learning y cómo elegir los modelos aplicables en
+cada situación, conviene tener nociones de **teoría del aprendizaje**. Podemos considerarla una
+combinación de análisis estadístico y funcional, aunque hay bastante más y muchas áreas
+colindantes.
 
-Learning insights from these abstractions will help you to decide strategies to tackle actual problems, finally there are many other factors that determine the quality of your model results, and many times make machine learning more an art than science, regardless many results could be justified, usually for some results in industry there is no time to understand deeper why it works including academy both need results in order to survive denying room for a better understanding.
+Aprender de estas abstracciones ayuda a decidir estrategias para atacar problemas reales.
+Dicho esto, hay muchos otros factores que determinan la calidad de los resultados de un modelo,
+y que a menudo hacen del machine learning **más un arte que una ciencia**. Aunque muchos
+resultados podrían justificarse, en la industria rara vez hay tiempo para entender en
+profundidad por qué funcionan —y en la academia ocurre algo parecido: ambas necesitan
+resultados para sobrevivir, lo que deja poco espacio para una comprensión más honda.
 
+> *"Cualquier tecnología suficientemente avanzada es indistinguible de la magia."*
+> — Arthur C. Clarke
 
-**''Any sufficiently advanced technology is indistinguishable from magic.''**, Arthur C. Clarke
+Para una comprensión profunda convendría repasar:
 
-In order to have a deep understanding, you would perform an overview of
+- Álgebra lineal
+- Estadística
+- Espacios de Hilbert
+- Espacios de Sobolev
+- Variedades (*manifolds*)
+- Regularización
+- Cuadraturas
 
-- Linear Algebra
-- Statistics
-- Hilbert Spaces
-- Sobolev Spaces
-- Manifolds
-- Regularization
-- Quadratures
+Hay muchos más temas y áreas completas que podrían considerarse, pero recorrerlos todos
+llevaría una vida.
 
-there are many more math topics and full areas that could be considered, however it will take a life to go under all those topics.
+## Teoría del aprendizaje computacional
 
+La **teoría del aprendizaje computacional** es el campo que se ocupa de aplicar métodos
+matemáticos formales a los sistemas de aprendizaje. Abarca:
 
-## Learning Theory - Computational Learning Theory
+- [Supervisado](../01_SUPERVISED_LEARNING/introduccion.md)
+- [No supervisado](../02_UNSUPERVISED_LEARNING/introduccion.md)
+- En línea (*online*)
+- [Por refuerzo](../03_REINFORCEMENT_LEARNING/introduccion.md)
 
-Computational learning theory is a field of study concerned with the use of formal mathematical methods applied to learning systems.
+Hoy el supervisado es la técnica más usada: cada punto \((X,y)\) de un conjunto de
+entrenamiento \(\mathbb{X}\times Y\) asocia una entrada con una salida. El problema de
+aprendizaje consiste en **inferir la función que mapea** entrada a salida, de modo que la
+función aprendida sirva para predecir la salida a partir de entradas futuras.
 
-These involves
+## Estimación de densidad
 
-- Supervised
-- Unsupervised
-- Online
-- Reinforcement
+La **estimación de densidad** camina en la frontera entre el aprendizaje no supervisado, la
+ingeniería de features y el modelado de datos.
 
-nowadays supervised is the most used technique, where every point \((X,y)\) in a training dataset \(\mathbb{X}\times Y\), where the input maps to an output. The learning problem consists of inferring the function that maps between the input and the output, such that the learned function can be used to predict the output from future input.
+Un grupo amplio de técnicas útiles son los **modelos de mezcla**, como las **mezclas de
+gaussianas**, y los enfoques basados en vecindad, como la **estimación de densidad por kernel**
+(*kernel density estimation*).
 
+Las mezclas de gaussianas se tratan con más detalle en el contexto del
+[clustering](../02_UNSUPERVISED_LEARNING/introduccion.md), porque la técnica también sirve como
+esquema de agrupamiento no supervisado.
 
-## Density Estimation
+La estimación de densidad es un concepto muy simple, y casi todo el mundo conoce ya una técnica
+habitual: **el histograma**. Su principal problema, sin embargo, es que **la elección de los
+intervalos** (*binning*) tiene un efecto desproporcionado sobre la visualización resultante. De
+ahí la necesidad de una forma más precisa y automática de representar la densidad.
 
-**Density estimation** walks the line between unsupervised learning, feature engineering, and data modeling. A large group of useful density estimations techniques is mixture models such as **Gaussian Mixtures**, and neighbor based approaches such as the **kernel density estimation**.
+## En esta sección
 
-**Gaussian Mixtures** are discussed more fully in the context of **clustering**, because the technique is also useful as an unsupervised clustering scheme/technique.
-
-Density estimation is a very simple concept, and most people are already familiar with one common density estimation technique: **the histogram**. A major problem with histograms, however, is that the choice of binning can have a disproportionate effect on the resulting visualization. We want an more accurate/acutomatic way to represent density 
+- [Forward propagation](forward_propagation.md)
+- [Funciones de base radial](funciones_de_base_radial.md)
