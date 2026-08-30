@@ -1,0 +1,2 @@
+# Dependencias para el servidor MCP Filesystem
+mcp>=1.0.0

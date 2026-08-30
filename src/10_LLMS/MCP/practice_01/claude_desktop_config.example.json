@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "filesystem-python": {
+      "command": "python",
+      "args": [
+        "D:\\SANDBOX\\practica_03\\src\\filesystem_server.py",
+        "D:\\SANDBOX\\practica_03"
+      ]
+    }
+  }
+}
