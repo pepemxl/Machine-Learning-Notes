@@ -45,7 +45,7 @@ serve_doc:
 
 .PHONY: build_doc
 build_doc:
-	mkdocs serve
+	mkdocs build --strict
 
 ############# Docs ############
 DOCKERFILE_DIR_DOCS := ./src/containers/docs

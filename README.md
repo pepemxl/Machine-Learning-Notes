@@ -1,31 +1,72 @@
-# Data Science
+# Machine Learning Notes
 
-Machine learning, data mining and data analysis are related fields within the broader domain of data science, but they have different focuses and methodologies. Here's a brief overview of each:
+Notas de trabajo sobre análisis de datos, machine learning, sistemas de ML y LLMs,
+publicadas como sitio estático con [MkDocs](https://www.mkdocs.org/) y el tema
+[Material](https://squidfunk.github.io/mkdocs-material/).
 
-1. **Data Analysis:**
-   Data analysis involves examining, cleaning, transforming, and modeling data to extract insights and make informed decisions. It focuses on understanding patterns, trends, and relationships within datasets through statistical and visualization techniques. Data analysis often involves descriptive and inferential statistics, hypothesis testing, exploratory data analysis (EDA), and data visualization.
+El contenido vive en [`docs/`](docs/). El índice completo del curso está en
+[`docs/index.md`](docs/index.md).
 
-2. **Machine Learning:**
-   Machine learning is a subset of artificial intelligence (AI) that focuses on developing algorithms and models that allow computers to learn from data and make predictions or decisions without being explicitly programmed. Machine learning algorithms use statistical techniques to identify patterns in data and make predictions or decisions based on those patterns. It involves training models on labeled datasets to learn patterns and relationships, which can then be used to make predictions on new, unseen data.
+## Contenido
 
-3. **Data Mining:**
-    Data mining is the process of discovering patterns, relationships, and insights from large datasets using techniques from statistics, machine learning, and database systems. It involves extracting useful information and knowledge from data that may not be immediately obvious or explicitly stated. Data mining techniques are often used to uncover hidden patterns, anomalies, trends, or associations within data.
+| Sección | Tema |
+|---|---|
+| `docs/00_DATA` | Análisis de datos, bases de datos, Spark / PySpark |
+| `docs/01_SUPERVISED_LEARNING` | Árboles de decisión, regresión lineal, SVM |
+| `docs/02_UNSUPERVISED_LEARNING` | Clustering, detección de anomalías, Isolation Forest |
+| `docs/03_REINFORCEMENT_LEARNING` | MDPs, Q-Learning, deep reinforcement learning |
+| `docs/04_WORKFLOWS` | ML Systems, feature stores, workflows y colas |
+| `docs/05_MATH` | Fundamentos matemáticos |
+| `docs/06_TORCH` | Ejemplos en PyTorch (código, sin notas todavía) |
+| `docs/07_NLP` | Procesamiento de lenguaje natural |
+| `docs/08_GRAPH` | Grafos y knowledge graphs |
+| `docs/09_SYSTEMS` | Sistemas de recomendación, PYMK |
+| `docs/10_LLM` | LLMs, MCP, RAGs, LM Studio, modelos locales |
+| `docs/11_JARVIS` | Proyecto JARVIS, ontologías, LangGraph |
+| `docs/12_TIME_SERIES` | Series de tiempo |
+| `docs/13_PROBLEMS` | Problemas prácticos (Titanic) |
+| `docs/PROYECTOS` | Proyectos completos |
 
-    Some common data mining techniques include:
+## Levantar la documentación
 
-    1. **Association Rule Learning:** Identifying relationships or associations between variables in a dataset. For example, identifying products that are frequently purchased together in a transaction dataset.
+Con Python local:
 
-    2. **Clustering:** Grouping similar data points together based on their characteristics or attributes. Clustering algorithms aim to find natural groupings or clusters in the data.
+```bash
+pip install -r src/containers/docs/requirements.txt
+make serve_doc          # http://127.0.0.1:8000
+```
 
-    3. **Classification:** Assigning categorical labels or classes to data points based on their features. Classification algorithms learn to predict the class labels of new data points based on the patterns observed in the training data.
+Con Docker (live-reload, puerto 8080):
 
-    4. **Regression:** Predicting continuous numerical values based on the relationship between independent and dependent variables in the data. Regression analysis aims to model and analyze the relationships between variables.
+```bash
+make up_docs            # build + run
+```
 
-    5. **Anomaly Detection:** Identifying unusual or abnormal observations in a dataset that deviate from normal behavior. Anomaly detection techniques aim to flag potential outliers or anomalies that may require further investigation.
+## Build
 
-In summary, while data analysis focuses on exploring and understanding data to gain insights, machine learning focuses on building models that can learn from data and make predictions or decisions. Data mining is another related field within data science, but it has a slightly different focus and methodology compared to both data analysis and machine learning.
+```bash
+make build_doc          # mkdocs build --strict
+```
 
-Data analysis is often a precursor to machine learning, as it involves preparing and analyzing data before training machine learning models. Additionally, machine learning techniques are often used within the context of data analysis to uncover deeper insights or automate decision-making processes.
+El build corre en **modo estricto**: cualquier enlace roto o referencia inválida en el
+`nav` hace fallar la construcción. Ejecútalo antes de commitear cambios en `docs/`.
 
+## Convenciones
 
-Data mining involves using a variety of techniques to extract valuable insights and knowledge from large datasets. It often complements data analysis and machine learning by providing additional tools and methods for exploring and understanding data, identifying patterns, and making data-driven decisions.
+- **El contenido se escribe en español.** El repositorio está consolidado en un solo idioma.
+- Cada página empieza con un único encabezado `#` de nivel 1.
+- Todo bloque de código lleva lenguaje (```` ```python ````, ```` ```bash ````, …).
+- Las páginas nuevas se añaden al `nav` de [`mkdocs.yml`](mkdocs.yml). Los borradores
+  se declaran en `not_in_nav` en lugar de quedarse sueltos.
+- **Nombres de archivo descriptivos** en español, sin acentos (`regresion_lineal.md`). Si
+  renombras una página, añade la ruta antigua a `redirect_maps` en `mkdocs.yml`.
+- Fórmulas con `$...$` (inline) y `$$...$$` (bloque), renderizadas con MathJax 3.
+- Diagramas con bloques ```` ```mermaid ````.
+
+## Estructura del repositorio
+
+- `docs/` — contenido del curso (Markdown, notebooks, imágenes, diagramas).
+- `mkdocs.yml` — configuración del sitio y navegación.
+- `pp_tools/` — librería Python de apoyo (grafos, base de datos, utilidades ML).
+- `src/containers/docs/` — imagen Docker para servir la documentación.
+- `Makefile` — tareas de instalación, build y publicación.

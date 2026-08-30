@@ -142,3 +142,6 @@ pp_tools/LOCAL_DATA/*
 /**/outputs/
 /diagrams/*.pngsite/
 site/
+
+# Plan de mejoras y notas locales (no versionadas)
+LOCAL_DATA/
