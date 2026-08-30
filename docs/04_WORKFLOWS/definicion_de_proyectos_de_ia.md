@@ -1,19 +1,36 @@
-# Definitin of AI projects
+# Definición de Proyectos de IA
 
-## Model Centric Bias and GIGO principle
+## El sesgo centrado en el modelo y el principio GIGO
 
-It is very common to tend to pay too much attention to ML models while neglecting other important parts in the creation of Machine Learning Systems. It is due to a phenomenon often called **model centric bias**.
+Es muy común prestar demasiada atención a los modelos de ML y descuidar otras partes
+importantes en la construcción de sistemas de machine learning. A este fenómeno se le suele
+llamar **sesgo centrado en el modelo** (*model centric bias*).
 
-The formal approach to perform data analysis from the manual is a serie of steps:
- - collect data with an ETL or ELT process,  
- - perform exploratory data analysis (EDA) in this collections, then 
- - create hypothesis using our EDA, then finally
- - try models on them to confirm or neglect hypothesis.
+Va de la mano del principio **GIGO** (*Garbage In, Garbage Out*), descrito en la
+[introducción al aprendizaje supervisado](../01_SUPERVISED_LEARNING/introduccion.md): si los
+datos y las features son malos, ningún modelo lo compensará.
 
+## El enfoque formal
 
-Tha actual approach in many AI projects is a little more complex,
-usually are based on data preexistent that was created with application
-purposes,
-is define goals, then a review of existing models is performed with the solenly objective can help you to achieve that goal
+El enfoque de manual para hacer análisis de datos es una serie de pasos:
 
+1. Recolectar datos con un proceso ETL o ELT.
+2. Realizar análisis exploratorio de datos (**EDA**) sobre esas colecciones.
+3. Formular hipótesis a partir del EDA.
+4. Probar modelos sobre ellas para confirmar o descartar las hipótesis.
 
+Ver [Las seis fases del análisis de datos](../00_DATA/fases_analisis_datos.md).
+
+## El enfoque real
+
+El enfoque que se sigue en muchos proyectos de IA es algo más complejo. Normalmente se parte de
+**datos preexistentes que fueron creados con fines de aplicación**, no de análisis. El proceso
+es más bien:
+
+1. Definir objetivos.
+2. Revisar los modelos existentes con el único fin de determinar cuáles pueden ayudar a
+   alcanzar ese objetivo.
+
+La diferencia importa: en el enfoque formal los datos se recogen **para** la pregunta; en el
+real, la pregunta se adapta a los datos que ya existen. Eso condiciona qué hipótesis son
+verificables y cuánta confianza merecen los resultados.

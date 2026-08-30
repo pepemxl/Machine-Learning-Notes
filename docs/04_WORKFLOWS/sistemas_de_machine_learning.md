@@ -1,32 +1,40 @@
-# Machine Learning Systems (MLS)
- 
-In order to create a functioning AI product, we need to put together
-a bunch of elements:
-- Production Cluster
-- Data Collection
-- Data Storage
-- Generation of Features Jobs
-- Training Compute Cluster
-- CI/CD Pipelines
-- Monitoring
-- Experiment Loggers
+# Sistemas de Machine Learning (MLS)
 
-we call all these ingredients Machine Learning Systems.
+Para crear un producto de IA que funcione hay que ensamblar un conjunto de elementos:
+
+- Clúster de producción
+- Recolección de datos
+- Almacenamiento de datos
+- Jobs de generación de features
+- Clúster de cómputo para entrenamiento
+- Pipelines de CI/CD
+- Monitoreo
+- Registro de experimentos (*experiment loggers*)
+
+A todos estos ingredientes en conjunto los llamamos **sistemas de machine learning**.
 
 ## Dataflow
 
-Dataflow is a broad concept, which has various meanings depending on the application and context. In the context of software architecture, data flow relates to stream processing or reactive programming. 
+*Dataflow* es un concepto amplio, con significados distintos según la aplicación y el contexto.
+En arquitectura de software, el flujo de datos se relaciona con el **procesamiento de flujos**
+(*stream processing*) o la programación reactiva.
 
-Usually they show the transfer of information from one part of the system to another. Flows link processes, warehouses and terminators. Usual systems for dataflows:
+Normalmente representa la **transferencia de información** de una parte del sistema a otra. Los
+flujos enlazan procesos, almacenes y terminadores. Los sistemas de dataflow más habituales son:
+
 - Airflow
 - Dagster
 - Dataswarm
 - Databricks
-- etc...
 
+Hay muchas soluciones disponibles, pero cuál es la mejor depende de nuestros datos y de los
+objetivos a alcanzar. Igual que un equipo de DevOps toma decisiones de arquitectura en función
+de las propiedades deseadas del sistema para garantizar los requisitos, aquí también hacen
+falta **patrones específicos** en la arquitectura.
 
-In this sense many solutions are available, however depends on our data and goals to achieve, which one will be better. In the same sense that a devOps depends takes architecture decisions based on properties desired for the system to guarantee requirements, it will need special patterns in its architecture.
+## Ver también
 
-
-
-
+- [Feature stores](feature_stores.md)
+- [Definición de proyectos de IA](definicion_de_proyectos_de_ia.md)
+- [Workflows, máquinas de estado y colas](workflows_maquinas_de_estado_y_colas.md)
+- [Proyectos generales de ML](../09_SYSTEMS/proyectos_generales_de_ml.md)

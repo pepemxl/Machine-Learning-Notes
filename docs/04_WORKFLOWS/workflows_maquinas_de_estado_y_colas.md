@@ -1,105 +1,142 @@
-# Workflows, State Machines and Queues
+# Workflows, Máquinas de Estado y Colas
 
-To perform our ML task we need mechanisms to schedule task that can take seconds or several days, we have two types of systems related with data processing:
+Para ejecutar nuestras tareas de ML necesitamos mecanismos capaces de planificar trabajos que
+pueden durar desde segundos hasta varios días. Hay dos tipos de sistemas relacionados con el
+procesamiento de datos:
 
-1. Data Intensive Systems
-2. Compute Intensive Systems
+1. **Sistemas intensivos en datos** (*data intensive*)
+2. **Sistemas intensivos en cómputo** (*compute intensive*)
 
-Each one of them has its own problems, and ways to perform optimizations, unfortunately many systems are born as a Data Intesive Systems and they are reused as Compute Intesive Systems with theirs respectively problems, with out a previous analysis. Our current competitive culture don't let chance to analyze things enough before to launch an MVP. Then is needed to do several adjustement during the road.
+Cada uno tiene sus propios problemas y sus formas de optimizar. Por desgracia, muchos sistemas
+nacen como intensivos en datos y se reutilizan como intensivos en cómputo —arrastrando los
+problemas correspondientes— sin un análisis previo. La cultura competitiva actual no deja
+margen para analizar lo suficiente antes de lanzar un MVP, así que hay que hacer varios ajustes
+sobre la marcha.
 
-There exist this false feeling that use distributed systems solves whatever problem of scalability, however, 
+Existe además la falsa sensación de que **usar sistemas distribuidos resuelve cualquier problema
+de escalabilidad**. No es así: distribuir añade coordinación, latencia de red y modos de fallo
+nuevos, y solo compensa cuando el cuello de botella es realmente de capacidad.
 
+## Sistema de colas de tareas
 
-# Task Queue System
+Características deseables en un sistema de colas:
 
-- Queue priorities
-- Delayed tasks (run tasks after a timedelta eta)
-- Scheduled cron periodic tasks
-- Broadcast tasks (run a task on all workers)
-- Task soft and hard timeout limits
-- Optionally retry tasks on soft timeouts
-- Combats memory leaks by restarting workers when max_mem_percent reached
-- Super minimal and maintainable
+- Prioridades de cola.
+- **Tareas diferidas** (ejecutar tras un `timedelta` o *eta*).
+- Tareas periódicas programadas tipo *cron*.
+- **Tareas de difusión** (*broadcast*): ejecutar una tarea en todos los *workers*.
+- Límites de tiempo de espera **suaves y duros** por tarea.
+- Reintento opcional de tareas al superar el tiempo suave.
+- Mitigación de fugas de memoria reiniciando *workers* al alcanzar `max_mem_percent`.
+- Ser mínimo y mantenible.
 
-## Some feature useful
+### Funcionalidades útiles adicionales
 
-- sending code stats email reports
-- permit to recover status of queue from jupyter notebook
-- create gantt for jupyter-notebook
+- Envío de reportes de estadísticas por correo.
+- Recuperar el estado de la cola desde un Jupyter notebook.
+- Generar diagramas de Gantt en Jupyter.
 
+## Máquinas de estado
 
-# State Machines
+La forma habitual de crear pipelines en machine learning es construir **DAGs** en un motor de
+workflows, lo que permite pipelines complejos. Otra vía, menos compleja pero **más flexible**,
+es usar máquinas de estado.
 
-The usual way to create pipelines in machine learning is creating dags in workflows, it permits create complex pipelines, other way to create pipelines less complex, but more flexible is through state machines.
+Un **workflow** es un modelo de un proceso de tu aplicación. Puede ser el recorrido de un post
+de blog desde borrador a revisión y publicación, o el de un usuario que rellena una serie de
+formularios distintos para completar una tarea. Estos procesos conviene mantenerlos **fuera de
+los modelos** y definirlos en configuración.
 
-A workflow is a model of a process in your application. It may be the process of how a blog post goes from draft to review and publish. Another example is when a user submits a series of different forms to complete a task. Such processes are best kept away from your models and should be defined in configuration.
+La definición de un workflow consta de **lugares** (*places*) y de acciones para pasar de uno a
+otro. Esas acciones se llaman **transiciones**. Además, el workflow necesita conocer la
+posición de cada objeto: el *marking store* escribe el lugar actual en una propiedad del
+objeto.
 
-A definition of a workflow consists of places and actions to get from one place to another. The actions are called **transitions**. A workflow also needs to know each object's position in the workflow. The marking store writes the current place to a property on the object.
+El workflow más simple posible contiene dos lugares y una transición:
 
-The simplest workflow looks like this. It contains two places and one transition.
-
+```text
 p_A >> trans_1 >> p_B
+```
 
-A state machine is a subset of a workflow and its purpose is to hold a state of your model. The most important differences between them are:
+Una **máquina de estado** es un subconjunto de un workflow, y su propósito es mantener el
+estado de tu modelo. Las diferencias más importantes son:
 
-- Workflows can be in more than one place at the same time, whereas state machines can't.
-- In order to apply a transition, workflows require that the object is in all the previous places of the transition, whereas state machines only require that the object is at least in one of those places.
+- Los **workflows pueden estar en más de un lugar a la vez**; las máquinas de estado no.
+- Para aplicar una transición, los workflows exigen que el objeto esté en **todos** los lugares
+  previos de la transición; las máquinas de estado solo exigen que esté en **al menos uno**.
 
-## Finite State Machines (FSM)
+## Máquinas de estado finitas (FSM)
 
-An Finite State Machine or State Machine is a mathematical model of computation.
+Una **máquina de estado finita** es un modelo matemático de computación.
 
-It ($\Sigma$) consists of a finite set of states(S), transitions($\gamma$), events(E), and actions(A).
+Consiste ($\Sigma$) en un conjunto finito de estados ($S$), transiciones ($\gamma$), eventos
+($E$) y acciones ($A$).
 
 $$\Sigma = (S,A,E,\gamma)$$
 
-We use actions for representing what the agent does that causes changes in its world whereas events are used for representing things that occur outside of the agent’s control, they might be the actions of other agents or part of the dynamics of the world.
+Usamos **acciones** para representar lo que el agente hace y que provoca cambios en su mundo,
+mientras que los **eventos** representan cosas que ocurren fuera de su control: pueden ser
+acciones de otros agentes o parte de la dinámica del entorno.
 
-In practice (implementation) we will use event for both event and action, for simplicity.
+En la práctica, al implementar se suele usar *evento* para ambos casos, por simplicidad.
 
-### Example
+### Ejemplo
 
-A simple example of an Finite State Machine for a door. We have two **states** `{opened, closed}`, two **actions/events** `{open, close}` and the following transitions.
+Una máquina de estado finita sencilla para una puerta. Tenemos dos **estados**
+`{abierta, cerrada}`, dos **acciones/eventos** `{abrir, cerrar}` y las siguientes transiciones:
 
-|Current State|Action/Event|New State|
+| Estado actual | Acción/Evento | Nuevo estado |
 |---|---|---|
-|closed|open|opened|
-|closed|close|closed|
-|opened|open|opened|
-|opened|close|closed|
+| cerrada | abrir | abierta |
+| cerrada | cerrar | cerrada |
+| abierta | abrir | abierta |
+| abierta | cerrar | cerrada |
 
+## Máquinas de estado finitas jerárquicas (HFSM)
 
-## Hierarchical Finite State Machine
-HFSM resolves the issues that we have seen in FSM by improving the following:
+Las HFSM resuelven los problemas de las FSM mejorando:
 
-- Modularity and reusability
-- Hierarchical construct
+- **Modularidad y reutilización**
+- **Construcción jerárquica**
 
-HFSM introduces the following concepts:
+Introducen los siguientes conceptos:
 
-- Parent State Machine: A state machine that a state belongs to
-- Child State Machine: A state machine owned by a state that is started when the state is entered and stopped when the state is exited
+- **Máquina de estado padre**: aquella a la que pertenece un estado.
+- **Máquina de estado hija**: la que posee un estado, y que arranca al entrar en ese estado y
+  se detiene al salir de él.
 
-## State Machine Terminology
+## Terminología
 
-There are many ways to define state machines, however common vocabulary used is the next:
+Hay muchas formas de definir máquinas de estado, pero el vocabulario común es este:
 
-- State: The basic unit that composes a state machine. A state machine can be in one state at any particular time.
-- Entry Action: An activity executed when entering the state
-- Exit Action: An activity executed when exiting the state
-- Transition: A directed relationship between two states that represents the complete response of a state machine to an occurrence of an event of a particular type.
-- Shared Transition: A transition that shares a source state and trigger with one or more transitions, but has a unique condition and action.
-- Trigger: A triggering activity that causes a transition to occur.
-- Condition: A constraint that must evaluate to true after the trigger occurs in order for the transition to complete.
-- Transition Action: An activity that is executed when performing a certain transition.
-- Conditional Transition: A transition with an explicit condition.
-- Self-transition: A transition that transits from a state to itself.
-- Initial State: A state that represents the starting point of the state machine.
-- Final State: A state that represents the completion of the state machine.
+- **Estado**: la unidad básica que compone la máquina. Una máquina de estado puede estar en un
+  solo estado en un momento dado.
+- **Acción de entrada**: actividad que se ejecuta al entrar en el estado.
+- **Acción de salida**: actividad que se ejecuta al salir del estado.
+- **Transición**: relación dirigida entre dos estados que representa la respuesta completa de
+  la máquina ante la ocurrencia de un evento de un tipo determinado.
+- **Transición compartida**: transición que comparte estado origen y disparador con una o más
+  transiciones, pero tiene condición y acción propias.
+- **Disparador** (*trigger*): la actividad que provoca que ocurra la transición.
+- **Condición**: restricción que debe evaluarse como verdadera después del disparador para que
+  la transición se complete.
+- **Acción de transición**: actividad que se ejecuta al realizar una transición concreta.
+- **Transición condicional**: transición con una condición explícita.
+- **Auto-transición**: transición que va de un estado a sí mismo.
+- **Estado inicial**: representa el punto de partida de la máquina.
+- **Estado final**: representa la finalización de la máquina.
 
-## State Machines in Machine Learning Systems
+## Máquinas de estado en sistemas de ML
 
-Individual states can make decisions based on their input, perform actions, and pass output to other states. In AWS Step Functions you define your workflows in the Amazon States Language. The Step Functions console provides a graphical representation of that state machine to help visualize your application logic.
+Los estados individuales pueden **tomar decisiones** según su entrada, **ejecutar acciones** y
+**pasar su salida** a otros estados.
 
+En AWS Step Functions los workflows se definen en el *Amazon States Language*, y la consola
+proporciona una representación gráfica de la máquina de estado que ayuda a visualizar la lógica
+de la aplicación.
 
+## Ver también
 
+- [Sistemas de machine learning](sistemas_de_machine_learning.md)
+- [LangGraph](../11_JARVIS/llm_workflows/langgraph.md) — grafos de estado aplicados a
+  workflows con LLMs.
