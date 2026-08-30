@@ -1,41 +1,55 @@
-# Detection Systems
+# Sistemas de Detección
 
-Under the hood, this detection system is a multifunctional NLU system, like spaCy, but based on a monolithic architecture, and with a focus on user-generated content. All the functions are exposed using the same language models and the same analysis process invoked using the POST /parse method. In just one call you're getting entities, sentiment, topic, problematic content, and low-level NLP data. 
+Por dentro, este sistema de detección es un sistema **NLU multifuncional** —similar a spaCy—
+pero basado en una arquitectura monolítica y enfocado en **contenido generado por usuarios**.
 
+Todas las funciones se exponen usando los mismos modelos de lenguaje y el mismo proceso de
+análisis, invocado mediante el método `POST /parse`. En una sola llamada obtienes entidades,
+sentimiento, tema, contenido problemático y datos de NLP de bajo nivel.
 
-## Entity Extraction
+## Extracción de entidades
 
-These are the types of the entities to extracts:
+Estos son los tipos de entidades que se extraen:
 
-- person with optional subtypes: 
-    - fictional_character (characters from books, movies, etc.), 
-    - important person (VIPs, celebrities, historical figures, politicians, etc.), 
-    - spiritual being (gods, spirits, etc.)
-- organization
-- place
-- time range
-- date
-- time
-- amount of money
-- phone number 
-- role - social role (profession, rank, etc.)
-- crypto addresses, with optional subtypes: bitcoin, ethereum, monero, monero_payment_id, litecoin, dash
-- credit card numbers with subtypes (visa, mastercard, american express, diners club, discovery, jcb, unionpay)
-- website
-- software
-- filename
-- ip_address, subtypes: 
-    - v4, 
-    - v6 (in development)
-- mac address
-- username
+- **persona**, con subtipos opcionales:
+    - `fictional_character` — personajes de libros, películas, etc.
+    - `important_person` — VIPs, celebridades, figuras históricas, políticos, etc.
+    - `spiritual_being` — dioses, espíritus, etc.
+- **organización**
+- **lugar**
+- **rango de tiempo**
+- **fecha**
+- **hora**
+- **cantidad de dinero**
+- **número de teléfono**
+- **rol** — rol social (profesión, rango, etc.)
+- **direcciones de criptomonedas**, con subtipos opcionales: bitcoin, ethereum, monero,
+  monero_payment_id, litecoin, dash
+- **números de tarjeta de crédito**, con subtipos: visa, mastercard, american express,
+  diners club, discovery, jcb, unionpay
+- **sitio web**
+- **software**
+- **nombre de archivo**
+- **dirección IP**, con subtipos:
+    - v4
+    - v6 (en desarrollo)
+- **dirección MAC**
+- **nombre de usuario**
 
-## Language Identification
-Detects the language of the utterance. 
+## Identificación del idioma
 
-## Sentiment Analysis
+Detecta el idioma del enunciado.
 
-Sentiment analysis both at the document level and as a breakdown by aspects / facets (so-called "aspect-based sentiment analysis"). 
+## Análisis de sentimiento
 
-Note that sentiment analysis and detection of problematic content are not the same. Sentiment can be negative and not be a personal attack or hate speech; on the other hand, criminal activity or sexual advances may not necessarily carry negative sentiment.
+Análisis de sentimiento tanto **a nivel de documento** como desglosado **por aspectos o
+facetas** (lo que se conoce como *aspect-based sentiment analysis*).
 
+Conviene señalar que el análisis de sentimiento y la detección de contenido problemático **no
+son lo mismo**. El sentimiento puede ser negativo sin constituir un ataque personal o discurso
+de odio; y a la inversa, la actividad delictiva o las insinuaciones sexuales no necesariamente
+llevan un sentimiento negativo asociado.
+
+## Ver también
+
+- [Detección de patrones de nombres](deteccion_de_patrones_de_nombres.md)

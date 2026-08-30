@@ -1,26 +1,26 @@
-# How to detect name patterns
+# Detección de Patrones de Nombres
 
-One interesting project is the detection of name patterns in large datasets of titles, here you do not have enough contextual information to get good results about the semantic meaning of each word part of the title, however we can perform some analysis.
+Un proyecto interesante es la **detección de patrones de nombres** en grandes conjuntos de títulos. Aquí no dispones de suficiente información contextual para obtener buenos resultados sobre el significado semántico de cada palabra del título, pero aun así se puede hacer bastante análisis.
 
 
-To perform clustering on a set of titles, we can follow these classic steps:
+Para hacer clustering sobre un conjunto de títulos podemos seguir estos pasos clásicos:
 
-1. Preprocess the titles: Convert the titles into numerical representation that can be used as input to a clustering algorithm. One common approach is to use bag of words or [TF-IDF ](https://en.wikipedia.org/wiki/Tf%E2%80%93idf)representation of the titles.
+1. **Preprocesar los títulos**: convertirlos en una representación numérica que sirva de entrada al algoritmo de clustering. Un enfoque común es usar *bag of words* o la representación [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf).
 
-2. Choose a clustering algorithm: There are many clustering algorithms to choose from such as K-Means, Hierarchical clustering, DBSCAN, etc. Choose the one that suits your data and requirements.
+2. **Elegir un algoritmo de clustering**: hay muchos donde escoger —K-Means, clustering jerárquico, DBSCAN, etc.—. Elige el que se ajuste a tus datos y requisitos.
 
-3. Train the clustering algorithm: Train the chosen clustering algorithm on the preprocessed titles. You may have to experiment with different parameters of the algorithm to get the best results.
+3. **Entrenar el algoritmo**: sobre los títulos preprocesados. Probablemente tendrás que experimentar con distintos parámetros para obtener los mejores resultados.
 
-4. Evaluate the clustering results: Evaluate the clustering results using metrics such as silhouette score, adjusted rand index, etc.
+4. **Evaluar los resultados**: usando métricas como el *silhouette score* o el *adjusted rand index*.
 
-5. Interpreting the results: After evaluating the clustering results, you can inspect the titles assigned to each cluster and name the cluster based on the most common keywords or themes that appear in the titles in the cluster.
+5. **Interpretar los resultados**: tras evaluar, puedes inspeccionar los títulos asignados a cada cluster y nombrarlo según las palabras clave o temas más comunes que aparecen en él.
 
-In order to improve clustering some preprocess should be performed:
+Para mejorar el clustering conviene aplicar cierto preprocesamiento:
 
-- Lowercases the text
-- Lemmatizes each token/word
-- Removes punctuation symbols
-- Removes stop words
+- Pasar el texto a minúsculas.
+- Lematizar cada token o palabra.
+- Eliminar los símbolos de puntuación.
+- Eliminar las *stop words*.
 
 
 ```python
@@ -65,9 +65,9 @@ Title: El congreso Cluster: 0
 Title: Guía del autoestopista galáctico Cluster: 2
 
 ```
-To measure the similarity of titles while ignoring prefix or suffix numbers, you can use a preprocessing step to remove the numbers before computing the similarity. There are various ways to do this, but one common approach is to split the title on whitespaces and keep only the first and last words of the title.
+Para medir la similitud entre títulos **ignorando los números de prefijo o sufijo**, puedes usar un paso de preprocesamiento que los elimine antes de calcular la similitud. Hay varias formas de hacerlo; una habitual es dividir el título por espacios en blanco y quedarse solo con la primera y la última palabra.
 
-Example code in python using cosine similarity:
+Ejemplo en Python usando similitud del coseno:
 
 
 ```python
@@ -108,19 +108,19 @@ Similarity matrix:
 
 ```
 
-In this example, the cosine similarity matrix is computed between the preprocessed titles. The cosine similarity measures the similarity between two documents as the cosine of the angle between their vector representations.
+En este ejemplo se calcula la matriz de similitud del coseno entre los títulos preprocesados. La similitud del coseno mide el parecido entre dos documentos como el coseno del ángulo entre sus representaciones vectoriales.
 
 
 
-To improve the measure of similarity of titles while ignoring prefix or suffix numbers and typos, you can use several techniques:
+Para mejorar la medida de similitud ignorando números de prefijo o sufijo **y también erratas**, se pueden usar varias técnicas:
 
-1. Preprocessing: Similar to what was discussed in the previous answer, you can use a preprocessing step to remove the numbers and normalize the titles. You can also consider converting the titles to lowercase, removing stopwords, and stemming or lemmatizing the words to reduce the impact of typos.
+1. **Preprocesamiento**: como se comentó antes, se pueden eliminar los números y normalizar los títulos. También conviene pasarlos a minúsculas, quitar *stop words* y aplicar *stemming* o lematización para reducir el impacto de las erratas.
 
-2. Fuzzy matching: You can use fuzzy matching techniques such as the Jaccard similarity or Levenshtein distance to capture similarities between the titles even when they contain typos or misspellings.
+2. **Coincidencia difusa** (*fuzzy matching*): técnicas como la similitud de Jaccard o la distancia de Levenshtein capturan similitudes entre títulos incluso cuando contienen erratas.
 
-3. Word embeddings: Instead of using a bag-of-words representation, you can use word embeddings, such as Word2Vec or FastText, to represent the titles. These embeddings can capture semantic relationships between the words and provide a more sophisticated representation of the titles.
+3. **Word embeddings**: en lugar de *bag of words*, se pueden usar embeddings como Word2Vec o FastText. Capturan relaciones semánticas entre palabras y ofrecen una representación más sofisticada de los títulos.
 
-Example code in python using fuzzywuzzy library and Jaccard similarity:
+Ejemplo en Python usando la librería `fuzzywuzzy` y la similitud de Jaccard:
 
 ```python
 from fuzzywuzzy import fuzz
@@ -161,10 +161,10 @@ Similarity matrix:
  [32, 39, 39, 92, 100, 75], 
  [26, 26, 26, 80, 75, 100]]
 ```
-In this example, the Jaccard similarity is computed between the preprocessed titles. The Jaccard similarity measures the similarity between two sets of words as the ratio of their intersection to their union.
+En este ejemplo se calcula la similitud de Jaccard entre los títulos preprocesados. Mide el parecido entre dos conjuntos de palabras como el cociente entre su intersección y su unión.
 
 
-## Adding Lematization
+## Añadiendo lematización
 
 ```python
 import spacy
@@ -226,9 +226,9 @@ Similarity matrix with new case:
     ]
 ```
 
-## Now lets improve preprocessing
+## Mejorando el preprocesamiento
 
-In this example, the special punctuation, underscores, and numbers are removed using regular expressions as part of the preprocessing step. The lemmatized titles are then computed using the spaCy library and the Jaccard similarity is computed between the preprocessed titles.
+En este ejemplo se eliminan la puntuación especial, los guiones bajos y los números mediante expresiones regulares como parte del preprocesamiento. Después se lematizan los títulos con spaCy y se calcula la similitud de Jaccard entre ellos.
 
 ```python
 import re
@@ -285,7 +285,7 @@ Similarity matrix:
 
 ## Stop words
 
-Using the previous code on:
+Aplicando el código anterior sobre:
 
 ```python
 list_titles = [
@@ -300,7 +300,7 @@ list_titles = [
     "The Hunger Games 2",
 ]
 ```
-we will got the next matrix of similarity:
+obtenemos la siguiente matriz de similitud:
 
 ```bash
 Similarity matrix:
@@ -315,7 +315,7 @@ Similarity matrix:
 [21, 21, 21, 31, 100, 100, 100, 69, 100]]
 ```
 
-here our current preprocessed titles are:
+y los títulos preprocesados quedan así:
 
 ```python
 print(preprocessed_titles)
@@ -385,10 +385,10 @@ Similarity matrix:
 ]
 ```
 
-In this example, the stop words are filtered out as part of the preprocessing step by checking if each token is a stop word using the is_stop property in spaCy. The lemmatized titles are then computed using the spaCy library and the Jaccard similarity is computed between the preprocessed titles.
+En este ejemplo las *stop words* se filtran durante el preprocesamiento comprobando la propiedad `is_stop` de cada token en spaCy. Después se lematizan los títulos y se calcula la similitud de Jaccard entre ellos.
 
 
-This preprocess make the large change due:
+Este preprocesamiento produce el mayor cambio, debido a:
 
 ```python
 print(preprocessed_titles)
@@ -401,7 +401,7 @@ print(preprocessed_titles)
  'hunger game']
 ```
 
-# Levenshtein Metric
+## Métrica de Levenshtein
 
 ```python
 def levenshtein_similarity(s1, s2):
@@ -467,7 +467,7 @@ if __name__ == '__main__':
     unittest.main()
 
 ```
-# Subsequence Metric
+## Métrica de subsecuencia
 
 
 ```python
@@ -494,7 +494,7 @@ La función toma dos cadenas de texto como entrada (s1 y s2) y devuelve un valor
 
 
 
-# Matcher
+## Matcher
 
 ```python
 import spacy
@@ -566,7 +566,7 @@ Cabe destacar que los resultados pueden variar en función del modelo de spaCy u
 
 
 
-# Scala
+## Scala
 
 ```scala
 import org.apache.spark.ml.clustering.KMeans
