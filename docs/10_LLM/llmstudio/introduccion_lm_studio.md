@@ -1,25 +1,25 @@
-# lm-studio
+# Introducción a LM Studio
 
-`lmstudio-python` provides you a set APIs to interact with LLMs, embeddings models, and agentic flows.
+`lmstudio-python` ofrece un conjunto de APIs para interactuar con [LLMs](../introduccion.md), modelos de embeddings y flujos agénticos.
 
-## Installing the SDK
+## Instalar el SDK
 
-`lmstudio-python` is available as a PyPI package. You can install it using pip.
+`lmstudio-python` está disponible como paquete de PyPI. Puedes instalarlo con `pip`.
 
 ```bash
 pip install lmstudio
 ```
 
-For the source code and open source contribution, visit [lmstudio-python](https://github.com/lmstudio-ai/lmstudio-python) on GitHub.
+Para el código fuente y contribuir al proyecto, visita [lmstudio-python](https://github.com/lmstudio-ai/lmstudio-python) en GitHub.
 
-## Features
+## Funcionalidades
 
-- Use LLMs to [respond in chats](./python/llm-prediction/chat-completion) or predict [text completions](./python/llm-prediction/completion)
-- Define functions as tools, and turn LLMs into [autonomous agents](./python/agent) that run completely locally
-- [Load](./python/manage-models/loading), [configure](./python/llm-prediction/parameters), and [unload](./python/manage-models/loading) models from memory
-- Generate embeddings for text, and more!
+- Usar LLMs para [responder en chats](https://lmstudio.ai/docs/python/llm-prediction/chat-completion) o predecir [completados de texto](https://lmstudio.ai/docs/python/llm-prediction/completion).
+- Definir funciones como herramientas y convertir los LLMs en [agentes autónomos](https://lmstudio.ai/docs/python/agent/act) que se ejecutan completamente en local.
+- [Cargar](https://lmstudio.ai/docs/python/manage-models/loading), [configurar](https://lmstudio.ai/docs/python/llm-prediction/parameters) y [descargar](https://lmstudio.ai/docs/python/manage-models/loading) modelos de memoria.
+- Generar embeddings de texto, y más.
 
-## Quick Example: Chat with a Llama Model
+## Ejemplo rápido: chatear con un modelo Llama
 
 ```python title="Python (convenience API)" linenums="1"
 import lmstudio as lms
@@ -53,66 +53,65 @@ async with lms.AsyncClient() as client:
 ```
 
 
-### Getting Local Models
+### Obtener modelos locales
 
-The above code requires the [qwen3-4b-2507](https://lmstudio.ai/models/qwen/qwen3-4b-2507) model.
-If you don't have the model, run the following command in the terminal to download it.
+El código anterior requiere el modelo [qwen3-4b-2507](https://lmstudio.ai/models/qwen/qwen3-4b-2507).
+Si no lo tienes, ejecuta el siguiente comando en la terminal para descargarlo.
 
 ```bash
 lms get qwen/qwen3-4b-2507
 ```
 
-Read more about `lms get` in LM Studio's CLI [here](./cli/get).
+Más información sobre `lms get` en la [documentación del CLI de LM Studio](https://lmstudio.ai/docs/cli/get).
 
-# Interactive Convenience, Deterministic Resource Management, or Structured Concurrency?
+## ¿Conveniencia interactiva, gestión determinista de recursos o concurrencia estructurada?
 
-As shown in the example above, there are three distinct approaches for working
-with the LM Studio Python SDK.
+Como se ve en el ejemplo anterior, hay **tres enfoques distintos** para trabajar con el SDK de
+Python de LM Studio.
 
-The first is the interactive convenience API (listed as "Python (convenience API)"
-in examples), which focuses on the use of a default LM Studio client instance for
-convenient interactions at a synchronous Python prompt, or when using Jupyter notebooks.
+El primero es la **API de conveniencia interactiva** (aparece como *Python (convenience API)* en
+los ejemplos), centrada en usar una instancia de cliente por defecto para interacciones cómodas
+en un prompt síncrono de Python, o al usar Jupyter notebooks.
 
-The second is a synchronous scoped resource API (listed as "Python (scoped resource API)"
-in examples), which uses context managers to ensure that allocated resources
-(such as network connections) are released deterministically, rather than
-potentially remaining open until the entire process is terminated.
+El segundo es la **API síncrona de recursos con ámbito** (*Python (scoped resource API)*), que
+usa gestores de contexto para garantizar que los recursos asignados —como las conexiones de
+red— se liberen de forma determinista, en lugar de quedar potencialmente abiertos hasta que
+termine el proceso completo.
 
-The last is an asynchronous structured concurrency API (listed as "Python (asynchronous API)" in
-examples), which is designed for use in asynchronous programs that follow the design principles of
-["structured concurrency"](https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful/)
-in order to ensure the background tasks handling the SDK's connections to the API server host
-are managed correctly. Asynchronous applications which do not adhere to those design principles
-will need to rely on threaded access to the synchronous scoped resource API rather than attempting
-to use the SDK's native asynchronous API. Python SDK version 1.5.0 is the first version to fully
-support the asynchronous API.
+El último es la **API asíncrona de concurrencia estructurada** (*Python (asynchronous API)*),
+diseñada para programas asíncronos que siguen los principios de la
+["concurrencia estructurada"](https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful/),
+de modo que las tareas en segundo plano que gestionan las conexiones del SDK con el servidor de
+la API se manejen correctamente. Las aplicaciones asíncronas que no sigan esos principios
+tendrán que apoyarse en acceso por hilos a la API síncrona con ámbito, en lugar de intentar usar
+la API asíncrona nativa del SDK. La versión 1.5.0 del SDK es la primera que soporta
+completamente la API asíncrona.
 
-Some examples are common between the interactive convenience API and the synchronous scoped
-resource API. These examples are listed as "Python (synchronous API)".
+Algunos ejemplos son comunes a la API de conveniencia interactiva y a la API síncrona con
+ámbito; esos aparecen listados como *Python (synchronous API)*.
 
-## Timeouts in the synchronous API
+## Timeouts en la API síncrona
 
-_Required Python SDK version_: **1.5.0**
+*Versión mínima del SDK de Python*: **1.5.0**
 
-Starting in Python SDK version 1.5.0, the synchronous API defaults to timing out after 60 seconds
-with no activity when waiting for a response or streaming event notification from the API server.
+A partir de la versión 1.5.0 del SDK, la API síncrona expira por defecto tras **60 segundos sin
+actividad** mientras espera una respuesta o una notificación de evento en streaming desde el
+servidor de la API.
 
-The number of seconds to wait for responses and event notifications can be adjusted using the
-`lmstudio.set_sync_api_timeout()` function. Setting the timeout to `None` disables the timeout
-entirely (restoring the behaviour of previous SDK versions).
+El número de segundos de espera se puede ajustar con la función
+`lmstudio.set_sync_api_timeout()`. Fijar el timeout a `None` lo desactiva por completo,
+restaurando el comportamiento de versiones anteriores del SDK.
 
-The current synchronous API timeout can be queried using the `lmstudio.get_sync_api_timeout()`
-function.
+El timeout actual se puede consultar con la función `lmstudio.get_sync_api_timeout()`.
 
-## Timeouts in the asynchronous API
+## Timeouts en la API asíncrona
 
-_Required Python SDK version_: **1.5.0**
+*Versión mínima del SDK de Python*: **1.5.0**
 
-As asynchronous coroutines support cancellation, there is no specific timeout support implemented
-in the asynchronous API. Instead, general purpose async timeout mechanisms, such as
-[`asyncio.wait_for()`](https://docs.python.org/3/library/asyncio-task.html#asyncio.wait_for) or
-[`anyio.move_on_after()`](https://anyio.readthedocs.io/en/stable/cancellation.html#timeouts),
-should be used.
+Como las corrutinas asíncronas admiten cancelación, la API asíncrona no implementa un soporte
+específico de timeout. En su lugar deben usarse los mecanismos generales de timeout asíncrono,
+como [`asyncio.wait_for()`](https://docs.python.org/3/library/asyncio-task.html#asyncio.wait_for)
+o [`anyio.move_on_after()`](https://anyio.readthedocs.io/en/stable/cancellation.html#timeouts).
 
 
 

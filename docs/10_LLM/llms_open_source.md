@@ -1,25 +1,29 @@
-# Top Open Source LLMs available for Commercial Use:
+# LLMs Open Source para Uso Comercial
+
+Selección de modelos de lenguaje abiertos que permiten uso comercial. Ver
+[requerimientos de hardware](requerimientos_de_hardware.md) para estimar qué puedes ejecutar
+localmente.
 
 ## 𝗟𝗹𝗮𝗺𝗮 𝟮
 
-- Creator: Meta
-- Parameters: 7B, 13B, and 70B
-- Link: https://lnkd.in/gN78dhQT
+- Creador: Meta
+- Parámetros: 7B, 13B, and 70B
+- Enlace: https://lnkd.in/gN78dhQT
 
 
-You need to go to [Meta website](https://llama.meta.com/llama-downloads/) to request access to Llama, then a request will be generated:
+Hay que ir al [sitio de Meta](https://llama.meta.com/llama-downloads/) para solicitar acceso a Llama; se generará una solicitud:
 
 `Request ID: 2133934780338394`
 
-Then you will receive an email with instructions to clone repository and use an script to download weights, this script will require you an http url provided in the email. Take in cosideration that to download all this weight could be around 300GB.
+Después recibirás un correo con instrucciones para clonar el repositorio y usar un script que descarga los pesos. El script te pedirá una URL HTTP incluida en ese correo. Ten en cuenta que descargar todos los pesos puede suponer unos **300 GB**.
 
-Regarless models seems to be public, dataset still private.
+Aunque los modelos parecen ser públicos, **el dataset sigue siendo privado**.
 
-Llama 2 is a collection of pretrained and fine-tuned generative text models ranging in scale from 7 billion to 70 billion parameters. Fine-tuned LLMs, called Llama-2-Chat, are optimized for dialogue use cases. Llama-2-Chat models outperform open-source chat models on most benchmarks tested.
+Llama 2 es una colección de modelos generativos de texto, preentrenados y ajustados, con escalas de 7 000 a 70 000 millones de parámetros. Los modelos ajustados, llamados **Llama-2-Chat**, están optimizados para casos de uso de diálogo, y superan a otros modelos de chat de código abierto en la mayoría de los benchmarks probados.
 
-Only to get an idea trainning those models cost
+Solo para hacerse una idea, entrenar estos modelos costó:
 
-| Model | Version | Time(GPU hours) | Power Consumption(W) |
+| Modelo | Versión | Tiempo (horas GPU) | Consumo (W) |
 | ---   | ---     | ---             | ---                  |
 | Llama2| 7B      | 184,320         |  400                 |
 | Llama2| 13B     | 368,640         |  400                 |
@@ -30,93 +34,93 @@ Only to get an idea trainning those models cost
 
 ## 𝗙𝗮𝗹𝗰𝗼𝗻
 
-- Creators: Technology Innovation Institute in Abu Dhabi
-- Parameters: 7B and 40B
-- Link: https://lnkd.in/gugZgjZV
+- Creador: Technology Innovation Institute, Abu Dabi
+- Parámetros: 7B and 40B
+- Enlace: https://lnkd.in/gugZgjZV
 
 ## 𝗗𝗼𝗹𝗹𝘆 𝟮.𝟬
 
-- Creators: Databricks
-- Parameters: 12B
-- Link: https://lnkd.in/g5xYfua7
+- Creador: Databricks
+- Parámetros: 12B
+- Enlace: https://lnkd.in/g5xYfua7
 
 ## 𝗠𝗣𝗧
 
-- Creators: MosaicML (acquired by Databricks)
-- Parameters: 7B and 30B
-- Link: https://lnkd.in/g8pdMsAj
+- Creador: MosaicML (adquirida por Databricks)
+- Parámetros: 7B and 30B
+- Enlace: https://lnkd.in/g8pdMsAj
 
 ## 𝗙𝗟𝗔𝗡-𝗧𝟱
 
-- Creators: Google
-- Parameters: 80M to 11B
-- Link: https://lnkd.in/g64RxdY3
+- Creador: Google
+- Parámetros: 80M to 11B
+- Enlace: https://lnkd.in/g64RxdY3
 
 ## 𝗚𝗣𝗧-𝗡𝗲𝗼𝗫-𝟮𝟬𝗕
 
-- Creators: EleutherAI
-- Parameters: 20B
-- Link to test: https://lnkd.in/g9RGuNnb
+- Creador: EleutherAI
+- Parámetros: 20B
+- Enlace de prueba: https://lnkd.in/g9RGuNnb
 
 ## 𝗢𝗣𝗧-𝟭𝟳𝟱𝗕 (𝗢𝗽𝗲𝗻 𝗣𝗿𝗲-𝘁𝗿𝗮𝗶𝗻𝗲𝗱 𝗧𝗿𝗮𝗻𝘀𝗳𝗼𝗿𝗺𝗲𝗿 𝗺𝗼𝗱𝗲𝗹)
 
-- Creators: Meta
-- Parameters: 175B
-- Link: https://lnkd.in/gPx7C4Ty
+- Creador: Meta
+- Parámetros: 175B
+- Enlace: https://lnkd.in/gPx7C4Ty
 
 ## 𝗕𝗟𝗢𝗢𝗠
 
-- Creators: BigScience
-- Parameters: 176B
-- Link: https://lnkd.in/gzDZt5x8
+- Creador: BigScience
+- Parámetros: 176B
+- Enlace: https://lnkd.in/gzDZt5x8
 
 ## 𝐁𝐚𝐢𝐜𝐡𝐮𝐚𝐧-13𝐁
 
-- Creators: Baichuan
-- Parameters: 13B
-- Link: https://lnkd.in/gaRkb3d7
+- Creador: Baichuan
+- Parámetros: 13B
+- Enlace: https://lnkd.in/gaRkb3d7
 
 ## 𝗕𝗘𝗥𝗧
 
-- Creators: Google
-- Parameters: 340M
-- Link: https://lnkd.in/gvNC3bUM
+- Creador: Google
+- Parámetros: 340M
+- Enlace: https://lnkd.in/gvNC3bUM
 
 ## 𝗩𝗶𝗰𝘂𝗻𝗮
 
-- Creators: LMSYS
-- Parameters: 7B, 13B and 33B
-- Link: https://lnkd.in/gPB6-N4i
+- Creador: LMSYS
+- Parámetros: 7B, 13B and 33B
+- Enlace: https://lnkd.in/gPB6-N4i
 
 ## 𝗠𝗶𝘀𝘁𝗿𝗮𝗹
 
-- Creators: Mistral AI
-- Parameters: 7B
-- Link: https://lnkd.in/gqSKFrqY
+- Creador: Mistral AI
+- Parámetros: 7B
+- Enlace: https://lnkd.in/gqSKFrqY
 
 ## 𝗚𝗲𝗺𝗺𝗮
 
-- Creators: Google
-- Parameters: 2B and 7B
-- Link: https://lnkd.in/gdrV_BMM
+- Creador: Google
+- Parámetros: 2B and 7B
+- Enlace: https://lnkd.in/gdrV_BMM
 
 ## 𝗽𝗵𝗶-𝟮
 
-- Creators: Microsoft
-- Parameters: 2.7B
-- Link: https://lnkd.in/gJzVGMT6
+- Creador: Microsoft
+- Parámetros: 2.7B
+- Enlace: https://lnkd.in/gJzVGMT6
 
 ## 𝗦𝘁𝗮𝗿𝗖𝗼𝗱𝗲𝗿𝟮
 
-- Creators: BigCode
-- Parameters: 3B, 7B and 15B
-- Link: https://lnkd.in/gxPPC28m
+- Creador: BigCode
+- Parámetros: 3B, 7B and 15B
+- Enlace: https://lnkd.in/gxPPC28m
 
 ## 𝗠𝗶𝘅𝘁𝗿𝗮𝗹
 
-- Creators: Mistral AI
-- Parameters: 8-7B
-- Link: https://lnkd.in/gfyP2Wh6
+- Creador: Mistral AI
+- Parámetros: 8-7B
+- Enlace: https://lnkd.in/gfyP2Wh6
 
 
 

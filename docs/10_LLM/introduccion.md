@@ -1,25 +1,38 @@
-# Introduction to LLMs
+# Introducción a los LLMs
 
-LLMs are AI systems used to model and process human language. They are called ``large'' because these types of models are normally made of hundreds of millions or even billions of parameters that define the model's behavior, which are pre-trained using a massive corpus of text data.
+Los **LLMs** (*Large Language Models*, modelos grandes de lenguaje) son sistemas de IA usados
+para modelar y procesar el lenguaje humano. Se les llama *grandes* porque este tipo de modelos
+se compone normalmente de cientos de millones —o incluso miles de millones— de parámetros que
+definen su comportamiento, preentrenados sobre un corpus masivo de texto.
 
-The underlying technology of LLMs is called **transformer neural network**, simply referred to as a **transformer**. As we will explain in more detail in the next section, a transformer is an innovative neural architecture within the field of deep learning.
+La tecnología subyacente se llama **red neuronal transformer**, o simplemente **transformer**:
+una arquitectura neuronal innovadora dentro del campo del deep learning.
 
-
-Presented by Google researchers in the famous paper Attention is All You Need in 2017, transformers are capable of performing natural language (NLP) tasks with unprecedented accuracy and speed. With its unique capabilities, transformers have provided a significant leap in the capabilities of LLMs. It’s fair to say that, without transformers, the current generative AI revolution wouldn’t be possible.
+Presentados por investigadores de Google en el famoso artículo *Attention is All You Need*
+(2017), los transformers son capaces de realizar tareas de procesamiento de lenguaje natural
+(NLP) con una precisión y velocidad sin precedentes. Sus capacidades supusieron un salto
+significativo para los LLMs; es justo decir que **sin transformers la revolución actual de la
+IA generativa no sería posible**.
 
 ![llms](../images/llm/LLMs_gant.png)
-Source: [Information is Beautiful](https://informationisbeautiful.net/visualizations/the-rise-of-generative-ai-large-language-models-llms-like-chatgpt/)
 
+Fuente: [Information is Beautiful](https://informationisbeautiful.net/visualizations/the-rise-of-generative-ai-large-language-models-llms-like-chatgpt/)
 
-We can see, the first modern LLMs were created right after the development of transformers, with the most significant examples being 
+Como se aprecia, los primeros LLMs modernos se crearon justo después del desarrollo de los
+transformers. Los ejemplos más significativos son:
 
-- BERT: the first LLM developed by Google to test the power of transformers 
-- GPT-1 and GPT-2, the first two models in the GPT series created by OpenAI. 
+- **BERT**: el primer LLM desarrollado por Google para probar la potencia de los transformers.
+- **GPT-1** y **GPT-2**: los dos primeros modelos de la serie GPT, creados por OpenAI.
 
-But it's only in the 2020s that LLMs become mainstream, increasingly bigger (in terms of parameters), and hence more powerful, with well-known examples like GPT-4 and LLaMa.
+Pero es en la década de 2020 cuando los LLMs se vuelven mayoritarios, cada vez más grandes en
+número de parámetros y, por tanto, más capaces, con ejemplos conocidos como GPT-4 y LLaMA.
 
+## En esta sección
 
-
-
-
- 
+- [LLMs open source](llms_open_source.md)
+- [Requerimientos de hardware](requerimientos_de_hardware.md)
+- [Prompting](prompting.md)
+- [MCP](MCP/introduccion_mcp.md) — el protocolo para dar contexto y herramientas a los modelos.
+- [RAGs](RAGS/chatbot_rag_con_langchain.md) — generación aumentada por recuperación.
+- [LM Studio](llmstudio/introduccion_lm_studio.md) y
+  [LLMs locales](LOCAL_LLM/llms_locales.md).

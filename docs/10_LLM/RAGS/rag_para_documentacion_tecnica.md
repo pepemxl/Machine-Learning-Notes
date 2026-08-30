@@ -1,6 +1,6 @@
-# Building a RAG chatbot for technical documentation
+# RAG para Documentación Técnica
 
-##  Building Multimodal AI Applications with LangChain & the OpenAI API AI Code Along 
+## Construir aplicaciones de IA multimodal con LangChain y la API de OpenAI
 
 ### Hugging Face Falcon 7b
 
@@ -34,73 +34,65 @@ without spending a lot of money?Yes, you can still have fun without spending a l
 
 
 
-The car manual HTML document has been loaded for you as `car_docs` . Using Retrieval Augmented Generation (RAG), answer the user query:
+El manual del coche en HTML se ha cargado en la variable `car_docs`. Usando *Retrieval Augmented Generation* (RAG), responde a la consulta del usuario:
 
-"The Gasoline Particular Filter Full warning has appeared. What does this mean and what should I do about it?"
+"Ha aparecido el aviso *Gasoline Particulate Filter Full*. ¿Qué significa y qué debo hacer?"
 
-Store the answer to the user query in the variable `answer`.
+Guarda la respuesta en la variable `answer`.
 
 
 
-You're working for a well-known car manufacturer who is looking at implementing LLMs into vehicles to provide guidance to drivers. You've been asked to experiment with integrating car manuals with an LLM to create a context-aware chatbot. They hope that this context-aware LLM can be hooked up to a text-to-speech software to read the model's response aloud.
+Trabajas para un fabricante de coches conocido que quiere integrar [LLMs](../introduccion.md) en sus vehículos para orientar a los conductores. Te han pedido experimentar con la integración de los manuales del coche y un LLM, para crear un chatbot consciente del contexto. La idea es que ese LLM pueda conectarse después a un software de texto a voz que lea la respuesta en voz alta.
 
-As a proof of concept, you'll integrate several pages from a car manual that contains car warning messages and their meanings and recommended actions. This particular manual, stored as an HTML file, `mg-zs-warning-messages.html`, is from an MG ZS, a compact SUV. Armed with your newfound knowledge of LLMs and LangChain, you'll implement Retrieval Augmented Generation (RAG) to create the context-aware chatbot.
+Como prueba de concepto, integrarás varias páginas de un manual que contiene los mensajes de aviso del coche, su significado y las acciones recomendadas. Este manual concreto, almacenado como archivo HTML `mg-zs-warning-messages.html`, corresponde a un MG ZS, un SUV compacto. Con lo aprendido sobre LLMs y [LangChain](langchain.md), implementarás RAG para construir el chatbot.
 
-## Before you start
+## Antes de empezar
 
-In order to complete the project you will need to create a developer account with OpenAI and store your API key as a secure environment variable. Instructions for these steps are outlined below.
+Para completar el proyecto necesitarás crear una cuenta de desarrollador en OpenAI y guardar tu clave API como variable de entorno segura. Los pasos se detallan a continuación.
 
-### Create a developer account with OpenAI
+### Crear una cuenta de desarrollador en OpenAI
 
-1. Go to the [API signup page](https://platform.openai.com/signup). 
+1. Ve a la [página de registro de la API](https://platform.openai.com/signup).
 
-2. Create your account (you'll need to provide your email address and your phone number).
+2. Crea tu cuenta (necesitarás proporcionar tu correo electrónico y tu número de teléfono).
 
-3. Go to the [API keys page](https://platform.openai.com/account/api-keys). 
+3. Ve a la [página de claves API](https://platform.openai.com/account/api-keys).
 
-4. Create a new secret key.
+4. Crea una nueva clave secreta.
 
-<img src="images/openai-new-secret-key.png" width="200">
+5. **Cópiala y guárdala.** Si la pierdes, borra la clave y crea una nueva.
 
-5. **Take a copy of it**. (If you lose it, delete the key and create a new one.)
+### Añadir un método de pago
 
-### Add a payment method
+OpenAI a veces ofrece créditos gratuitos para la API, pero esto varía según la región. Puede que necesites añadir los datos de una tarjeta de débito o crédito.
 
-OpenAI sometimes provides free credits for the API, but this can vary depending on geography. You may need to add debit/credit card details. 
+**Este proyecto debería costar menos de 1 centavo de dólar con GPT-3.5-Turbo, pero si repites las tareas se te cobrará cada vez.**
 
-**This project should cost less than 1 US cents with GPT-3.5-Turbo (but if you rerun tasks, you will be charged every time).**
+1. Ve a la [página de métodos de pago](https://platform.openai.com/account/billing/payment-methods).
 
-1. Go to the [Payment Methods page](https://platform.openai.com/account/billing/payment-methods).
+2. Haz clic en *Add payment method*.
 
-2. Click Add payment method.
+3. Rellena los datos de tu tarjeta.
 
-<img src="images/openai-add-payment-method.png" width="200">
+### Añadir una variable de entorno con tu clave de OpenAI
 
-3. Fill in your card details.
+1. En el cuaderno, haz clic en *Environment* en la barra superior y selecciona *Environment variables*.
 
-### Add an environmental variable with your OpenAI key
+2. Haz clic en *Add* para añadir variables de entorno.
 
-1. In the workbook, click on "Environment," in the top toolbar and select "Environment variables".
+3. En el campo *Name* escribe `OPENAI_API_KEY`. En el campo *Value* pega tu clave secreta.
 
-2. Click "Add" to add environment variables.
+4. Haz clic en *Create*; verás la siguiente ventana emergente. Pulsa *Connect* y espera de 5 a 10 segundos a que el kernel se reinicie, o reinícialo manualmente desde el menú *Run*.
 
-3. In the "Name" field, type "OPENAI_API_KEY". In the "Value" field, paste in your secret key.
+### Actualizar a Python 3.10
 
-<img src="images/datalab-env-var-details.png" width="500">
+Dada la frecuencia con la que se actualizan las librerías necesarias para este proyecto, tendrás que actualizar tu entorno a Python 3.10:
 
-4. Click "Create", then you'll see the following pop-up window. Click "Connect," then wait 5-10 seconds for the kernel to restart, or restart it manually in the Run menu.
+1. En el cuaderno, haz clic en *Environment* en la barra superior y selecciona *Session details*.
 
-<img src="images/connect-integ.png" width="500">
+2. En el desplegable de lenguaje, selecciona *Python 3.10*.
 
-### Update to Python 3.10
-
-Due to how frequently the libraries required for this project are updated, you'll need to update your environment to Python 3.10:
-
-1. In the workbook, click on "Environment," in the top toolbar and select "Session details".
-
-2. In the workbook language dropdown, select "Python 3.10".
-
-3. Click "Confirm" and hit "Done" once the session is ready.
+3. Pulsa *Confirm* y después *Done* cuando la sesión esté lista.
 
 
 

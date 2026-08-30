@@ -653,12 +653,12 @@ Usa variables de entorno para datos sensibles:
 ### Verificar logs de Claude Desktop
 
 **Windows:**
-```
+```text
 %APPDATA%\Claude\logs\
 ```
 
 **macOS:**
-```
+```text
 ~/Library/Logs/Claude/
 ```
 

@@ -1,13 +1,13 @@
-# Build a LLM RAG chatbot using Langchain
+# Chatbot RAG con LangChain
 
-An LLM-RAG-chatbot is a chatbot that is using Retrieval Augmented Generation. This is specifically designed for handling queries related to specific topics or articles.
+Un **chatbot RAG** es un chatbot que usa *Retrieval Augmented Generation* (generación aumentada por recuperación). Está pensado específicamente para atender consultas sobre temas o artículos concretos.
 
-**RAG**, short for **Retrieval-Augmented Generation**, is a way to boost what Large Language Models (LLMs) know by adding more data to them. It’s made up of two main components:
+**RAG** es una forma de ampliar lo que un [LLM](../introduccion.md) sabe, añadiéndole datos adicionales. Se compone de dos partes principales:
 
-- Indexing: This is about taking in data from various sources and organising it in a way that the system can easily use, which is indexing.
-- Retrieval and Generation: 
-    - The retrieval component acts like a focused search engine, scanning a database of indexed information to find relevant data related to the user’s query. This data is then fed into the Large Language Model. 
-    - The model uses this context, along with its trained knowledge base, to generate a response that’s more informed and accurate. This synergistic process allows RAG to provide more precise answers by supplementing its extensive but generalised training with specific, targeted information.
+- **Indexación**: tomar datos de diversas fuentes y organizarlos de forma que el sistema pueda usarlos con facilidad.
+- **Recuperación y generación**:
+    - El componente de recuperación actúa como un buscador especializado: rastrea una base de información indexada para encontrar datos relevantes a la consulta del usuario, y se los pasa al LLM.
+    - El modelo usa ese contexto, junto con su conocimiento entrenado, para generar una respuesta más informada y precisa. Este proceso permite a RAG dar respuestas más exactas, complementando su entrenamiento amplio pero generalista con información específica y dirigida.
 
 
 ```mermaid
@@ -36,47 +36,47 @@ flowchart LR;
     U3 <--|Retrive chunk of text related to question(embedded)|--> ST4
 ```
 
-## Tools
+## Herramientas
 
-## Create a hugging face account
-
-
- To create a Hugging Face account, you can go to  [https://huggingface.co/join](https://huggingface.co/join) and sign up.
-
- After signing up, go to Your Profile page, click on Edit Profile, and go to Access Tokens.
+## Crear una cuenta de Hugging Face
 
 
- On the Access Tokens page, create a new token called llm-test, or similar. Make sure no one has access to this token except you.
+Para crear una cuenta de Hugging Face, ve a [https://huggingface.co/join](https://huggingface.co/join) y regístrate.
 
-## Create a vector database in Pinecone
-
-To create a PineCone account, sign up via  [https://www.pinecone.io/](https://www.pinecone.io/).
+Tras registrarte, entra en tu perfil, haz clic en *Edit Profile* y ve a *Access Tokens*.
 
 
- After registering with the free tier, go into the project, for personal use it creates a Project.
+En la página de *Access Tokens*, crea un token nuevo llamado `llm-test` o similar. **Asegúrate de que nadie más que tú tenga acceso a ese token.**
 
- After the project is created, go into the API Keys section, and make sure you have an API key available. Do not share this API key.
+## Crear una base de datos vectorial en Pinecone
+
+Para crear una cuenta en Pinecone, regístrate en [https://www.pinecone.io/](https://www.pinecone.io/). Ver [bases de datos vectoriales](../../00_DATA/databases/bases_de_datos_vectoriales.md).
 
 
-install libraries
+Tras registrarte en el plan gratuito, entra en el proyecto: para uso personal se crea uno automáticamente.
+
+Una vez creado el proyecto, ve a la sección *API Keys* y comprueba que tienes una clave disponible. **No compartas esta clave.**
+
+
+Instala las librerías:
 
 - `langchain`
 - `pinecone-client`
 - `streamlit`
 
 
-## Data indexing
+## Indexación de datos
 
-We need to first have the data that our model will use to answer questions. In this case, we need a text file or a pdf about some topic, recommended to use some info that only exist in this year, then this data wont be part of any LLM, as our chatbot will be answering questions related to this. Here, we will be taking text from any topic website and storing it in a `<topic>.txt` file inside our project directory. 
+Primero necesitamos los datos que el modelo usará para responder. En este caso hace falta un archivo de texto o un PDF sobre algún tema. Conviene usar información **reciente**, que no forme parte del entrenamiento de ningún LLM, ya que nuestro chatbot responderá preguntas sobre ella. Aquí tomaremos texto de un sitio web sobre el tema y lo guardaremos en un archivo `<tema>.txt` dentro del directorio del proyecto.
 
-Feel free to use any blog or article — just make sure you are using the right context.
+Puedes usar cualquier blog o artículo; solo asegúrate de emplear el contexto adecuado.
 
 
-Having gathered the textual content for our RAG application, it’s time to move on to the data indexing phase. Initially, we'll break down the text files into manageable segments. This is done by deploying a text splitter where we define the dimensions of these segments. 
+Recopilado el contenido textual, pasamos a la fase de indexación. Lo primero es **dividir los archivos de texto en segmentos manejables**, mediante un *text splitter* en el que definimos el tamaño de esos segmentos.
 
-In this example, we're setting the chunk_size to 1000 and chunk_overlap to 4.
+En este ejemplo fijamos `chunk_size` en 1000 y `chunk_overlap` en 4.
 
-Next, we introduce an embedding utility - specifically the `HuggingFaceEmbedding`tool. This will be instrumental in embedding our text segments.
+A continuación introducimos una utilidad de *embeddings*, en concreto `HuggingFaceEmbedding`, que será la encargada de vectorizar nuestros segmentos de texto.
 
 ```python
 from langchain.text_splitter import CharacterTextSplitter
@@ -92,9 +92,9 @@ embeddings = HuggingFaceEmbeddings()
 ```
 
 
-Following the embedding process, the next step involves depositing these embedded text fragments into our vector database, for efficient storage and retrieval.
+Tras el proceso de embedding, el siguiente paso es **depositar esos fragmentos vectorizados en la base de datos vectorial**, para almacenarlos y recuperarlos de forma eficiente.
 
-First, we initialise the database client in our application using the API key previously generated. Then, we assign an index name and check if it already exists in the database. If it does exist, we link it to the docsearch variable. If not, we create a new index using `pinecone.create_index`, with `cosine` as the metric and a dimension of 768, suitable for HuggingFace embeddings.
+Primero inicializamos el cliente de la base de datos con la clave API generada antes. Después asignamos un nombre de índice y comprobamos si ya existe: si existe, lo enlazamos a la variable `docsearch`; si no, creamos uno nuevo con `pinecone.create_index`, usando `cosine` como métrica y dimensión 768, adecuada para los embeddings de HuggingFace.
 
 ```python
 from langchain.vectorstores import Pinecone
@@ -120,16 +120,16 @@ else:
 ```
 
 
-## Model setup
+## Configuración del modelo
 
-Now that we have our embedded texts on the vector database, let's move on to the model setup part. Of course, we don't want to create, train, and deploy the LLM from scratch locally. This is why we are using HuggingFaceHub, which is a platform we can connect and call the model without having to deploy it on our machine.
+Ya con los textos vectorizados en la base de datos, pasamos a configurar el modelo. Evidentemente no queremos crear, entrenar y desplegar el LLM desde cero en local; por eso usamos **HuggingFaceHub**, una plataforma a la que podemos conectarnos e invocar el modelo sin desplegarlo en nuestra máquina.
 
-With HuggingFaceHub, we just define the ID of the model we want to use - in this case, it will be `mistralai/Mixtral-8x7B-Instruct-v0.1` 
+Con HuggingFaceHub basta con definir el ID del modelo a usar; en este caso, `mistralai/Mixtral-8x7B-Instruct-v0.1`.
 
-we need to define two variables:
+Necesitamos definir dos variables:
 
-- `top_k`: limits the number of highest probability next words to k
-- `temperature`: which controls the randomness in the output
+- `top_k`: limita a *k* el número de palabras siguientes de mayor probabilidad.
+- `temperature`: controla la aleatoriedad de la salida.
 
 ```python 
 from langchain.llms import HuggingFaceHub
@@ -144,12 +144,12 @@ llm = HuggingFaceHub(
 ```
 
 
-## Prompt engineering
+## Ingeniería de prompts
 
 
-For LLM to answer our question, we need to define a prompt that will contain all of the necessary information. This allows us to customise the model to fit our needs. In our case, we will tell the model to be a `Some Matter Expert` (SME) and answer only relevant questions. Additionally, we need to pass `{context}` and `{question}` to the prompt. These values will be replaced with the data chunk we retrieve from our vector database for `{context}` and the question the user asked for the `{question}`.
+Para que el LLM responda a nuestra pregunta hay que definir un prompt que contenga toda la información necesaria, lo que nos permite adaptar el modelo a nuestras necesidades. En este caso le diremos que actúe como **experto en la materia** (*subject matter expert*) y responda solo preguntas relevantes. Además hay que pasarle `{context}` y `{question}`: el primero se sustituirá por el fragmento recuperado de la base vectorial, y el segundo por la pregunta del usuario. Ver [prompting](../prompting.md).
 
-With this template created, we then define the PromptTemplate object taking our template and input variables (context and questions) as a parameter.
+Creada la plantilla, definimos el objeto `PromptTemplate` pasándole la plantilla y las variables de entrada (`context` y `question`) como parámetros.
 
 
 ```python
@@ -173,14 +173,14 @@ prompt = PromptTemplate(
 )
 ```
 
-## Putting it all together
+## Uniéndolo todo
 
-- Pinecone database index object( docsearch)
-- PromptTemplate ( prompt )
-- Model ( llm )
+- El objeto de índice de Pinecone (`docsearch`)
+- La plantilla de prompt (`prompt`)
+- El modelo (`llm`)
 
 
-The process starts with `docsearch` pulling relevant documents to provide context. Then, the query goes through unchanged using `RunnablePassthrough`. Next, a `prompt` step refines or modifies the query before it's processed by our model, `llm`. Finally, the response from the model is turned into text with `StrOutputParser`.
+El proceso empieza con `docsearch` recuperando los documentos relevantes que aportan el contexto. Después la consulta pasa sin cambios mediante `RunnablePassthrough`. A continuación, un paso de `prompt` refina o modifica la consulta antes de que la procese nuestro modelo `llm`. Finalmente, la respuesta del modelo se convierte en texto con `StrOutputParser`.
 
 
 ```python
@@ -203,7 +203,7 @@ class ChatBot():
   )
 ```
 
-In `main.py`, add the following code at the end (this is just for testing purposes and should be removed this later):
+En `main.py`, añade el siguiente código al final (es solo para probar y conviene eliminarlo después):
 
 ```python
 # Outside ChatBot() class
@@ -213,7 +213,7 @@ result = bot.rag_chain.invoke(input)
 print(result)
 ```
 
-## Streamlit frontend
+## Frontend con Streamlit
 
 
 ```python

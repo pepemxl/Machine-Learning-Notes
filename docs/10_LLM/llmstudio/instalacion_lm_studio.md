@@ -1,15 +1,15 @@
-# Setup
+# Instalación de LM Studio
 
 
-`lmstudio` is a library published on PyPI that allows you to use `lmstudio-python` in your own projects.
-It is open source and developed on GitHub.
-You can find the source code [here](https://github.com/lmstudio-ai/lmstudio-python).
+`lmstudio` es una librería publicada en PyPI que permite usar `lmstudio-python` en tus propios
+proyectos. Es de código abierto y se desarrolla en GitHub; puedes encontrar el código fuente
+[aquí](https://github.com/lmstudio-ai/lmstudio-python).
 
-## Installing `lmstudio-python`
+## Instalar `lmstudio-python`
 
-As it is published to PyPI, `lmstudio-python` may be installed using `pip`
-or your preferred project dependency manager (`pdm` and `uv` are shown, but other
-Python project management tools offer similar dependency addition commands).
+Al estar publicado en PyPI, `lmstudio-python` se puede instalar con `pip` o con tu gestor de
+dependencias preferido. A continuación se muestran `pdm` y `uv`, pero otras herramientas de
+gestión de proyectos Python ofrecen comandos equivalentes para añadir dependencias.
 
 ```lms_code_snippet
   variants:
@@ -27,14 +27,14 @@ Python project management tools offer similar dependency addition commands).
         uv add lmstudio
 ```
 
-## Customizing the server API host and TCP port
+## Personalizar el host y el puerto TCP del servidor
 
-All of the examples in the documentation assume that the server API is running locally
-on one of the default application ports (Note: in Python SDK versions prior to 1.5.0, the
-SDK also required that the optional HTTP REST server be enabled).
+Todos los ejemplos de la documentación asumen que la API del servidor corre en local en uno de
+los puertos por defecto de la aplicación. Nota: en versiones del SDK anteriores a la 1.5.0, el
+SDK además requería que el servidor HTTP REST opcional estuviera habilitado.
 
-The network location of the server API can be overridden by
-passing a `"host:port"` string when creating the client instance.
+La ubicación de red de la API se puede sobrescribir pasando una cadena `"host:puerto"` al crear
+la instancia del cliente.
 
 ```lms_code_snippet
   variants:
@@ -85,13 +85,13 @@ passing a `"host:port"` string when creating the client instance.
             print() # Advance to a new line at the end of the response
 ```
 
-### Checking a specified API server host is running
+### Comprobar que el servidor especificado está corriendo
 
-*Required Python SDK version*: **1.5.0**
+*Versión mínima del SDK de Python*: **1.5.0**
 
-While the most common connection pattern is to let the SDK raise an exception if it can't
-connect to the specified API server host, the SDK also supports running the API check directly
-without creating an SDK client instance first:
+Aunque el patrón de conexión más habitual es dejar que el SDK lance una excepción si no puede
+conectarse al servidor indicado, el SDK también permite ejecutar la comprobación directamente,
+sin crear antes una instancia de cliente:
 
 ```lms_code_snippet
   variants:
@@ -121,14 +121,14 @@ without creating an SDK client instance first:
 ```
 
 
-### Determining the default local API server port
+### Determinar el puerto local por defecto
 
 
 
-When no API server host is specified, the SDK queries a number of ports on the local loopback
-interface for a running API server instance. This scan is repeated for each new client instance
-created. Rather than letting the SDK perform this scan implicitly, the SDK also supports running
-the scan explicitly, and passing in the reported API server details when creating clients:
+Cuando no se especifica un host, el SDK consulta varios puertos de la interfaz local de
+*loopback* buscando una instancia del servidor en ejecución. Este escaneo se repite con cada
+nueva instancia de cliente. En lugar de dejar que el SDK lo haga de forma implícita, se puede
+ejecutar el escaneo explícitamente y pasar los datos obtenidos al crear los clientes:
 
 ```lms_code_snippet
   variants:
@@ -156,3 +156,8 @@ the scan explicitly, and passing in the reported API server details when creatin
           else:
             print("No LM Studio API server instance found on any of the default local ports")
 ```
+
+## Ver también
+
+- [Introducción a LM Studio](introduccion_lm_studio.md)
+- [LM Studio con Python](lm_studio_con_python.md)
