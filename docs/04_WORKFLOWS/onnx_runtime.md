@@ -234,6 +234,7 @@ con TensorRT, la compilación de kernels, que puede tardar minutos.
 - [ONNX](onnx.md) — el formato y cómo exportar.
 - [Sistemas de machine learning](sistemas_de_machine_learning.md)
 - [Bibliotecas de IA de Ray](ray_bibliotecas_ia.md) — Ray Serve como capa de servicio.
+- [MLflow en la práctica](mlflow_en_practica.md) — de dónde sale el modelo que se sirve.
 - [Requerimientos de hardware](../10_LLM/requerimientos_de_hardware.md)
 
 ## Referencias

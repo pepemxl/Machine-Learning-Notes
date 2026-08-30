@@ -58,7 +58,8 @@ kedro run --params=modelo.test_size=0.4
 ```
 
 Verificado: cambia `n_test` de 125 a 200 sin tocar ningún archivo. Va bien para barridos rápidos;
-para búsquedas serias de hiperparámetros, [Ray Tune](ray_bibliotecas_ia.md#ray-tune).
+para búsquedas serias de hiperparámetros, [Ray Tune](ray_bibliotecas_ia.md#ray-tune); para
+registrar cada prueba con sus métricas, [experimentos de DVC](dvc_pipelines_y_experimentos.md#experimentos).
 
 ### Ejecución incremental
 
@@ -140,9 +141,11 @@ from demo.hooks import HooksDeMetricas
 HOOKS = (HooksDeMetricas(),)
 ```
 
-Es el mecanismo estándar para integrar **MLflow**, enviar métricas a un sistema de monitoreo,
-validar datos con Great Expectations o medir tiempos por nodo. Los hooks se ejecutan en orden
-LIFO.
+Es el mecanismo estándar para integrar **[MLflow](mlflow_en_practica.md#integracion-con-kedro)**,
+enviar métricas a un sistema de monitoreo,
+validar datos con Great Expectations, medir tiempos por nodo o
+[emitir linaje con OpenLineage](openlineage_en_practica.md#con-kedro). Los hooks se ejecutan en
+orden LIFO.
 
 ## Despliegue a orquestadores
 

@@ -229,7 +229,8 @@ ONNX no es una traducción universal y gratuita:
   los haya generado si tu modelo los necesita.
 - **El preprocesamiento no viaja.** Tokenización, normalización de imágenes o escalado de
   features quedan fuera salvo que los incluyas explícitamente en el grafo. Es una fuente
-  frecuente de *training-serving skew*; ver [feature stores](feature_stores.md).
+  frecuente de *training-serving skew*; ver [feature stores](feature_stores.md) y
+  [Feast](feast.md).
 - **El grafo es estático.** Los modelos con arquitectura verdaderamente dinámica encajan mal.
 
 ## Ver también

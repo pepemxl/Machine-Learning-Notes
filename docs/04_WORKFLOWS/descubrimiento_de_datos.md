@@ -14,7 +14,9 @@ cualquier [feature store](feature_stores.md) que aspire a ser compartido.
 
 - **Inventario** — qué datasets existen, dónde viven y en qué formato.
 - **Propiedad** — quién es responsable de cada uno.
-- **Linaje** (*lineage*) — de qué fuentes deriva cada dataset y qué depende de él.
+- **Linaje** (*lineage*) — de qué fuentes deriva cada dataset y qué depende de él. Registrarlo a
+  mano no funciona: ver [OpenLineage](openlineage.md), el estándar para que lo emitan las
+  propias herramientas de ejecución.
 - **Clasificación de sensibilidad** — datos personales, financieros, de salud.
 - **Frescura y calidad** — cada cuánto se actualiza y qué garantías ofrece.
 

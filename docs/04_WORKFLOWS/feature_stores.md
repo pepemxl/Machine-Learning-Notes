@@ -12,7 +12,7 @@ Un **Feature Store System** (FSS) es un sistema de base de datos especializado e
 - Uso de un framework de ingeniería de features de ML.
 - **Compartición y reutilización** de features.
 - Versionado de features.
-- Linaje (*lineage*) de features.
+- Linaje (*lineage*) de features — ver [OpenLineage](openlineage.md).
 - Metadatos de features.
 - Calidad de las features.
 - **Garantizar la consistencia** entre los datos de entrenamiento y los de servicio.
@@ -21,7 +21,8 @@ Un **Feature Store System** (FSS) es un sistema de base de datos especializado e
     - automatización,
     - alertas.
 
-Todos estos son aspectos deseables en un entorno de ML.
+Todos estos son aspectos deseables en un entorno de ML. Ver [Feast](feast.md) para la
+implementación de código abierto más extendida de este concepto.
 
 ## Tres tipos de creación de modelos
 
@@ -63,8 +64,10 @@ Hay dos enfoques habituales para llevar los datos crudos al almacén:
 
 ## Ver también
 
+- [Feast](feast.md) y [Feast en la práctica](feast_en_practica.md)
 - [Sistemas de machine learning](sistemas_de_machine_learning.md)
 - [Descubrimiento de datos](descubrimiento_de_datos.md)
 - [Kedro](kedro.md) — el catálogo de datos como forma de desacoplar código y almacenamiento
+- [DVC](dvc.md) — versionar los datasets y las features generadas
 - [ONNX](onnx.md) — el preprocesamiento que no se exporta con el modelo es una fuente de
   *training-serving skew*
