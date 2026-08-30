@@ -10,9 +10,14 @@ if __name__  == '__main__':
 from pp_tools.common.constants import TEST_DATA_OUTPUT_PATH
 from pp_tools.common.logger import get_logger
 from pp_tools.db.schema_base import Base
+from pp_tools.db.schema_users import TblUsers
 
 
-log = get_logger(__file__, "INFO")
+log = get_logger(
+    logger_name=__name__,
+    logger_caller=__file__,
+    flag_stdout=True
+)
 
 
 class TestTblUsersModel(unittest.TestCase):

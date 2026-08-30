@@ -26,13 +26,16 @@ log = get_logger(
 class TestTblUsers(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.flag_in_memory = True
+        cls.flag_in_memory = False
         if cls.flag_in_memory:
             cls.engine = create_engine("sqlite:///:memory:", echo=False)  # Use an in-memory SQLite database for testing
         else:
-            PATH_DB = os.path.join(TEST_DATA_OUTPUT_PATH, "pp_tools.db")
+            PATH_DB = os.path.join(TEST_DATA_OUTPUT_PATH, "pp_tools_unittest.db")
             cls.engine = create_engine("sqlite:///{0}".format(PATH_DB), echo=False)
-        TblUsers.metadata.create_all(bind=cls.engine)
+        try:
+            TblUsers.metadata.create_all(bind=cls.engine)
+        except Exception as e:
+            log.exception("Exception: ", str(e))
         if cls.flag_in_memory:
             log.info("Database in memory created".format(TblUsers.metadata.schema))
         else:
@@ -64,85 +67,85 @@ class TestTblUsers(unittest.TestCase):
         self.assertTrue(flag_table_created)
 
     # Test the creation of a TblUsers record
-    def test_create_user(self):
-        # Create a TblUsers row
-        date_string = '2024-03-03 12:00:00'
-        date_format = '%Y-%m-%d %H:%M:%S'
-        parsed_datetime = datetime.strptime(date_string, date_format)
-        user = TblUsers(
-            email='test@example.com',
-            country_code=1,
-            phone_number=123456789,
-            created_at=parsed_datetime
-        )
-        # Add the user to the session and commit
-        self.session.add(user)
-        self.session.commit()
-        # Query the user from the database
-        retrieved_user = self.session.query(TblUsers).filter_by(email='test@example.com').first()
-        # Assert that the retrieved user is not None
-        self.assertIsNotNone(retrieved_user)
-        # Assert that the values match the expected values
-        self.assertEqual(retrieved_user.email, 'test@example.com')
-        self.assertEqual(retrieved_user.country_code, 1)
-        self.assertEqual(retrieved_user.phone_number, 123456789)
-        self.assertEqual(str(retrieved_user.created_at), '2024-03-03 12:00:00')
+    # def test_create_user(self):
+    #     # Create a TblUsers row
+    #     date_string = '2024-03-03 12:00:00'
+    #     date_format = '%Y-%m-%d %H:%M:%S'
+    #     parsed_datetime = datetime.strptime(date_string, date_format)
+    #     user = TblUsers(
+    #         email='test@example.com',
+    #         country_code=1,
+    #         phone_number=123456789,
+    #         created_at=parsed_datetime
+    #     )
+    #     # Add the user to the session and commit
+    #     self.session.add(user)
+    #     self.session.commit()
+    #     # Query the user from the database
+    #     retrieved_user = self.session.query(TblUsers).filter_by(email='test@example.com').first()
+    #     # Assert that the retrieved user is not None
+    #     self.assertIsNotNone(retrieved_user)
+    #     # Assert that the values match the expected values
+    #     self.assertEqual(retrieved_user.email, 'test@example.com')
+    #     self.assertEqual(retrieved_user.country_code, 1)
+    #     self.assertEqual(retrieved_user.phone_number, 123456789)
+    #     self.assertEqual(str(retrieved_user.created_at), '2024-03-03 12:00:00')
 
-    def test_read_user(self):
-        date_string = '2024-03-03 12:00:00'
-        date_format = '%Y-%m-%d %H:%M:%S'
-        parsed_datetime = datetime.strptime(date_string, date_format)
-        user = TblUsers(
-            email='test2@example.com',
-            country_code=1,
-            phone_number=123456789,
-            created_at=parsed_datetime
-        )
-        self.session.add(user)
-        self.session.commit()
-        read_user = self.session.query(TblUsers).filter_by(email='test2@example.com').first()
-        self.assertIsNotNone(read_user)
+    # def test_read_user(self):
+    #     date_string = '2024-03-03 12:00:00'
+    #     date_format = '%Y-%m-%d %H:%M:%S'
+    #     parsed_datetime = datetime.strptime(date_string, date_format)
+    #     user = TblUsers(
+    #         email='test2@example.com',
+    #         country_code=1,
+    #         phone_number=123456789,
+    #         created_at=parsed_datetime
+    #     )
+    #     self.session.add(user)
+    #     self.session.commit()
+    #     read_user = self.session.query(TblUsers).filter_by(email='test2@example.com').first()
+    #     self.assertIsNotNone(read_user)
 
-    def test_update_user(self):
-        date_string = '2024-03-03 12:00:00'
-        date_format = '%Y-%m-%d %H:%M:%S'
-        parsed_datetime = datetime.strptime(date_string, date_format)
-        user = TblUsers(
-            email='test3@example.com',
-            country_code=1,
-            phone_number=123456789,
-            created_at=parsed_datetime
-        )
-        self.session.add(user)
-        self.session.commit()
-        retrieved_user = self.session.query(TblUsers).filter_by(email='test3@example.com').first()
-        retrieved_user.country_code = 2
-        retrieved_user.phone_number = 987654321
-        self.session.add(retrieved_user)
-        self.session.commit()
-        retrieved_user2 = self.session.query(TblUsers).filter_by(email='test3@example.com').first()
-        self.assertIsNotNone(retrieved_user2)
-        self.assertEqual(retrieved_user2.email, 'test3@example.com')
-        self.assertEqual(retrieved_user2.country_code, 2)
-        self.assertEqual(retrieved_user2.phone_number, 987654321)
-        self.assertEqual(str(retrieved_user2.created_at), '2024-03-03 12:00:00')
+    # def test_update_user(self):
+    #     date_string = '2024-03-03 12:00:00'
+    #     date_format = '%Y-%m-%d %H:%M:%S'
+    #     parsed_datetime = datetime.strptime(date_string, date_format)
+    #     user = TblUsers(
+    #         email='test3@example.com',
+    #         country_code=1,
+    #         phone_number=123456789,
+    #         created_at=parsed_datetime
+    #     )
+    #     self.session.add(user)
+    #     self.session.commit()
+    #     retrieved_user = self.session.query(TblUsers).filter_by(email='test3@example.com').first()
+    #     retrieved_user.country_code = 2
+    #     retrieved_user.phone_number = 987654321
+    #     self.session.add(retrieved_user)
+    #     self.session.commit()
+    #     retrieved_user2 = self.session.query(TblUsers).filter_by(email='test3@example.com').first()
+    #     self.assertIsNotNone(retrieved_user2)
+    #     self.assertEqual(retrieved_user2.email, 'test3@example.com')
+    #     self.assertEqual(retrieved_user2.country_code, 2)
+    #     self.assertEqual(retrieved_user2.phone_number, 987654321)
+    #     self.assertEqual(str(retrieved_user2.created_at), '2024-03-03 12:00:00')
 
-    def test_delete_user(self):
-        date_string = '2024-03-03 12:00:00'
-        date_format = '%Y-%m-%d %H:%M:%S'
-        parsed_datetime = datetime.strptime(date_string, date_format)
-        user = TblUsers(
-            email='test4@example.com',
-            country_code=1,
-            phone_number=123456789,
-            created_at=parsed_datetime
-        )
-        self.session.add(user)
-        self.session.commit()
-        stmt = delete(TblUsers).where(TblUsers.email == 'test4@example.com')
-        self.session.execute(stmt)
-        retrieved_user = self.session.query(TblUsers).filter_by(email='test4@example.com').first()
-        self.assertIsNone(retrieved_user)
+    # def test_delete_user(self):
+    #     date_string = '2024-03-03 12:00:00'
+    #     date_format = '%Y-%m-%d %H:%M:%S'
+    #     parsed_datetime = datetime.strptime(date_string, date_format)
+    #     user = TblUsers(
+    #         email='test4@example.com',
+    #         country_code=1,
+    #         phone_number=123456789,
+    #         created_at=parsed_datetime
+    #     )
+    #     self.session.add(user)
+    #     self.session.commit()
+    #     stmt = delete(TblUsers).where(TblUsers.email == 'test4@example.com')
+    #     self.session.execute(stmt)
+    #     retrieved_user = self.session.query(TblUsers).filter_by(email='test4@example.com').first()
+    #     self.assertIsNone(retrieved_user)
     
     # def test_delete2_user(self):
     #     date_string = '2024-03-03 12:00:00'

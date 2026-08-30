@@ -1,3 +1,4 @@
+from datetime import datetime
 from enum import Enum
 import networkx as nx
 import os
@@ -23,20 +24,25 @@ if __name__  == '__main__':
 from pp_tools.common.logger import get_logger
 from pp_tools.common.environment_variables import get_env_var
 from pp_tools.db.schema_base import Base
-from pp_tools.db.utils import get_url_object
+from pp_tools.db.schema_base import get_url_object
 
 
 log = get_logger(__file__, "INFO")
 
 
 class NodeType(Enum):
+    PROJECT = 'project', ""
+    ORG = 'org', ""
     TEAM = 'team', ""
     MANAGER = 'manager', ""
     DEVELOPER = 'developer', ""
+    MODULE = 'module'
     LIBRARY = 'library', ""
-    MODULE = 'module', ""
+    PATH = 'path', ""
     FILE = 'file', ""
+    CLASS = 'class', ""
     FUNCTION = 'function', ""
+    DATE = 'date', ""
     NONE = 'none', ""
 
     def __new__(cls, *args, **kwds):
@@ -56,13 +62,27 @@ class NodeType(Enum):
 
 
 class RelationshipType(Enum):
-    TEAM = 'team', ""
-    MANAGER = 'manager', ""
-    DEVELOPER = 'developer', ""
-    LIBRARY = 'library', ""
-    MODULE = 'module', ""
-    FILE = 'file', ""
-    FUNCTION = 'function', ""
+    # commit, file, library
+    ADDED_BY = 'added_by', ""
+    COMMITED_BY = 'commited_by', ""
+    UPDATED_BY = 'updated_by', ""
+    SHIPPED_BY = 'shipped_by', ""
+    OWNED_BY = 'owned_by', ""
+    REMOVED_BY = 'removed_by', ""
+    # date
+    ADDED_ON = 'added_on', ""
+    UPDATED_ON = 'updated_on', ""
+    REMOVED_ON = 'removed_on', ""
+    # file
+    INCLUDED_IN = 'included_in', ""
+    PART_OF = 'part_of', ""
+    # people
+    MEMBER_OF = 'member_of', ""
+    MANAGER_OF = 'manager_of', ""
+    REPORTS_TO = 'reports_to', ""
+    # libraries
+    DEPEDENCY_OF = 'dependency_of', ""
+    PARENT_OF = 'parent_of', ""
     NONE = 'none', ""
     
     def __new__(cls, *args, **kwds):
@@ -97,8 +117,14 @@ class TblNodes(Base):
     name = Column(String(128))
     created_at: Mapped[DateTime] = mapped_column(
         DateTime,
-        nullable=False,
-        comment='Date created'
+        comment='Date created',
+        default=datetime.now()
+    )
+    updated_at: Mapped[DateTime] = mapped_column(
+        DateTime,
+        comment='Date Updated',
+        default=datetime.now(), 
+        onupdate=datetime.now()
     )
 
 
@@ -130,9 +156,37 @@ class TblEdges(Base):
         Integer,
         ForeignKey('tbl_graphs.id')
     )
+    created_at: Mapped[DateTime] = mapped_column(
+        DateTime,
+        comment='Date created',
+        default=datetime.now()
+    )
+    updated_at: Mapped[DateTime] = mapped_column(
+        DateTime,
+        comment='Date Updated',
+        default=datetime.now(), 
+        onupdate=datetime.now()
+    )
     graph = relationship("TblGraphs", back_populates="tbl_edges")
     source = relationship("TblNodes", foreign_keys=[source_id])
     target = relationship("TblNodes", foreign_keys=[target_id])
+
+
+# Define association table to handle shared nodes among multiple graphs
+graph_node_association = Table(
+    'tbl_graph_node_association', 
+    Base.metadata,
+    Column(
+        'graph_id', 
+        Integer, 
+        ForeignKey('tbl_graphs.id')
+    ),
+    Column(
+        'node_id', 
+        Integer, 
+        ForeignKey('nodes.id')
+    )
+)
 
 
 class TblGraphs(Base):
@@ -151,13 +205,23 @@ class TblGraphs(Base):
     # )
     name = Column(String(45))
     # nodes = relationship("TblNodes", back_populates="tbl_graphs")
-    nodes = mapped_column('nodes', graph_node_association, back_populates="tbl_graphs")
+    nodes = mapped_column(
+        'nodes', 
+        graph_node_association, 
+        back_populates="tbl_graphs"
+    )
     # edges = relationship("TblEdges", back_populates="tbl_graphs")
     edges = relationship("TblEdges")
     created_at: Mapped[DateTime] = mapped_column(
         DateTime,
-        nullable=False,
-        comment='Date created'
+        comment='Date created',
+        default=datetime.now()
+    )
+    updated_at: Mapped[DateTime] = mapped_column(
+        DateTime,
+        comment='Date Updated',
+        default=datetime.now(), 
+        onupdate=datetime.now()
     )
 
 
