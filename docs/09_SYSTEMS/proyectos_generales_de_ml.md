@@ -1,33 +1,33 @@
-# General Machine Learning Projects
+# Proyectos Generales de Machine Learning
 
-## Machine Learning life cycle
+## Ciclo de vida del machine learning
 
 ```mermaid
 flowchart LR
-    subgraph "Complete ML Lifecycle"
+    subgraph "Ciclo de vida completo de ML"
         direction LR
         
-        subgraph "Preparation"
-            A1[Data<br>📊] --> A2[Preprocess<br>🔧] --> A3[Dataset<br>📁]
+        subgraph "Preparación"
+            A1[Datos<br>📊] --> A2[Preprocesar<br>🔧] --> A3[Dataset<br>📁]
         end
         
-        subgraph "Development"
-            B1[Train<br>🧠] --> B2[Deploy<br>🚀]
+        subgraph "Desarrollo"
+            B1[Entrenar<br>🧠] --> B2[Desplegar<br>🚀]
         end
         
-        subgraph "Production"
-            C1[Predict<br>🔮] --> C2[Monitor<br>📈]
+        subgraph "Producción"
+            C1[Predecir<br>🔮] --> C2[Monitorear<br>📈]
         end
         
-        subgraph "Maintenance"
-            D1[Maintain<br>🛠️]
+        subgraph "Mantenimiento"
+            D1[Mantener<br>🛠️]
         end
         
         A3 --> B1
         B2 --> C1
         C2 --> D1
-        D1 -->|Retrain| B1
-        C2 -->|Feedback| A1
+        D1 -->|Reentrenar| B1
+        C2 -->|Retroalimentación| A1
     end
     
     style A1 fill:#e6f3ff
@@ -40,73 +40,73 @@ flowchart LR
     style D1 fill:#ffe6e6
 ```
 
-Machine Learning projects needs in general the next steps:
+En general, los proyectos de machine learning requieren los siguientes pasos:
 
-1. Data Collection
-2. Data Pre-processing
-3. Building Datasets
-4. Model Training Online/Offline
-5. Model Deployment
-6. Prediction
-7. Monitoring Models
-8. Maintenance, Diagnosis, and Retraining
+1. Recolección de datos
+2. Preprocesamiento
+3. Construcción de datasets
+4. Entrenamiento del modelo (online / offline)
+5. Despliegue del modelo — ver [ONNX](../04_WORKFLOWS/onnx.md) y
+   [ONNX Runtime](../04_WORKFLOWS/onnx_runtime.md)
+6. Predicción
+7. Monitoreo de modelos
+8. Mantenimiento, diagnóstico y reentrenamiento
 
 
 ```mermaid
 flowchart TD
-    Start([ML Project Start]) --> Collect
-    subgraph "Continuous ML Cycle"
-        Collect[1. Data Collection] --> Preprocess
-        Preprocess[2. Pre-processing] --> Build
-        Build[3. Build Datasets] --> Train
-        Train[4. Model Training] --> Deploy
-        Deploy[5. Model Deployment] --> Predict
-        Predict[6. Prediction] --> Monitor
-        Monitor[7. Monitoring] --> Maintain
-        Maintain[8. Maintenance] --> Collect
+    Start([Inicio del proyecto ML]) --> Collect
+    subgraph "Ciclo continuo de ML"
+        Collect[1. Recolección de datos] --> Preprocess
+        Preprocess[2. Preprocesamiento] --> Build
+        Build[3. Construir datasets] --> Train
+        Train[4. Entrenamiento] --> Deploy
+        Deploy[5. Despliegue] --> Predict
+        Predict[6. Predicción] --> Monitor
+        Monitor[7. Monitoreo] --> Maintain
+        Maintain[8. Mantenimiento] --> Collect
     end
     
-    Monitor -->|Trigger| Retrain[Retrain Model]
+    Monitor -->|Disparador| Retrain[Reentrenar modelo]
     Retrain --> Train
     
-    Maintain -->|Optimize| Improve[System Improvements]
+    Maintain -->|Optimizar| Improve[Mejoras del sistema]
     Improve --> Deploy
 ```
 
 
 
-In order to achieve all these steps we need enough tools in our stack, we will incorporate 
-enough tools to achieve.
+Para cubrir todos estos pasos necesitamos herramientas suficientes en nuestro stack.
 
-In many large business or startups we deploy machine learning projects going through the next stages:
+En muchas grandes empresas y startups, los proyectos de machine learning se despliegan atravesando las siguientes etapas:
 
-1. Machine learning frameworks
+1. Frameworks de machine learning
     - Open AI
     - Tensorflow
     - **Pytorch**
     - SageMaker
     - GridAI
-2. Distributed compute
+2. Cómputo distribuido
     - Dask
     - **Spark**
     - Databricks
-3. Model evaluation and experiment tracking
+3. Evaluación de modelos y seguimiento de experimentos
     - **MLFlow**
     - neptune.ai
     - Comet
-4. Model deployment
+4. Despliegue de modelos
     - OctoML
     - **BentoML**
-5. Model monitoring and management
+5. Monitoreo y gestión de modelos
     - Fidler
     - Cortex
-6. End-to-end platform solutions
+6. Plataformas integrales (*end-to-end*)
     - nvidia
     - databricks
     - SageMaker
 
 
-## Big Data Stacks
+## Stacks de Big Data
 
 - SMACK
 - Hadoop Ecosystem
@@ -123,29 +123,29 @@ In many large business or startups we deploy machine learning projects going thr
 - Kafka
 
 
-Spark: Apache Spark is an in-memory data processing framework that facilitates distributed processing and analysis of large data sets efficiently.
+**Spark**: framework de procesamiento de datos en memoria que facilita el procesamiento distribuido y el análisis eficiente de grandes volúmenes de datos.
 
-Mesos: Apache Mesos is a cluster management system that enables efficient resource allocation between applications and services in a distributed environment.
+**Mesos**: sistema de gestión de clústeres que permite asignar recursos de forma eficiente entre aplicaciones y servicios en un entorno distribuido.
 
-Akka: Akka is a toolkit and runtime for building concurrent and distributed systems based on the actor model, which are independent processing units that communicate with each other.
+**Akka**: toolkit y entorno de ejecución para construir sistemas concurrentes y distribuidos basados en el modelo de actores, unidades de procesamiento independientes que se comunican entre sí.
 
-Cassandra: Apache Cassandra is a highly scalable and fault-tolerant distributed database used to manage large volumes of data distributed across multiple nodes.
+**Cassandra**: base de datos distribuida, altamente escalable y tolerante a fallos, usada para gestionar grandes volúmenes de datos repartidos entre múltiples nodos.
 
-Kafka: Apache Kafka is a distributed event streaming platform that facilitates real-time data ingestion and processing through event streams.
+**Kafka**: plataforma distribuida de streaming de eventos que facilita la ingesta y el procesamiento de datos en tiempo real mediante flujos de eventos.
 
 
-## Review of Projects Big Data + ML + Data Mining
+## Revisión de proyectos: Big Data + ML + Minería de datos
 
-- Geolocation Analysis for Transportation Applications
-    - Proximity Service
-    - Nearby Friends
-- Visual Search System
-- Google Street View Blurring System
-- Youtube Video Search
-- Harmful Content Detection
-- Video Recommendation System
-- Event Recommendation System
-- Ad Click Prediction on Social Platforms
-- Similar Listings on Vacation Rental Platforms
-- Personalized News Feed
-- People You May Know
+- Análisis de geolocalización para aplicaciones de transporte
+    - Servicio de proximidad
+    - Amigos cercanos
+- Sistema de búsqueda visual
+- Sistema de difuminado de Google Street View
+- Búsqueda de video en YouTube
+- Detección de contenido dañino
+- Sistema de recomendación de video
+- Sistema de recomendación de eventos
+- Predicción de clics en anuncios en plataformas sociales
+- Anuncios similares en plataformas de alquiler vacacional
+- Feed de noticias personalizado
+- [People You May Know](PYMK/pymk.md)

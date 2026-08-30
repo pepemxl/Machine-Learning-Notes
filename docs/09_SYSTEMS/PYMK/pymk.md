@@ -1,23 +1,24 @@
-# PYMK People You May Know
+# PYMK — People You May Know
 
-People You May Know is a list of users/things with whom you may want to connect, based on things you have in common, such a mutual friend, school, or workplace.
-
+**People You May Know** es una lista de usuarios o entidades con los que podrías querer
+conectar, basada en cosas que tienen en común contigo: un amigo mutuo, la escuela o el lugar de
+trabajo.
 
 ```mermaid
     C4Context
       title People You May Know
-      Boundary(b0, "Know Each Other"){
+      Boundary(b0, "Se conocen entre si"){
         Person(p1, "P1")
         Person(p2, "P2")
         Person(p3, "P3")
       }
       Container(s1, "Object", $borderColor="#d73027")      
       Person(p4, "P4")
-      BiRel(p1, p2, "know")
-      BiRel(p1, p3, "know")
-      BiRel(p2, p3, "know")
-      Rel(p3, p4, "know")
-      Rel(p1, s1, "know")
+      BiRel(p1, p2, "conoce")
+      BiRel(p1, p3, "conoce")
+      BiRel(p2, p3, "conoce")
+      Rel(p3, p4, "conoce")
+      Rel(p1, s1, "conoce")
       UpdateElementStyle(p1, $fontColor="red", $bgColor="grey", $borderColor="red")
       UpdateElementStyle(p2, $fontColor="red", $bgColor="grey", $borderColor="red")
       UpdateElementStyle(p3, $fontColor="red", $bgColor="grey", $borderColor="red")
@@ -32,150 +33,166 @@ People You May Know is a list of users/things with whom you may want to connect,
 
 
 
-### 1. Problem Formulation
-Recommend a list of users/things that you may want to connect with. For any ML recommender system shold be addresed the next questions:
-* Clarifying questions
-  * What is the primary business objective of the system? 
-  * What's the primary use case of the system?
-  * Are there specific factors needs to be considered for recommendations?
-  * Are friendships/connections symmetrical?
-  * What is the scale of the system? (users, connections)
-  * can we assume the social graph is not very dynamic?
-  * Do we need continual training? 
-  * How do we collect negative samples? (not clicked, negative feedback). 
-  * How fast the system needs to be? 
-  * Is personalization needed? Yes 
-  
-## 
-* Use case(s) and business goal
-  * use case: PYMMK: recommend a list of users to connect with on social media app (e.g. facebook, linkedin)
-  * business objective: maximize number of formed connections 
+### 1. Formulación del problema
 
-* Requirements;
-    * Scalability: 1 B total users, on avg. 10000 connection per user     
-  
-* Constraints:
-    * Privacy and compliance with data protection regulations.
-    
-* Data: Sources and Availability:
+Recomendar una lista de usuarios o entidades con los que podrías querer conectar. En cualquier
+sistema recomendador de ML conviene responder antes estas preguntas:
 
-* Assumptions:
-    * symmetric friendships
-  
-* ML Formulation:
-    * Objective: 
-      * maximize number of formed connections 
-    * I/O: I: user_id, O: ranked list of recommended users sorted by the relevance to the user 
-    * ML Category: two options: 
-      * Ranking problem: 
-        * pointwise LTR - binary classifier (user_i, user_j) -> p(connection)
-        * cons: doesn't capture social connections 
-      * Graph representation (edge prediction)
-        * supplement with graph info (nodes, edges)
-        * input: social graph, predict edge b/w nodes 
+* **Preguntas de clarificación**
+  * ¿Cuál es el objetivo de negocio principal del sistema?
+  * ¿Cuál es el caso de uso principal?
+  * ¿Hay factores específicos que deban considerarse en las recomendaciones?
+  * ¿Las amistades o conexiones son simétricas?
+  * ¿Cuál es la escala del sistema? (usuarios, conexiones)
+  * ¿Podemos asumir que el grafo social no es muy dinámico?
+  * ¿Necesitamos entrenamiento continuo?
+  * ¿Cómo recolectamos las muestras negativas? (no clicadas, feedback negativo)
+  * ¿Qué tan rápido tiene que ser el sistema?
+  * ¿Hace falta personalización? Sí.
 
-### 2. Metrics  
-* Offline 
-  * GNN model: binary classification -> ROC-AUC 
-  * Recommendation system: binary relationships -> mAP 
-  
-* Online 
-  * No of friend requests sent over X time 
-  * No of friend requests accepted over X time 
-  
-### 3. Architectural Components  
-* High level architecture 
-  * Node-level predictions 
-  * Edge-level predictions 
-  
-### 4. Data Collection and Preparation
-* Data Sources
-  * Users, 
-    * demographics, edu and work backgrounds, skills, etc
-    * note: standardized data (e.g. cs / computer science)
-  * User-user connections,  
-  * User-user interactions, 
+### Caso de uso y objetivo de negocio
 
-* Labelling
+* **Caso de uso**: recomendar una lista de usuarios con los que conectar en una app social
+  (Facebook, LinkedIn).
+* **Objetivo de negocio**: maximizar el número de conexiones formadas.
 
-### 5. Feature Engineering
+* **Requisitos**
+    * Escalabilidad: 1 000 M de usuarios en total, con una media de 10 000 conexiones por
+      usuario.
 
-* Feature selection
-    
-  * User: 
-    * ID, username
-    * Demographics (Age, gender, location)
-    * Account/Network info: No of connections, followers, following, requests, etc, account age
-    * Interaction history (No of likes, shares, comments)
-    * Context (device, time of day, etc)
-    
-  * User-user connections: 
-    * Connection: IDs(user1, user2), connection type, timestamp, location 
-    * edu and work affinity: major similarity, companies in common, industry similarity, etc 
-    * social affinity: No. mutual connections (time discounted)
-  * User-user interactions:  
-    * IDs(u user1, user2), interaction type, timestamp 
+* **Restricciones**
+    * Privacidad y cumplimiento de la normativa de protección de datos.
 
+* **Supuestos**
+    * Amistades simétricas.
 
+* **Formulación como problema de ML**
+    * Objetivo: maximizar el número de conexiones formadas.
+    * Entrada/salida: entrada `user_id`; salida, lista ordenada de usuarios recomendados por
+      relevancia.
+    * Categoría de ML — dos opciones:
+      * **Problema de ranking**
+        * *Pointwise learning to rank*: clasificador binario `(user_i, user_j) -> p(conexión)`.
+        * Inconveniente: no captura la estructura social.
+      * **Representación de grafo** (predicción de aristas)
+        * Complementa con información del grafo (nodos, aristas).
+        * Entrada: el grafo social; se predice la arista entre nodos.
 
+### 2. Métricas
 
-### 6. Model Development and Offline Evaluation
+* **Offline**
+  * Modelo GNN: clasificación binaria → ROC-AUC.
+  * Sistema de recomendación: relaciones binarias → mAP.
 
-* Model selection 
-  * We choose GNN 
-    * operate on graph data 
-    * predict prob of edge 
-    * input: graph (node and edge features)
-    * output: embedding of each node
-    * use similarities b/w node embeddings for edge prediction 
+* **Online**
+  * Número de solicitudes de amistad enviadas en un periodo X.
+  * Número de solicitudes de amistad aceptadas en un periodo X.
 
+### 3. Componentes arquitectónicos
 
-* Model Training 
-  * snapshot of G at t. model predict connections at t+1
-  * Dataset 
-    * create a snapshot at time t
-    * compute node and edge features 
-    * create labels using snapshot at t + 1 (if connection formed, positive) 
-  * Model eval and HP tuning 
-  * Iterations 
-  
-### 7. Prediction Service
-* Prediction pipeline 
-  * Candidate generation 
-    * Friends of Friends (FoF) - rule based - from 1B to 1K.1K = 1M candidates -> FoF service  
-  * Scoring service (using GNN model -> embeddings -> similarity scores)
-  * sort by score 
-* pre-compute PYMK tables for each / active users and store in DB 
-* re-rank based on business logic 
-  
-### 8. Online Testing and Deployment  
-* A/B Test 
-* Deployment and release 
+* Arquitectura de alto nivel
+  * Predicciones a nivel de nodo.
+  * Predicciones a nivel de arista.
 
-### 9. Scaling, Monitoring, and Updates 
-* Scaling (SW and ML systems)
-* Monitoring 
-* Updates 
+### 4. Recolección y preparación de datos
 
-### 10. Other topics  
-* add a lightweight ranker 
-* bias problem 
-* delayed feedback problem (user accepts after days)
-* personalized random walk (for baseline)
+* **Fuentes de datos**
+  * Usuarios
+    * Demografía, formación académica y experiencia laboral, habilidades, etc.
+    * Nota: datos estandarizados (por ejemplo, *cs* / *computer science*).
+  * Conexiones usuario-usuario.
+  * Interacciones usuario-usuario.
 
+* **Etiquetado**
 
+### 5. Ingeniería de features
 
+* **Selección de features**
 
+  * **Usuario**
+    * ID, nombre de usuario.
+    * Demografía (edad, género, ubicación).
+    * Información de cuenta y red: número de conexiones, seguidores, seguidos, solicitudes,
+      antigüedad de la cuenta.
+    * Historial de interacción (número de *likes*, compartidos, comentarios).
+    * Contexto (dispositivo, hora del día, etc.).
 
-# PYMK LinkedIn case
+  * **Conexiones usuario-usuario**
+    * Conexión: IDs (`user1`, `user2`), tipo de conexión, timestamp, ubicación.
+    * Afinidad académica y laboral: similitud de carrera, empresas en común, similitud de
+      sector, etc.
+    * Afinidad social: número de conexiones mutuas (descontado por tiempo).
+  * **Interacciones usuario-usuario**
+    * IDs (`user1`, `user2`), tipo de interacción, timestamp.
 
-1. **Existing connections**: The algorithm may analyze your current connections and **suggest people who have connections in common with you**.
-2. **Work and education history**: LinkedIn also takes into account your work and educational history. It may suggest people who have worked at the same companies or attended the same educational institutions.
-3. **Skills and experiences**: Skills and professional experiences added to your profile are considered. LinkedIn might suggest people with similar skills or related work experiences.
-4. **Groups and events**: Participation in LinkedIn groups and events can influence connection suggestions. If you belong to the same groups or have attended similar events, connections may be suggested based on shared interests.
-5. **Location**: Geographic location is also a factor. LinkedIn might suggest connections working in the same geographical area or industry.
-6. **Mutual connections**: If several of your connections are already connected with a specific person, it's more likely that this person will appear in your suggestions.
-7. **Previous interactions**: Past interactions on the platform, such as profile visits or messages, can also influence suggestions.
+### 6. Desarrollo del modelo y evaluación offline
 
+* **Selección del modelo**
+  * Elegimos una [GNN](../REC_SYSTEM/gnn_y_transformers.md)
+    * Opera sobre datos de grafo.
+    * Predice la probabilidad de una arista.
+    * Entrada: el grafo (features de nodo y de arista).
+    * Salida: el *embedding* de cada nodo.
+    * Se usan las similitudes entre embeddings de nodos para predecir aristas.
 
+* **Entrenamiento**
+  * Instantánea del grafo $G$ en el instante $t$; el modelo predice las conexiones en $t+1$.
+  * **Dataset**
+    * Crear una instantánea en el instante $t$.
+    * Calcular features de nodo y de arista.
+    * Crear las etiquetas usando la instantánea en $t+1$ (si se formó la conexión, positivo).
+  * Evaluación del modelo y ajuste de hiperparámetros.
+  * Iteraciones.
 
+### 7. Servicio de predicción
+
+* **Pipeline de predicción**
+  * **Generación de candidatos**
+    * *Friends of Friends* (FoF), basado en reglas: de 1 000 M a 1 000 × 1 000 = 1 M de
+      candidatos → servicio FoF.
+  * **Servicio de scoring** (modelo GNN → embeddings → puntuaciones de similitud).
+  * Ordenar por puntuación.
+* Precalcular tablas PYMK para cada usuario activo y almacenarlas en base de datos.
+* Reordenar según la lógica de negocio.
+
+### 8. Pruebas online y despliegue
+
+* Test A/B.
+* Despliegue y publicación.
+
+### 9. Escalado, monitoreo y actualizaciones
+
+* Escalado (sistemas de software y de ML).
+* Monitoreo.
+* Actualizaciones.
+
+### 10. Otros temas
+
+* Añadir un *ranker* ligero.
+* Problema de sesgo.
+* Problema de feedback diferido (el usuario acepta días después).
+* *Random walk* personalizado (como línea base).
+
+## El caso de LinkedIn
+
+1. **Conexiones existentes**: el algoritmo analiza tus conexiones actuales y **sugiere personas
+   que tienen conexiones en común contigo**.
+2. **Historial laboral y académico**: LinkedIn tiene en cuenta tu trayectoria. Puede sugerir
+   personas que trabajaron en las mismas empresas o estudiaron en las mismas instituciones.
+3. **Habilidades y experiencia**: se consideran las habilidades y experiencias profesionales de
+   tu perfil. LinkedIn puede sugerir personas con habilidades similares o experiencias
+   relacionadas.
+4. **Grupos y eventos**: la participación en grupos y eventos de LinkedIn influye en las
+   sugerencias. Si perteneces a los mismos grupos o has asistido a eventos similares, se
+   pueden sugerir conexiones por intereses compartidos.
+5. **Ubicación**: la localización geográfica también es un factor. LinkedIn puede sugerir
+   conexiones que trabajan en la misma zona o sector.
+6. **Conexiones mutuas**: si varias de tus conexiones ya están conectadas con una persona
+   concreta, es más probable que esa persona aparezca en tus sugerencias.
+7. **Interacciones previas**: las interacciones pasadas en la plataforma —visitas a perfiles o
+   mensajes— también influyen en las sugerencias.
+
+## Ver también
+
+- [Recomendadores basados en KG](../REC_SYSTEM/introduccion_recomendadores_con_kg.md)
+- [Proyectos generales de ML](../proyectos_generales_de_ml.md)
